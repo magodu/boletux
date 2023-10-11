@@ -1,0 +1,28 @@
+.nav-item {
+    margin: 5px 15px;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 15px 35px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 999px;
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    -ms-border-radius: 999px;
+    -o-border-radius: 999px;
+    background-image: linear-gradient(4deg, #ec038b, #fb6468 44%, #fbb936);
+    background-image: -ms-linear-gradient(86deg, #ec038b 0, #fb6468 44%, #fbb936 100%);
+    box-shadow: 0 17px 40px 0 rgba(124, 78, 2, 0.35);
+    transition: background-size 0.3s;
+    color: #fff;
+
+    &.active {
+        background-image: linear-gradient(45deg, #d73df5, #8f3df5);
+        background-image: -ms-linear-gradient(45deg, #d73df5 0, #8f3df5 100%);
+        box-shadow: -1px 1px 5px 0 rgba(143, 61, 245, 0.63);
+    }
+}

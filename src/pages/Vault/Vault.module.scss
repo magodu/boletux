@@ -1,0 +1,254 @@
+@import '../../scss/_variables';
+
+.vault-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 80px;
+    background-color: #0f0233;
+
+    .bg-shape {
+        position: relative;
+        height: 300px;
+        background-image: -webkit-linear-gradient(90deg, rgb(232, 42, 122) 0%, rgb(54, 3, 84) 100%);
+
+        img {
+            max-width: 100%;
+            height: auto;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+    }
+
+    .title {
+        margin-top: -150px;
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 500;
+            text-align: center;
+        }
+    }
+
+    .vault-section {
+        padding-top: 4rem;
+
+        .content {
+            margin: 0 6rem;
+
+            .vault {
+                display: -ms-flexbox;
+                display: flex;
+                flex-direction: column;
+                padding: 1rem;
+                background-color: #4939c0;
+                box-shadow: 0px 19px 56px 0px rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+                -webkit-border-radius: 25px;
+                -moz-border-radius: 25px;
+                -ms-border-radius: 25px;
+                -o-border-radius: 25px;
+
+                @media (max-width: 991px) {
+                    margin-bottom: 1rem;
+                }
+
+                @media (max-width: 830px) {
+                    margin-top: 2rem;
+                }
+
+                .title {
+                    margin-top: 0;
+                    text-align: center;
+                }
+
+                .progressbar {
+                    position: relative;
+                    display: block;
+                    width: 100%;
+                    height: 10px;
+                    background-color: #3b2bb1;
+                    margin-top: 5px;
+                    border-radius: 999px;
+                    -webkit-border-radius: 999px;
+                    -moz-border-radius: 999px;
+                    -ms-border-radius: 999px;
+                    -o-border-radius: 999px;
+                    .bar {
+                        position: absolute;
+                        width: 0px;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        background: #ec6624;
+                        overflow: hidden;
+                        border-radius: 999px;
+                        -webkit-border-radius: 999px;
+                        -moz-border-radius: 999px;
+                        -ms-border-radius: 999px;
+                        -o-border-radius: 999px;
+                    }
+                }
+                .remaining-capacity {
+                    font-size: 13px;
+                    margin-top: 5px;
+                    margin-bottom: 0;
+                    font-weight: 500;
+                }
+
+                .jackpot-value {
+                    font-size: 50px;
+                    font-weight: 700;
+                    text-align: center;
+                    background-color: #d2d2d26e;
+                    border: 2px solid #5b6bf0;
+                    border-radius: 10px;
+                    height: 85px;
+                }
+
+                .vault-data,
+                .user-data {
+                    .data {
+                        display: flex;
+                        padding-bottom: 0.5rem;
+                        &.apr {
+                            font-weight: bold;
+                        }
+
+                        .label {
+                            flex: 1;
+                        }
+
+                        .value {
+                            flex: 1;
+                        }
+                    }
+                }
+
+                .buttons {
+                    display: flex;
+                    gap: 0.5rem;
+                    margin: 0 auto;
+
+                    button {
+                        font-size: 15px;
+                        padding: 5px 20px;
+                    }
+                }
+
+                hr {
+                    display: block;
+                    border-width: 1px;
+                    width: 95%;
+                    border-top: 1px solid rgba(36, 171, 238, 0.8);
+                }
+            }
+
+            .wrapper {
+                .description {
+                    padding: 1rem;
+                    margin-bottom: 3rem;
+                    background-image: linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
+                    background-image: -moz-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
+                    background-image: -webkit-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
+                    background-image: -ms-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
+                    box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.3);
+                    border-radius: 20px;
+                    -webkit-border-radius: 20px;
+                    -moz-border-radius: 20px;
+                    -ms-border-radius: 20px;
+                    -o-border-radius: 20px;
+        
+                    .product {
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                        margin-bottom: 0.5rem;
+                    }
+        
+                    .text {
+                        font-size: 1rem;
+                    }
+                    
+                }
+                .rewards {
+                    display: flex;
+                    gap: 1rem;
+
+                    .reward-item {
+                        display: flex;
+                        flex: 1;
+                        padding: 15px;
+                        border-radius: 5px;
+                        background-color: #170943;
+                        .item-thumb {
+                            padding: 0 15px;
+                            font-size: 50px;
+                        }
+
+                        .item-content {
+                            padding: 10px;
+
+                            .percentage {
+                                color: #22b868;
+                                font-weight: bold;
+                                font-size: 25px;
+                            }
+
+                            .text {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+input {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.102);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    min-height: 60px;
+    padding-left: 25px;
+    background-color: white;
+    text-align: center;
+
+    &:focus,
+    &:focus-visible,
+    &:active {
+        border: 1px solid #c0464d !important;
+    }
+}
+
+button.action-btn {
+    background-image: linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
+    background-image: -moz-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
+    background-image: -webkit-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
+    background-image: -ms-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
+    box-shadow: 0px 17px 40px 0px rgba(124, 78, 25, 0.35);
+    color: #ffffff;
+    font-size: 20px;
+    width: auto;
+    height: 50px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border: 1px solid #ffffff;
+    padding: 5px 30px;
+
+    &:hover {
+        background-image: linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
+        background-image: -moz-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
+        background-image: -webkit-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
+        background-image: -ms-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
+    }
+}

@@ -1,0 +1,109 @@
+import { imageInputDataType, imageOutputDataType, alertModalDataType } from './models/appTypes';
+
+export const isEmptyObject = (obj: any): boolean => {
+    if (!obj) return true;
+
+    return obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype;
+};
+
+export const tryParseJSONObject = (jsonString: string) => {
+    try {
+        const o = JSON.parse(jsonString);
+        // JSON.parse(null) returns null, and typeof null === "object", so we must check for that, too. Thankfully, null is falsey, so this suffices:
+        if (o && typeof o === 'object') {
+            return o;
+        }
+    } catch (e) {}
+
+    return false;
+};
+
+export const parseData = (data: any) => {
+    let parsedData: any = {};
+    for (const prop in data) {
+        parsedData[prop] = JSON.parse(data[prop]!);
+    }
+
+    return parsedData;
+};
+
+export const convertArrayToObject = (array: any[], key: string) => {
+    const initialValue = {};
+    return array.reduce((obj, item) => {
+        obj[item.id] = {};
+        Object.keys(item).forEach(function (k) {
+            if (k !== key) obj[item.id] = Object.assign(obj[item.id], { [k]: item[k] });
+        });
+        return obj;
+    }, initialValue);
+};
+
+export const isElementExists = (array: any[], value: any, key?: string): boolean => {
+    let found = false;
+    if (key) {
+        found = array.some(el => el[key] === value[key]);
+    } else {
+        found = array.some(el => el === value);
+    }
+    return found;
+};
+
+export const loadImageData = (imageData: imageInputDataType, path?: string) => {
+    return new Promise((resolve, reject) => {
+        const cData: imageOutputDataType = {
+            id: imageData.imageId,
+            alt: imageData.alt,
+            imageName: imageData.imageName,
+            src: require(`./assets/${imageData.path}${imageData.imageName}`).default,
+        };
+
+        const image = new Image();
+        image.src = cData.src;
+
+        image.onload = () => resolve(cData);
+        image.onerror = (error) => reject(error);
+    });
+};
+
+export const getErrorDetails = (error: any) => {
+    let errorDetails: string[] = [];
+    let parsedError: alertModalDataType = {
+        message: error.errorMessage,
+        errorDetails: [],
+    };
+    for (const prop in error.errorDetails) {
+        error.errorDetails[prop].forEach((err: string) => {
+            errorDetails.push(`${prop}: ${err}`);
+        });
+    }
+
+    parsedError.errorDetails = errorDetails;
+
+    return parsedError;
+};
+
+export const createIdKey = (length: number = 5) => {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        counter += 1;
+    }
+    return result;
+};
+
+export const formatNumber = (num: number) => {
+    return Math.round((num + Number.EPSILON) * 100) / 100;
+};
+
+
+export const wait = (milliseconds: number) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(null);
+        }, milliseconds);
+    });
+};
+

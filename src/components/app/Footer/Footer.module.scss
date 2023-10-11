@@ -1,0 +1,106 @@
+@import '../../../scss/_variables';
+
+.footer {
+    
+    width: 100%;
+    background-color: #2d0865;
+    z-index: 1;
+
+    .bg-shape--top {
+        img {
+            max-width: 100%;
+        }
+    }
+
+    hr {
+        color: inherit;
+        border: 0;
+        border-top: 1px solid;
+        opacity: 0.25;
+        margin: 0;
+        border-color: rgba(104, 111, 197, 0.4) !important;
+    }
+
+    .short-links {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -5px;
+        margin-bottom: -5px;
+        list-style: none;
+
+        li {
+            &:first-child {
+                a {
+                    padding-left: 0;
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
+            &:last-child {
+                a {
+                    padding-right: 0;
+                }
+            }
+            a {
+                padding: 5px 30px;
+                color: #d2d5fc;
+                position: relative;
+                font-size: 15px;
+                font-weight: 500;
+                text-decoration: none;
+
+                &::before {
+                    position: absolute;
+                    content: '';
+                    top: 50%;
+                    left: 0;
+                    width: 3px;
+                    height: 18px;
+                    background-color: #686fc5;
+                    margin-top: -9px;
+                }
+
+                @media (max-width: 1200px) {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .footer-bottom {
+        margin-bottom: 0!important;
+        .copyright-text {
+            text-align: left;
+            font-size: 14px;
+        }
+        .social-links {
+            display: flex;
+            justify-content: flex-end;
+            margin: -5px;
+            list-style: none;
+
+            li {
+                margin: 5px;
+
+                a {
+                    width: 40pxpx;
+                    height: 40px;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 50%;
+                    color: #ffffff;
+                    font-size: 20px;
+                    line-height: 40px;
+                    text-align: center;
+                    transition: all 0.3s;
+                    padding: 10px;
+
+                    &:hover {
+                        background-color: #ee4730;
+                        box-shadow: 0px 5px 9px 0px rgba(238, 71, 48, 0.54);
+                    }
+                }
+            }
+        }
+    }
+}

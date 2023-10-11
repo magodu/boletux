@@ -1,0 +1,89 @@
+{
+    "common": {
+        "search": "Search",
+        "notFoundMsg": "The page you are looking for was not found."
+    },
+    "login": {
+        "title": "Login",
+        "email": "Email",
+        "password": "Password",
+        "loginBtn": "Login",
+        "forgotPassword": "Forgot your password?",
+        "noAccount": "Don´t have Coollections account yet?",
+        "signup": "Sign up here",
+        "googleLogin": "Login with Google",
+        "metamaskLogin": "Login with Metamask",
+        "metaworldsLogin": "Login with Metaworlds"
+    },
+    "signup": {
+        "title": "Sign up",
+        "username": "Username",
+        "password": "Password",
+        "repeatPassword": "Repeat password",
+        "alias": "Alias",
+        "email": "Email",
+        "signupBtn": "Create account",
+        "loginLink": "Back to login",
+        "accountCreatedSuccessMsg": "Account created succesfully. Please check your email to activate your account."
+    },
+    "recoverPassword": {
+        "title": "Recover password",
+        "email": "Email",
+        "username": "Username",
+        "sendBtn": "Send",
+        "loginLink": "Back to login"
+    },
+    "navBar": {
+        "menu": "Menu",
+        "home": "Home",
+        "games": "Our games",
+        "aboutUs": "About us",
+        "profile": "Profile",
+        "settings": "Settings",
+        "privacy": "Privacy",
+        "logout": "Logout",
+        "userList": "User list",
+        "language": "Language",
+        "language_spanish": "Spanish",
+        "language_english": "English"
+    },
+    "categories": {
+        "all": "All",
+        "leaders": "Leaders",
+        "troops": "Troops",
+        "specialist": "Specialist",
+        "weapon": "Weapon",
+        "cosmetics": "Cosmetics",
+        "resources": "Resources"
+    },
+    "filter": {
+        "title": "Filtros",
+        "qualityFilter": {
+            "title": "Quality",
+            "optionCommon": "Common",
+            "optionRare": "Rare",
+            "optionEpic": "Epic",
+            "optionLegendary": "Legendary"
+        },
+        "otherFilter": {
+            "title": "Other Filter",
+            "optionA": "a",
+            "optionB": "b",
+            "optionC": "c",
+            "optionD": "d"
+        }
+    },
+    "itemList": {
+        "type": "Type",
+        "level": "Level",
+        "id": "ID"
+    },
+    "successMessages": {
+        "recoverPasswordEmailSent": "An email has sent to the typed email address to confirm. Please check your email (spam folder as well) and click in the link to continue the password recover proccess."
+    },
+    "errorMessages": {
+        "requiredFields": "All fields are required",
+        "requiredField": "Required field",
+        "usernameNotMatch": "Username is not found or doesn´t match with this email."
+    }
+}

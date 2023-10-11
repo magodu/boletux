@@ -1,0 +1,90 @@
+{
+    "common": {
+        "search": "Buscar",
+        "notFoundMsg": "La página que buscas no existe."
+    },
+    "login": {
+        "title": "Login",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "loginBtn": "Entrar",
+        "forgotPassword": "¿Olvidaste tu contraseña?",
+        "noAccount": "¿aún no tienes cuenta en Coollections?",
+        "signup": "Date de alta",
+        "googleLogin": "Login con Google",
+        "metamaskLogin": "Login con Metamask",
+        "metaworldsLogin": "Login con Metaworlds"
+    },
+    "signup": {
+        "title": "Nueva cuenta",
+        "username": "Nombre de usuario",
+        "password": "Contraseña",
+        "repeatPassword": "Confirma contraseña",
+        "alias": "Alias",
+        "email": "Correo electrónico",
+        "signupBtn": "Crear cuenta",
+        "loginLink": "Volver a login",
+        "accountCreatedSuccessMsg": "Cuenta creada correctamente. Por favor revisa tu correo para activar tu cuenta."
+    },
+    "recoverPassword": {
+        "title": "Recuperar contraseña",
+        "email": "Correo electrónico",
+        "username": "Nombre de usuario",
+        "sendBtn": "Enviar",
+        "loginLink": "Volver a login"
+    },
+    "navBar": {
+        "menu": "Menú",
+        "home": "Inicio",
+        "games": "Nuestros juegos",
+        "aboutUs": "Nosotros",
+        "profile": "Perfil",
+        "settings": "Ajustes",
+        "privacy": "Privacidad",
+        "logout": "Cerrar sesión",
+        "userList": "Lista de usuario",
+        "language": "Idioma",
+        "language_spanish": "Español",
+        "language_english": "Inglés"
+    },
+    "categories": {
+        "all": "Todos",
+        "leaders": "Líderes",
+        "troops": "Tropas",
+        "specialist": "Especialista",
+        "weapon": "Armas",
+        "cosmetics": "Cosméticos",
+        "resources": "Recursos"
+    },
+    "filter": {
+        "title": "Filtros",
+        "qualityFilter": {
+            "title": "Calidad",
+            "optionCommon": "Común",
+            "optionRare": "Raro",
+            "optionEpic": "Épico",
+            "optionLegendary": "Legendario"
+        },
+        "otherFilter": {
+            "title": "Otro filtro",
+            "optionA": "a",
+            "optionB": "b",
+            "optionC": "c",
+            "optionD": "d"
+        }  
+    },
+    "itemList": {
+        "type": "Tipo",
+        "level": "Nivel",
+        "id": "ID"
+    },
+    "successMessages": {
+        "recoverPasswordEmailSent": "Se ha enviado un email a la dirección introducida para confirmar. Por favor, revisa tu email (también la carpeta de spam) y haz click en el link para continuar con el proceso de recuperación de contraseña."
+    },
+    "errorMessages": {
+        "requiredFields": "Todos los campos son obligatorios",
+        "requiredField": "Campo obligatorio",
+        "usernameNotMatch": "No se encuentra el nombre de usuario introducido o no coincide o el correo electrónico."
+    }
+
+}

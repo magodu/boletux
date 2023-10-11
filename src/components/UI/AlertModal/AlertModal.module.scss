@@ -1,0 +1,69 @@
+@import '../../../scss/_variables';
+
+    .alert {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 100%;
+        border-radius: 15px;
+        color: inherit;
+        border: 2px solid #ff1357;
+        background-color: #d0dade;
+        color: $main-color;
+
+        .close {
+            position: absolute;
+            top: 3px;
+            right: 6px;
+            cursor: pointer;
+        }
+
+        .content {
+            display: flex;
+            padding: 0.5rem 1rem;
+            min-height: 100px;
+
+            .icon {
+                flex: 10%;
+                width: 100%;
+
+                i {
+                    font-size: 80px;
+                   
+                }
+            }
+            .text {
+                flex: 90%;
+                margin-left: 1rem;
+                margin-top: 3rem;
+                font-size: 1.2rem;
+            }
+        }
+
+        .footer {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: end;
+            justify-content: flex-end;
+            padding-inline-start: 1.5rem;
+            padding-inline-end: 1.5rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+
+            .button {
+                position: absolute;
+                bottom: -45px;
+                left: 50%;
+                transform: translate(-50%, 0);
+                width: 10rem;
+                cursor: pointer;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
