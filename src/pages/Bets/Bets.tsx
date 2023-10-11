@@ -8,7 +8,6 @@ import classes from './Bets.module.scss';
 
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
 
-
 const Bets: React.FC = () => {
     const [bet, setBet] = useState('');
     const [evenOdd, setEvenOdd] = useState('');

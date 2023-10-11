@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './NftWallet.module.scss';
 
-import NFTImg from '../../../assets/images/NFTs/0.png';
+import NFTImg from '../../../assets/images/NFTs/7.png';
 
 const NftWallet = () => {
     return (
