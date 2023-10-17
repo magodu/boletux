@@ -143,48 +143,48 @@
 
                 &.animation1 {
                     bottom: 15px;
-                    right: 30px;
+                    right: 0;
                     z-index: 3;
-                    width: 120px;
+                    width: 150px;
                     animation-delay: 25ms;
                 }
 
                 &.animation2 {
-                    bottom: 50px;
-                    left: 10px;
-                    width: 110px;
+                    bottom: 0;
+                    left: -30px;
+                    width: 140px;
                     z-index: 3;
                     animation-delay: 120ms;
                 }
 
                 &.animation3 {
-                    top: 40px;
-                    left: 60px;
-                    width: 150px;
+                    top: 0;
+                    left: 30px;
+                    width: 180px;
                     z-index: 2;
                     animation-delay: 55ms;
                 }
 
                 &.animation4 {
-                    top: 110px;
-                    right: -25px;
+                    top: 68px;
+                    right: -50px;
                     z-index: 1;
-                    width: 110px;
+                    width: 140px;
                     animation-delay: 100ms;
                 }
 
                 &.animation5 {
-                    top: 2px;
-                    right: 10px;
-                    width: 50px;
+                    top: -5px;
+                    left: -30px;
+                    width: 70px;
                     z-index: 2;
                     animation-delay: 300ms;
                 }
 
                 &.animation6 {
-                    top: 35px;
-                    left: -15px;
-                    width: 65px;
+                    top: -35px;
+                    right: -40px;
+                    width: 95px;
                     z-index: 2;
                     animation-delay: 250ms;
                 }

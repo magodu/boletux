@@ -11,10 +11,8 @@ import classes from './Header.module.scss';
 import logoImg from '../../../assets/images/boletux-logo-text-white.png';
 import esLangImg from '../../../assets/images/es.svg';
 import enLangImg from '../../../assets/images/en.svg';
-import metamaskImg from '../../../assets/images/metamask-logo.png';
+import zksyncImg from '../../../assets/images/zksync-logo.png';
 
-import { AiOutlineUser } from 'react-icons/ai';
-import { LiaPhoneVolumeSolid } from 'react-icons/lia';
 import { BiChevronDown } from 'react-icons/bi';
 
 
@@ -43,7 +41,7 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
     const [languageMenuActive, setLanguageMenuActive] = useState<languageMenu>(initialLanguageMenuClasses);
     const location = useLocation();
     const { pathname } = location;
-    const splitLocation = pathname.split("/");
+    const splitLocation = pathname.split('/');
 
     useEffect(() => {
         const languageSelected = language;
@@ -125,10 +123,6 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                     <div className={`${classes['top-menu']} row align-items-center gap-2 gap-md-0`} >
                         <div className="col-sm-6">
                             <div className={`${classes.left} d-flex align-items-center`} >
-                                <a href="tel:65655655" className="d-flex align-items-center gap-1">
-                                    <LiaPhoneVolumeSolid />
-                                    Customer Support
-                                </a>
                                 <div className={classes.language}>
                                     <Link to="" title="Language">
                                         <span>{t('navBar.language')}</span>
@@ -156,11 +150,9 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                         </div>
                         <div className="col-sm-6">
                             <div className={classes.right}>
-                                <a href="#0" className={`${classes.user__btn} d-flex align-items-center justify-content-center`} data-bs-toggle="modal" data-bs-target="#loginModal">
-                                    <AiOutlineUser />
-                                </a>
-                                <a className={classes.button} href="">
-                                    <img alt="icon" src={metamaskImg} /> Connect Wallet</a>
+                                <Link to="" className={`${classes.zksync__btn} d-flex align-items-center justify-content-center`} >
+                                    <img className={classes['language-img']} src={zksyncImg} alt="" />
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -188,7 +180,7 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                             <ul className={`navbar-nav ${classes['main-menu']} ms-auto`} >
                                 <li className={splitLocation[1] === "bets" ? classes.active : ""}>
                                     <Link to="/bets" >
-                                        BNB Bets
+                                        Bets
                                     </Link>
                                 </li>
                                 <li  className={splitLocation[1] === "lottery" ? classes.active : ""}>
@@ -198,12 +190,12 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                                 </li>
                                 <li className={splitLocation[1] === "vault" ? classes.active : ""}>
                                     <Link to="/vault" >
-                                        BNB Vault
+                                        Vault
                                     </Link>
                                 </li>
                                 <li className={splitLocation[1] === "nfts" ? classes.active : ""}>
                                     <Link to="/nfts" >
-                                        Real Yield NFTs
+                                        NFTs
                                     </Link>
                                 </li>
                                 <li className={splitLocation[1] === "prizes" ? classes.active : ""}>
@@ -212,7 +204,7 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                                     </Link>
                                 </li>
                                 <li className={`${classes['menu_has_children']} ${open === 'More' ? `${classes.open}` : ''}`}>
-                                    <Link to={void(0)} onClick={(e) => handleOpen(e)}>
+                                    <Link to="" onClick={(e) => handleOpen(e)}>
                                         More<BiChevronDown />
                                     </Link>
                                     <ul className={classes['sub-menu']} >
@@ -230,7 +222,7 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                                 </li>
                             </ul>
                             <div className={classes['nav-right']} >
-                               
+                                <Link to="" className={`${classes['connect-wallet']} ${classes.button} `}>Connect</Link>
                             </div>
                         </div>
                     </nav>

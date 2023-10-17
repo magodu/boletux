@@ -38,7 +38,7 @@
                     }
 
                     &.active a {
-                        color: #ff0000;
+                        color: $header-menu-active;
                     }
                 }
             }
@@ -169,7 +169,7 @@
                 @media (max-width: 575px) {
                     justify-content: center;
                 }
-                .user__btn {
+                .zksync__btn {
                     color: white;
                     margin-left: 38px;
                     width: 40px;
@@ -178,17 +178,12 @@
                     text-align: center;
                     line-height: 48px;
                     border-radius: 50%;
+                    cursor: pointer;
 
                     @media (max-width: 1199px) {
                         width: 30px;
                         height: 30px;
                         line-height: 36px;
-                    }
-                    i {
-                        font-size: 24px;
-                        @media (max-width: 1199px) {
-                            font-size: 20px;
-                        }
                     }
                 }
             }
@@ -282,7 +277,7 @@
                         }
                         &:hover,
                         &:focus {
-                            color: #ff0000;
+                            color: $header-menu-hover;
                         }
                     }
 
@@ -339,7 +334,7 @@
                     }
 
                     &.active  a {
-                        color: #FFFF00;
+                        color: $header-menu-active;
                     }
                 }
                 li + li {
@@ -350,23 +345,15 @@
                 }
                 .nav-right {
                     margin-left: 30px;
+
+                    .connect-wallet {
+                        width: 100px;
+                    }
+
                     @media (max-width: 1199px) {
                         margin-left: 0;
                     }
-                    .cmn-btn {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        @media (max-width: 1199px) {
-                            display: inline-block;
-                            margin-bottom: 15px;
-                        }
-                        i {
-                            margin-right: 6px;
-                            font-size: 22px;
-                            color: #ffb200;
-                        }
-                    }
+    
                 }
             }
         }
