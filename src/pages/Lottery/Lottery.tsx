@@ -59,13 +59,15 @@ const Lottery: React.FC = () => {
                 </div>
                 <div className={classes.content}>
                     <div className="row">
-                        <div className="col-lg-8">
-                            <div className={classes['lottery-numbers']}>
-                                <ul className={classes.numbers}>
-                                    {lotteryNumbers.map((number, i) => (
-                                        <li key={i}>{number}</li>
-                                    ))}
-                                </ul>
+                        <div className="col-lg-8 mb-3">
+                            <div className={classes['lottery-numbers-wrapper']}>
+                                <div className={classes['lottery-numbers']}>
+                                    <ul className={classes.numbers}>
+                                        {lotteryNumbers.map((number, i) => (
+                                            <li key={i}>{number}</li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div className="col-lg-4">
