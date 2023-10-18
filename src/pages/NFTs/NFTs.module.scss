@@ -44,13 +44,11 @@
             -ms-border-radius: 20px;
             -o-border-radius: 20px;
 
-            .product {
-                font-size: 1.2rem;
-                font-weight: 600;
-                margin-bottom: 0.5rem;
-            }
-
             .text {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 70px;
                 font-size: 1rem;
             }
         }

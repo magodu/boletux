@@ -54,7 +54,7 @@ const Bets: React.FC = () => {
                 <div className={`${classes.title} container`}>
                     <div className="row">
                         <div className="col-lg-12">
-                            <h2>BNB Bets</h2>
+                            <h2>Bets</h2>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,6 @@ const Bets: React.FC = () => {
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className={classes.description}>
-                                    <div className={classes.product}>BNB Gambling</div>
                                     <div className={classes.text}>
                                         All bets are placed on the blockchain, there are no algorithms, it just depends on the price of Bitcoin. Two chances to bet (Even or Odd), with a 50% guaranteed probability. Get up to x10!
                                     </div>

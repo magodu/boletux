@@ -63,26 +63,21 @@ const Vault: React.FC = () => {
                                 </div>
                                 <hr />
                                 <div className={classes.buttons}>
-                                        <button  className={classes['action-btn']} type="button" role="tab" >
-                                            Add Fund
-                                        </button>
-                                  
-                                        <button  className={classes['action-btn']} type="button" role="tab" >
-                                            Withdraw Funds
-                                        </button>
-                                   
-                                   
-                                        <button  className={classes['action-btn']} type="button" role="tab" >
-                                            Claim Rewards
-                                        </button>
-                                    
+                                    <button  className={classes['action-btn']} type="button" role="tab" >
+                                        Add Fund
+                                    </button>
+                                    <button  className={classes['action-btn']} type="button" role="tab" >
+                                        Withdraw Funds
+                                    </button>
+                                    <button  className={classes['action-btn']} type="button" role="tab" >
+                                        Claim Rewards
+                                    </button>
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-7">
                             <div className={classes.wrapper}>
                                 <div className={classes.description}>
-                                    <div className={classes.product}>BNB Vault</div>
                                     <div className={classes.text}>Winning bets will be paid with BNB deposited into the Vault and losing bets will be deposited into the Vault. All investors who deposit liquidity will receive BTX tokens based on the price of the index. The BTX tokens will automatically staked and the investor will start receiving the rewards:</div>
                                 </div>
                                 <div className={classes.rewards}>

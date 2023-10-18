@@ -125,7 +125,7 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                             <div className={`${classes.left} d-flex align-items-center`} >
                                 <div className={classes.language}>
                                     <Link to="" title="Language">
-                                        <span>{t('navBar.language')}</span>
+                                        <span>{t(`navBar.${language}`)}</span>
                                     </Link>
                                     <ul className={classes['languages-sub-menu']}>
                                         <li className={`${classes.language} ${languageMenuActive['en'] ? classes['language-selected'] : ''}`}>
@@ -180,37 +180,37 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                             <ul className={`navbar-nav ${classes['main-menu']} ms-auto`} >
                                 <li className={splitLocation[1] === "bets" ? classes.active : ""}>
                                     <Link to="/bets" >
-                                        Bets
+                                        {t('navBar.bets')}
                                     </Link>
                                 </li>
                                 <li  className={splitLocation[1] === "lottery" ? classes.active : ""}>
                                     <Link to="/lottery" >
-                                        Lottery
+                                        {t('navBar.lottery')}
                                     </Link>
                                 </li>
                                 <li className={splitLocation[1] === "vault" ? classes.active : ""}>
                                     <Link to="/vault" >
-                                        Vault
+                                        {t('navBar.vault')}
                                     </Link>
                                 </li>
                                 <li className={splitLocation[1] === "nfts" ? classes.active : ""}>
                                     <Link to="/nfts" >
-                                        NFTs
+                                        {t('navBar.nfts')}
                                     </Link>
                                 </li>
                                 <li className={splitLocation[1] === "prizes" ? classes.active : ""}>
                                     <Link to="/prizes" >
-                                        Prizes
+                                        {t('navBar.prizes')}
                                     </Link>
                                 </li>
                                 <li className={`${classes['menu_has_children']} ${open === 'More' ? `${classes.open}` : ''}`}>
                                     <Link to="" onClick={(e) => handleOpen(e)}>
-                                        More<BiChevronDown />
+                                        {t('navBar.more')}<BiChevronDown />
                                     </Link>
                                     <ul className={classes['sub-menu']} >
                                         {[
-                                            ['Docs', 'https://boletux.gitbook.io/docs/'],
-                                            ['Analytics', '/analytics'],
+                                            [t('navBar.docs'), 'https://boletux.gitbook.io/docs/'],
+                                            [t('navBar.analytics'), '/analytics'],
                                         ].map(([itm, url], i) => (
                                             <li key={i}>
                                                 <Link to={url} onClick={() => setShow(false)}>
@@ -222,7 +222,7 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                                 </li>
                             </ul>
                             <div className={classes['nav-right']} >
-                                <Link to="" className={`${classes['connect-wallet']} ${classes.button} `}>Connect</Link>
+                                <Link to="" className={`${classes['connect-wallet']} ${classes.button} `}>{t('navBar.connectWallet')}</Link>
                             </div>
                         </div>
                     </nav>

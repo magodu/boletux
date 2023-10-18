@@ -28,7 +28,6 @@ const Lottery: React.FC = () => {
                     <div className="row">
                         <div className="col-lg-12">
                             <div className={classes.description}>
-                                <div className={classes.product}>BNB Lottery</div>
                                 <div className={classes.text}>A raffle every week and up to 5 winners. The winning number only depends on the Bitcoin price, so all prizes can be verified directly on the blockchain.</div>
                             </div>
                         </div>

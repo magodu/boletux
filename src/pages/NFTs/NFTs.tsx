@@ -30,7 +30,6 @@ const NFTs: React.FC = () => {
                     <div className="row">
                         <div className="col-lg-6">
                             <div className={classes.description}>
-                                <div className={classes.product}>Real Yield Exclusive NFTs</div>
                                 <div className={classes.text}>
                                     Stake NFTs to earn fees and other daily rewards.
                                 </div>
