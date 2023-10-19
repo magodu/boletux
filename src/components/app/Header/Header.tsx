@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from "react-router-dom";
 
-import { AuthContext } from '../../../store/auth-context';
 import { BoletuxContext } from '../../../store/boletux-context';
 
 import classes from './Header.module.scss';
+
+import { twitterUrl, discordUrl } from '../../../constants';
+
+import { BsTwitter as TwitterIcon } from 'react-icons/bs';
+import { BsDiscord as DiscordIcon} from 'react-icons/bs';
+import { BiChevronDown } from 'react-icons/bi';
 
 import logoImg from '../../../assets/images/boletux-logo-text-white.png';
 import esLangImg from '../../../assets/images/es.svg';
 import enLangImg from '../../../assets/images/en.svg';
 import zksyncImg from '../../../assets/images/zksync-logo.png';
-
-import { BiChevronDown } from 'react-icons/bi';
-
 
 interface languageMenu {
     en: boolean;
@@ -24,14 +26,10 @@ interface languageMenu {
 const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void }> = ({ data, onChangeLanguage }) => {
     const [menuOpened, setMenuOpened] = useState<boolean>(false);
     const [windowHeight, setWindowHeight] = useState<number>(0);
-    const { isLoggedIn, logoutHandler } = useContext(AuthContext);
-    const { language, setLanguageHandler } = useContext(BoletuxContext);
-
-    const [open, setOpen] = useState('');
-    const [show, setShow] = useState(false);
+    const [open, setOpen] = useState<string>('');
+    const { isLoggedIn, language, setLanguageHandler } = useContext(BoletuxContext);
 
     const { t } = useTranslation();
-    const navigate = useNavigate();
 
     const initialLanguageMenuClasses: languageMenu = {
         en: false,
@@ -65,41 +63,12 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
         };
     }, []);
 
-    const toggleMenu = () => {
-        setMenuOpened((prevState) => !prevState);
-    };
-
-    const closeOthers = (el: any) => {
-        const linksClass = classes.links;
-        const showClass = classes.show;
-        const linksElements = document.querySelector(`.${linksClass}`)?.children;
-
-        for (let i = 0; i < linksElements!.length; i++) {
-            const link = linksElements![i];
-            if (el !== link && link.classList.contains(showClass)) {
-                link.classList.remove(showClass);
-            }
-        }
-    };
-
     const handleOpen = (event: any) => {
         if (open !== event.target.text) {
             setOpen(event.target.text);
         } else {
             setOpen('');
         }
-    };
-
-    const togleSubmenu = (event: any) => {
-        const showClass = classes.show;
-        closeOthers(event.currentTarget);
-        event.currentTarget.classList.toggle(showClass);
-    };
-
-    const openRoute = (route: string) => {
-        toggleMenu();
-        navigate(route);
-        navigate(0);
     };
 
     const setLanguage = (event: React.FormEvent, language: string) => {
@@ -109,11 +78,6 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
         setLanguageMenuActive((prevState) => ({ ...prevState, [language]: true }));
         setLanguageHandler(language);
         onChangeLanguage(language);
-    };
-
-    const logOut = () => {
-        console.log('logOut');
-        logoutHandler();
     };
 
     return (
@@ -150,9 +114,18 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                         </div>
                         <div className="col-sm-6">
                             <div className={classes.right}>
-                                <Link to="" className={`${classes.zksync__btn} d-flex align-items-center justify-content-center`} >
-                                    <img className={classes['language-img']} src={zksyncImg} alt="" />
-                                </Link>
+                                <ul className={classes['social-links']}>
+                                    <li>
+                                        <Link to={twitterUrl} target="_blank" rel="noopener noreferrer">
+                                            <TwitterIcon />
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to={discordUrl} target="_blank" rel="noopener noreferrer">
+                                            <DiscordIcon />
+                                        </Link>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -171,12 +144,12 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                             <button
                                 className={`${classes['navbar-toggler']} ms-auto`}
                                 type="button"
-                                onClick={() => setShow(!show)}
+                                onClick={() => setMenuOpened(!menuOpened)}
                             >
                                 <span className={classes['menu-toggle']} ></span>
                             </button>
                         </div>
-                        <div className={`collapse ${classes['navbar-collapse']} ${show && 'show'}`} >
+                        <div className={`collapse ${classes['navbar-collapse']} ${menuOpened && 'show'}`} >
                             <ul className={`navbar-nav ${classes['main-menu']} ms-auto`} >
                                 <li className={splitLocation[1] === "bets" ? classes.active : ""}>
                                     <Link to="/bets" >
@@ -204,17 +177,17 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                                     </Link>
                                 </li>
                                 <li className={`${classes['menu_has_children']} ${open === 'More' ? `${classes.open}` : ''}`}>
-                                    <Link to="" onClick={(e) => handleOpen(e)}>
+                                    <Link to={void(0)} onClick={(e) => handleOpen(e)}>
                                         {t('navBar.more')}<BiChevronDown />
                                     </Link>
                                     <ul className={classes['sub-menu']} >
                                         {[
                                             [t('navBar.docs'), 'https://boletux.gitbook.io/docs/'],
                                             [t('navBar.analytics'), '/analytics'],
-                                        ].map(([itm, url], i) => (
+                                        ].map(([item, url], i) => (
                                             <li key={i}>
-                                                <Link to={url} onClick={() => setShow(false)}>
-                                                    {itm}
+                                                <Link to={url} onClick={() => setMenuOpened(false)}>
+                                                    {item}
                                                 </Link>
                                             </li>
                                         ))}
@@ -222,7 +195,12 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                                 </li>
                             </ul>
                             <div className={classes['nav-right']} >
-                                <Link to="" className={`${classes['connect-wallet']} ${classes.button} `}>{t('navBar.connectWallet')}</Link>
+                                <div className={classes.buttons} >
+                                    <Link to="" className={`${classes.zksync__btn} d-flex align-items-center justify-content-center`} >
+                                        <img className={classes['language-img']} src={zksyncImg} alt="" />
+                                    </Link>
+                                    <Link to="" className={`${classes['connect-wallet']} ${classes.button} `}>{t('navBar.connectWallet')}</Link>
+                                </div>
                             </div>
                         </div>
                     </nav>

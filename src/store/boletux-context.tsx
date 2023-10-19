@@ -1,27 +1,30 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 
 import useLocalStorage from '../hooks/useLocalStorage';
-import { isEmptyObject } from '../utils';
 import { InputProps, BoletuxContextObj } from '../models/appTypes';
+import { defaultLanguage } from '../constants';
 
-const LOCAL_STORAGE_SETTINGS_KEY = process.env.REACT_APP_LOCAL_STORAGE_SETTINGS_KEY || '';
+const LOCAL_STORAGE_DATA_KEY = process.env.REACT_APP_LOCAL_STORAGE_DATA_KEY || '';
 
 export const BoletuxContext = React.createContext<BoletuxContextObj>({
-    language: '',
+    language: defaultLanguage,
+    isLoggedIn: false,
     setLanguageHandler: (language: string ) => {},
+    setLogUserHandler: (logged: boolean ) => {},
 } as BoletuxContextObj);
 
 
 const BoletuxContextProvider: React.FC<InputProps> = ( props ) => {
-    const [ language, setLanguage ] = useState<string>('');
-    const [ localStorageSettings ] = useLocalStorage(LOCAL_STORAGE_SETTINGS_KEY);
+    const [ language, setLanguage ] = useState<string>(defaultLanguage);
+    const [ userLogged, setUserLogged ] = useState<boolean>(false);
+    const [ localStorageUserData ] = useLocalStorage(LOCAL_STORAGE_DATA_KEY);
 
     const retrieveStoredData = useCallback(() => {
-        if (localStorageSettings && localStorageSettings.language !== '') {
-            setLanguage(localStorageSettings.language);
+        if (localStorageUserData && localStorageUserData.language !== '') {
+            setLanguage(localStorageUserData.language);
         }
 
-    }, [localStorageSettings]);
+    }, [localStorageUserData]);
 
     useEffect(() => {
         retrieveStoredData();
@@ -31,9 +34,15 @@ const BoletuxContextProvider: React.FC<InputProps> = ( props ) => {
         setLanguage(language);
     };
 
+    const setLogUserHandler = (isLogged: boolean) => {
+        setUserLogged(isLogged);
+    };
+
     const contextValue: BoletuxContextObj = {
         language: language,
+        isLoggedIn: userLogged,
         setLanguageHandler: setLanguageHandler,
+        setLogUserHandler: setLogUserHandler,
     };
 
 

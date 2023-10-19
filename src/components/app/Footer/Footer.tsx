@@ -1,7 +1,10 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { FaTwitter } from 'react-icons/fa';
+import { twitterUrl, discordUrl } from '../../../constants';
+
+import { BsTwitter as TwitterIcon } from 'react-icons/bs';
+import { BsDiscord as DiscordIcon} from 'react-icons/bs';
 import round_shape_2 from '../../../assets/images/background/footer-shape.png';
 
 import classes from './Footer.module.scss';
@@ -15,13 +18,13 @@ const Footer = () => {
     return (
         <footer className={classes.footer}>
             <div className={classes['bg-shape--top']}>
-                <img src={round_shape_2} alt="image" />
+                <img src={round_shape_2} alt="" />
             </div>
             <div className="container pt-120">
                 <div className="row align-items-center">
                     <div className="col-lg-4"></div>
                     <div className="col-lg-8">
-                    {/*     <ul className={classes['short-links']}>
+                        {/* <ul className={classes['short-links']}>
                             <li>
                                 <Link to="/#">About</Link>
                             </li>
@@ -47,8 +50,13 @@ const Footer = () => {
                     <div className="col-lg-6">
                         <ul className={classes['social-links']}>
                             <li>
-                                <Link to="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-                                    <FaTwitter />
+                                <Link to={twitterUrl} target="_blank" rel="noopener noreferrer">
+                                    <TwitterIcon />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={discordUrl} target="_blank" rel="noopener noreferrer">
+                                    <DiscordIcon />
                                 </Link>
                             </li>
                         </ul>

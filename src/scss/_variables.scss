@@ -11,13 +11,9 @@ $base-color: #ffb200;
 $base-color-two: #5a4bcc;
 $border-color: rgba(#ffffff, 0.1);
 
-// bg-color
-$bg-one: #0f0232;
-$bg-two: #02014a;
-
-
 $main-color: #ffffff;
-$active-link-color: #ff044d;
+$secondary-color: #ffffff;
+$active-link-color: #ffa100;
 
 $modal-bg-color: #753e77;
 $modal-backdrop-bg: rgba(0, 0, 0, 0.75); 
@@ -26,42 +22,4 @@ $modal-color: #aa00ff;
 $modal-secondary-color: #6b7a98;
 $modal-close-hover: #ff044d;
 
-/* TODO: review this */
-$secondary-color: #ffffff;
-$link-color: #ff044d;
-$button-color: #00a9ea;
-$button-color-active: #00a9ea;
-
-$navbar-bgcolor: #ff1357;
-$navbar-color: #ffffff;
-
-$navbar-bgcolor-option-active: #0091b7;
-
-$login-header: #00a9ea;
-$login-bgcolor: #f5f5f5;
-$login-border-color: #64828e;
-
-$progressbar-background: #ff0c4d;
-
-$category-menu-color: #205664;
-$category-menu-active: #ff044d;
-
-$background: #18033e;
-$background-box: #d0dade; 
-$background-border-box: #c3ced2; 
-
-$avatar-bg-color: #3c5882;
-$avatar-bg-level-color: #ffbb09;
-$avatar-color: #2a303d;
-
-$item-color: #44a2bb;
-$item-background: #2d363f;
-$item-info-background: #0b1824;  
-$item-border-top: #2fc3ee;
-$item-border-bottom: #64828e;  
-
-$input-text-color: #2fc3ee;
-
-$item-color-2: $background;
-
-
+$background-color: #18033e;

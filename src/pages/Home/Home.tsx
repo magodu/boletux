@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-
-import ModalWrapper from '../../components/UI/ModalWrapper/ModalWrapper';
 
 import e1BgImg from '../../assets/images/background/hero-2-e1.png';
 import e2BgImg from '../../assets/images/background/hero-2-e2.png';

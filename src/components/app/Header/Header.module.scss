@@ -169,21 +169,27 @@
                 @media (max-width: 575px) {
                     justify-content: center;
                 }
-                .zksync__btn {
-                    color: white;
-                    margin-left: 38px;
-                    width: 40px;
-                    height: 40px;
-                    background-color: #5a4bcc;
-                    text-align: center;
-                    line-height: 48px;
-                    border-radius: 50%;
-                    cursor: pointer;
 
-                    @media (max-width: 1199px) {
-                        width: 30px;
-                        height: 30px;
-                        line-height: 36px;
+                .social-links {
+                    display: flex;
+                    justify-content: flex-end;
+                    margin: -5px;
+                    list-style: none;
+        
+                    li {
+                        margin: 5px;
+        
+                        a {
+                            width: 20px;
+                            height: 20px;
+                            color: #ffffff;
+                            transition: all 0.3s;
+                            padding: 5px;
+        
+                            &:hover {
+                                color: #ee4730;
+                            }
+                        }
                     }
                 }
             }
@@ -343,18 +349,46 @@
                         margin-left: 0;
                     }
                 }
-                .nav-right {
-                    margin-left: 30px;
+               
+            }
 
-                    .connect-wallet {
-                        width: 100px;
-                    }
+            .nav-right {
+                margin-left: 30px;
 
-                    @media (max-width: 1199px) {
-                        margin-left: 0;
+                @media (max-width: 1199px) {
+                    margin-left: 0;
+                    max-width: 200px;
+                    margin: 0 auto;
+                    margin-bottom: 1rem;
+                }
+
+                .buttons {
+                    display: flex;
+                    gap: 1rem;
+
+                    .zksync__btn {
+                        color: white;
+                        width: 40px;
+                        height: 40px;
+                        background-color: #5a4bcc;
+                        text-align: center;
+                        line-height: 48px;
+                        border-radius: 50%;
+    
+                        @media (max-width: 1199px) {
+                            width: 30px;
+                            height: 30px;
+                            line-height: 36px;
+                        }
                     }
     
+                    .connect-wallet {
+                        width: 100px;
+                        margin-left: 0;
+                    }
                 }
+
+                
             }
         }
     }

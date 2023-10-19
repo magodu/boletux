@@ -5,9 +5,8 @@ import Loading from './components/UI/Loading/Loading';
 import Protected from './components/core/Protected/Protected';
 import NotFound from './pages/NotFound/NotFound';
 
-import { AuthContext } from './store/auth-context';
+import { BoletuxContext } from './store/boletux-context';
 
-const Login = lazy(() => import('./pages/Login/Login'));
 const Home = lazy(() => import('./pages/Home/Home'));
 const Bets = lazy(() => import('./pages/Bets/Bets'));
 const Lottery = lazy(() => import('./pages/Lottery/Lottery'));
@@ -16,19 +15,11 @@ const NFTs = lazy(() => import('./pages/NFTs/NFTs'));
 const Prizes = lazy(() => import('./pages/Prizes/Prizes'));
 
 const AppRoutes = () => {
-    const { isLoggedIn } = useContext(AuthContext);
+    const { isLoggedIn } = useContext(BoletuxContext);
 
     return (
         <Routes>
             <Route path="/" element={<Navigate replace to="/home" />} />
-            <Route
-                path="/login"
-                element={
-                    <Suspense fallback={<Loading />}>
-                        <Login />
-                    </Suspense>
-                }
-            />
             <Route
                 path="/home"
                 element={

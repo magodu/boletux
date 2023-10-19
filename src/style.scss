@@ -20,7 +20,7 @@ body {
     width: 100%;
     position: relative;
     color: $main-color;
-    background-color: $background;
+    background-color: $background-color;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -102,10 +102,6 @@ body {
     .tree-node__leaf {
         outline: none;
     }
-}
-
-.progress-bar {
-    background-color: $avatar-bg-level-color;
 }
 
 

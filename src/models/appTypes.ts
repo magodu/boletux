@@ -111,5 +111,7 @@ export interface AnnouncerMessageType {
 
 export type BoletuxContextObj = {
     language: string;
+    isLoggedIn: boolean;
     setLanguageHandler: (language: string) => void;
+    setLogUserHandler: (logged: boolean) => void;
 };
