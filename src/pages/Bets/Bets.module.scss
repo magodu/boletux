@@ -83,6 +83,11 @@
                 font-weight: 500;
                 width: 100%;
                 text-transform: uppercase;
+
+
+                &.completed {
+                    background-color: #24ff00;
+                }
             }
 
             .content {

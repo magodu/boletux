@@ -76,7 +76,7 @@ const Bets: React.FC = () => {
                         <div className="row mb-none-30">
                             <div className="col-lg-3 mb-30">
                                 <div className={classes.globe}>
-                                    <div className={classes.order}>Step 1</div>
+                                    <div className={`${classes.order} ${classes.completed}`}>Step 1</div>
                                     <div className={classes.content}>
                                         <div className={classes['content-title']}>Choose BNB amount</div>
                                         <div className={classes.description}>The maximun allowed bet amount is 5 BNB (no minimum limits). You need to have the BNB in your wallet (Bet amount and gas).</div>
