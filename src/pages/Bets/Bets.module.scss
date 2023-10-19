@@ -51,7 +51,7 @@
     }
 
     .steps-section {
-        padding-top: 3rem;
+        padding-top: 5rem;
 
         .globe {
             position: relative;
@@ -71,15 +71,18 @@
 
             .order {
                 position: absolute;
-                top: -30px;
                 left: 50%;
+                top: 0;
                 transform: translate(-50%);
-                font-size: 40px;
-
-                @media (max-width: 991px) {
-                    font-size: 50px;
-                    top: -40px;
-                }
+                font-size: 20px;
+                text-align: center;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                background-color: #ff9400;
+                color: black;
+                font-weight: 500;
+                width: 100%;
+                text-transform: uppercase;
             }
 
             .content {
@@ -105,6 +108,16 @@
                     font-size: 25px;
                     color: black;
 
+                    @media (max-width: 767px) {
+                        position: relative;
+                        bottom: 0;
+                        left: 0;
+                        transform: unset;
+                        width: 100%;
+                        font-size: 20px;
+                        color: black;
+                    }
+
                     .form {
                         ul {
                             display: flex;
@@ -126,6 +139,10 @@
                                     label {
                                         font-size: 14px;
                                     }
+                                }
+
+                                @media (max-width: 767px) {
+                                    margin: 0;
                                 }
 
                                 input, label {

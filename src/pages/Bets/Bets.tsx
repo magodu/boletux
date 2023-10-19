@@ -58,7 +58,7 @@ const Bets: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <section className={classes['description-section']}>
+                {/* <section className={classes['description-section']}>
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
@@ -70,13 +70,13 @@ const Bets: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 <section className={classes['steps-section']}>
                     <div className="container">
                         <div className="row mb-none-30">
                             <div className="col-lg-3 mb-30">
                                 <div className={classes.globe}>
-                                    <div className={classes.order}>01</div>
+                                    <div className={classes.order}>Step 1</div>
                                     <div className={classes.content}>
                                         <div className={classes['content-title']}>Choose BNB amount</div>
                                         <div className={classes.description}>The maximun allowed bet amount is 5 BNB (no minimum limits). You need to have the BNB in your wallet (Bet amount and gas).</div>
@@ -107,7 +107,7 @@ const Bets: React.FC = () => {
                             </div>
                             <div className="col-lg-3 mb-30">
                                 <div className={classes.globe}>
-                                    <div className={classes.order}>02</div>
+                                    <div className={classes.order}>Step 2</div>
                                     <div className={classes.content}>
                                         <div className={classes['content-title']}>Choose 'Even' or 'Odd'</div>
                                         <div className={classes.description}>Confirm your bet with a 50% real chance of winning. If you win, you will double the BNB amount of the bet.</div>
@@ -130,7 +130,7 @@ const Bets: React.FC = () => {
                             </div>
                             <div className="col-lg-3 mb-30">
                                 <div className={classes.globe}>
-                                    <div className={classes.order}>03</div>
+                                    <div className={classes.order}>Step 3</div>
                                     <div className={classes.content}>
                                         <div className={classes['content-title']}>Spin and multiply your prize</div>
                                         <div className={classes.description}>Spin the wheel and get your prize multiplier. Confirm the bet and sign the transaction with your wallet.</div>
@@ -146,7 +146,7 @@ const Bets: React.FC = () => {
                             </div>
                             <div className="col-lg-3 mb-30">
                                 <div className={classes.globe}>
-                                    <div className={classes.order}>04</div>
+                                    <div className={classes.order}>Step 4</div>
                                     <div className={classes.content}>
                                         <div className={classes['content-title']}>Claim your rewards</div>
                                         <div className={classes.description}>Claim BNB rewards from your winning bets. You will receive your prizes instantly after your bets.</div>
