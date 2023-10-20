@@ -22,7 +22,7 @@ const ModalWrapper: React.FC<{ modalTitle: string; showAcceptButton?: boolean; s
                         {showAcceptButton && (
                             <div className={classes.button}>
                                 <button type="button" onClick={(e) => onClose()}>
-                                    Accept
+                                    Close
                                 </button>
                             </div>
                         )}

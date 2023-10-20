@@ -9,29 +9,36 @@ import classes from './Bets.module.scss';
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
 
 const Bets: React.FC = () => {
-    const [bet, setBet] = useState('');
-    const [evenOdd, setEvenOdd] = useState('');
-    const [reward, setReward] = useState('');
+    const [step, setStep] = useState<number>(1);
+    const [bet, setBet] = useState<string>('');
+    const [evenOdd, setEvenOdd] = useState<string>('');
+    const [reward, setReward] = useState<string>('');
+    const [betCompleted, setBetCompleted] = useState<boolean>(false);
+    const [claimCompleted, setClaimCompleted] = useState<boolean>(false);
+    
     const [modalIsShown, setModalIsShown] = useState<boolean>(false);
     const { t } = useTranslation();
 
     const changeBet = (event: any) => {
         console.log(event.target.value);
         setBet(event.target.value);
+        setStep(prevStep => prevStep + 1);
     };
 
     const changeEvenOdd = (event: any) => {
         console.log(event.target.value);
         setEvenOdd(event.target.value);
+        setStep(prevStep => prevStep + 1);
     };
 
     const hideModalHandler = () => {
         setModalIsShown(false);
+        setBetCompleted(true);
+        setStep(prevStep => prevStep + 1);
     };
 
     const acceptBet = (result: any) => {
-        console.log("Accept bet and close", result);
-        hideModalHandler();
+      /*   console.log("Accept bet and close", result); */
     };
 
     const showModalBetRoutine = () => {
@@ -75,8 +82,9 @@ const Bets: React.FC = () => {
                     <div className="container">
                         <div className="row mb-none-30">
                             <div className="col-lg-3 mb-30">
-                                <div className={classes.globe}>
-                                    <div className={`${classes.order} ${classes.completed}`}>Step 1</div>
+                                <div className={`${classes.globe} ${step === 1 ? classes['active-step'] : '' }`}>
+                                    {step !== 1 && (<div className={classes.disabled}></div>)}
+                                    <div className={`${classes.order} ${bet ? classes.completed : '' }`}>Step 1</div>
                                     <div className={classes.content}>
                                         <div className={classes['content-title']}>Choose BNB amount</div>
                                         <div className={classes.description}>The maximun allowed bet amount is 5 BNB (no minimum limits). You need to have the BNB in your wallet (Bet amount and gas).</div>
@@ -106,8 +114,9 @@ const Bets: React.FC = () => {
                                 </div>
                             </div>
                             <div className="col-lg-3 mb-30">
-                                <div className={classes.globe}>
-                                    <div className={classes.order}>Step 2</div>
+                                <div className={`${classes.globe} ${step === 2 ? classes['active-step'] : '' }`}>
+                                    {step !== 2 && (<div className={classes.disabled}></div>)}
+                                    <div className={`${classes.order} ${evenOdd ? classes.completed : '' }`}>Step 2</div>
                                     <div className={classes.content}>
                                         <div className={classes['content-title']}>Choose 'Even' or 'Odd'</div>
                                         <div className={classes.description}>Confirm your bet with a 50% real chance of winning. If you win, you will double the BNB amount of the bet.</div>
@@ -129,8 +138,9 @@ const Bets: React.FC = () => {
                                 </div>
                             </div>
                             <div className="col-lg-3 mb-30">
-                                <div className={classes.globe}>
-                                    <div className={classes.order}>Step 3</div>
+                                <div className={`${classes.globe} ${step === 3 ? classes['active-step'] : '' }`}>
+                                    {step !== 3 && (<div className={classes.disabled}></div>)}
+                                    <div className={`${classes.order} ${betCompleted ? classes.completed : '' }`}>Step 3</div>
                                     <div className={classes.content}>
                                         <div className={classes['content-title']}>Spin and multiply your prize</div>
                                         <div className={classes.description}>Spin the wheel and get your prize multiplier. Confirm the bet and sign the transaction with your wallet.</div>
@@ -145,8 +155,9 @@ const Bets: React.FC = () => {
                                 </div>
                             </div>
                             <div className="col-lg-3 mb-30">
-                                <div className={classes.globe}>
-                                    <div className={classes.order}>Step 4</div>
+                                <div className={`${classes.globe} ${step === 4 ? classes['active-step'] : '' }`}>
+                                    {step !== 4 && (<div className={classes.disabled}></div>)}
+                                    <div className={`${classes.order} ${claimCompleted ? classes.completed : '' }`}>Step 4</div>
                                     <div className={classes.content}>
                                         <div className={classes['content-title']}>Claim your rewards</div>
                                         <div className={classes.description}>Claim BNB rewards from your winning bets. You will receive your prizes instantly after your bets.</div>
