@@ -30,140 +30,69 @@
         }
     }
 
-    .description-section {
-        .description {
-            padding: 1rem;
-            background-image: linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            background-image: -moz-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            background-image: -webkit-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            background-image: -ms-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
-            -webkit-border-radius: 20px;
-            -moz-border-radius: 20px;
-            -ms-border-radius: 20px;
-            -o-border-radius: 20px;
-
-            .text {
-                font-size: 1rem;
-            }
-        }
-    }
-
     .steps-section {
         padding-top: 5rem;
 
-        .globe {
-            position: relative;
-            background-image: linear-gradient(1turn, #c165dd, #5c27fe);
-            background-image: -ms-linear-gradient(90deg, #c165dd 0, #5c27fe 100%);
-            border-radius: 10px;
-            height: 320px;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            -ms-border-radius: 10px;
-            -o-border-radius: 10px;
-            padding: 2rem 1rem;
-            transition: all 0.25s ease-in-out;
+        .box {
+            width: 100%;
+            min-width: 220px;
+            height: auto;
 
             &.active-step {
-                transform: scale(1.15);
+                transform: scale(1.05);
             }
 
-            @media (min-width: 991px) and (max-width: 1199px) {
-                height: 370px;
+            &.disabled {
+                filter: brightness(50%);
             }
 
-            .disabled {
-                background-color: rgba(0, 0, 0, 0.4);
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 10;
+            @media (max-width: 991px) {
+                margin-bottom: 2rem;
             }
 
-            .order {
-                position: absolute;
-                left: 50%;
-                top: 0;
-                transform: translate(-50%);
-                font-size: 20px;
-                text-align: center;
-                border-top-left-radius: 10px;
-                border-top-right-radius: 10px;
-                background-color: #ff9400;
-                color: black;
-                font-weight: 500;
-                width: 100%;
-                text-transform: uppercase;
+            .header {
+                border-bottom: 2px solid black;
 
+                img {
+                    width: 100%;
+                    height: auto;
+                }
 
-                &.completed {
-                    background-color: #24ff00;
+                .box-title {
+                    font-size: 20px;
+                    font-weight: 600;
+                    background-color: #ff1c7d;
+                    padding-bottom: 1rem;
+                    text-align: center;
+                    text-transform: uppercase;
                 }
             }
 
             .content {
-                height: auto;
-                width: auto;
-                .content-title {
-                    font-size: 1.2rem;
-                    font-weight: 600;
-                    margin: 0.5rem 0;
-                }
-                .description {
-                    font-size: 1rem;
-                    margin-bottom: 0.5rem;
-                    height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem;
+                min-height: 230px;
+                background-image: linear-gradient(1turn, #6c065f, #ff1c7d);
+                background-image: -ms-linear-gradient(90deg, #6c065f 0, #ff1c7d 100%);
+
+                @media (max-width: 991px) {
+                    min-height: unset;
                 }
 
                 .form-wrapper {
-                    position: absolute;
-                    bottom: 1rem;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 90%;
-                    font-size: 25px;
-                    color: black;
-
-                    @media (max-width: 767px) {
-                        position: relative;
-                        bottom: 0;
-                        left: 0;
-                        transform: unset;
-                        width: 100%;
-                        font-size: 20px;
-                        color: black;
-                    }
-
                     .form {
                         ul {
                             display: flex;
+                            justify-content: center;
                             flex-wrap: wrap;
-                            grid-gap: 10px;
                             gap: 10px;
                             list-style-type: none;
                             padding: 0;
 
                             li {
-                                float: left;
                                 margin: 0 5px 0 0;
-                                width: 100px;
-                                height: 40px;
-
-                                @media (min-width: 991px) and (max-width: 1199px) {
-                                    width: 80px;
-
-                                    label {
-                                        font-size: 14px;
-                                    }
-                                }
-
-                                @media (max-width: 767px) {
-                                    margin: 0;
-                                }
 
                                 input, label {
                                     align-items: center;
@@ -176,62 +105,188 @@
                                     width: auto;
                                     opacity: 0;
                                     z-index: 100;
+                                    display: none;
                                 }
 
                                 input[type="radio"]:checked+label {
-                                    background: #10dc10;
                                     font-weight: 600;
+                                    .amount {
+                                        color: #000000;
+                                    }
                                 }
         
                                 label {
+                                    display: flex;
+                                    flex-wrap: wrap;
                                     position: relative;
-                                    font-size: 15px;
-                                    padding: 5px;
+                                    height: auto;
+                                    width: 100%;
                                     cursor: pointer;
                                     z-index: 90;
-
-                                    background-image: linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
-                                    background-image: -moz-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
-                                    background-image: -webkit-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
-                                    background-image: -ms-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
                                     color: $main-color;
                                     font-size: 20px;
                                     text-align: center;
-                                    width: auto;
-                                    height: 40px;
                                     border-radius: 10px;
                                     -webkit-border-radius: 10px;
                                     -moz-border-radius: 10px;
                                     -ms-border-radius: 10px;
                                     -o-border-radius: 10px;
+                                    cursor: pointer;
+                                }
+                            }
 
-                                    &:hover {
-                                        background-image: linear-gradient(0deg, rgb(251, 185, 54) 100% 0%, rgb(251, 185, 54) 100% 100%);
-                                        background-image: -moz-linear-gradient(0deg, rgb(251, 185, 54) 100% 0%, rgb(251, 185, 54) 100% 100%);
-                                        background-image: -webkit-linear-gradient(0deg, rgb(251, 185, 54) 100% 0%, rgb(251, 185, 54) 100% 100%);
-                                        background-image: -ms-linear-gradient(0deg, rgb(251, 185, 54) 100% 0%, rgb(251, 185, 54) 100% 100%);
+                            &.bets-amount {
+                                li {
+                                    input[type="radio"]:checked+label {
+                                        background-image: url("../../assets/images/box-square-yellow.png");
                                     }
 
-                                    @media (min-width: 991px) and (max-width: 1199px) {
-                                        font-size: 14px;
+                                    label {
+                                        height: auto;
+                                        width: 100%;
+                                        min-width: 80px;
+                                        max-width: 110px;
+                                        min-height: 80px;
+                                        max-height: 100px;
+                                        background-image: url("../../assets/images/box-square-black.png");
+
+                                        .number {
+                                            width: 100%;
+                                            color: #ffffff;
+                                            font-size: 25px;
+                                            font-weight: 600;
+                                        }
+    
+                                        .currency {
+                                            width: 100%;
+                                            color: #ff1c7d;
+                                            font-size: 15px;
+                                            font-weight: 600;
+                                        }
                                     }
+                                }
+                                
+                            }
+
+                            &.bets-prediction {
+                                li {
+                                    width: 100%;
+                                    input[type="radio"]:checked+label {
+                                        background-image: url("../../assets/images/box-rectangle-yellow.png");
+
+                                        .even-odd-title {
+                                            color: #000000;
+                                        }
+                                    }
+
+                                    label {
+                                        height: 57px;
+                                        width: 100%;
+                                        max-width: 238px;
+                                        background-image: url("../../assets/images/box-rectangle-black.png");
+                                        flex-wrap: nowrap;
+                                        .even-odd-title {
+                                            margin-top: 0;
+                                            transform: rotate(270deg);
+                                            text-transform: uppercase;
+                                            font-size: 15px;
+                                            color: #ff1c7d;
+                                        }
+                                        .balls {
+                                            display: flex;
+                                            gap: 3px;
+                                            .ball {
+                                                width: 30px;
+                                                height: 30px;
+                                                background-image: url("../../assets/images/ball.png");
+                                                background-position: 50% 50%;
+                                                background-size: cover;
+                                                color: #000000;
+                                                font-size: 18px;
+                                                font-weight: 600;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                @media (max-width: 991px) {
+                                    flex-wrap: nowrap;
                                 }
                             }
                         }
+                    }
+                }
 
-                        &.flex {
-                            display: flex;
-                            justify-content: space-around;
+                &.box-wrapper {
+                    flex-wrap: wrap;
+
+                    .box-result {
+                        width: 116px;
+                        height: 115px;
+                        background-image: url("../../assets/images/box-square-black.png");
+                        background-position: 50% 50%;
+                        background-size: cover;
+                        font-size: 75px;
+                        text-align: center;
+                        color: #ff1c7d;
+
+                        &.show-result-box {
+                            background-image: url("../../assets/images/box-square-result.png");
+                            color: #000000;
                         }
 
-                     
+                        .final-step-wrapper {
+                            display: flex;
+                            align-items: center;
+
+                            .even-odd-value {
+                                transform: rotate(270deg);
+                                font-size: 35px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                line-height: 40px;
+                                width: 50px;
+                                margin-top: 30px;
+                            }
+
+                            .value {
+                                font-size: 90px;
+                                display: block;
+                                margin-top: -15px;
+                            }
+                        }
+
+                    }
+
+                    .win-lose-wrapper {
+                        display: flex;
+                        justify-content: space-around;
+                        width: 100%;
+                        .win-lose-box {
+                            width: 78px;
+                            height: 44px;
+                            text-transform: uppercase;
+                            font-size: 20px;
+                            font-weight: 500;
+                            text-align: center;
+                            padding-top: 8px;
+                            background-image: url("../../assets/images/box-win-lose-off.png");
+
+                            &.active {
+                                background-image: url("../../assets/images/box-win-lose-on.png");
+                                color: #000000;
+                                font-weight: 600;
+                            }
+                        }
                     }
                 }
             }
 
-            @media (max-width: 991px) {
-                margin-bottom: 3rem;
-                height: 215px;
+            .footer {
+                img {
+                    width: 100%;
+                    height: auto;
+                }
             }
         }
     }
@@ -265,30 +320,30 @@ input[type="number"] {
 
 
 button {
-    background-image: linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
-    background-image: -moz-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
-    background-image: -webkit-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
-    background-image: -ms-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
+    background-image: linear-gradient(0deg, #fff222 0%, #ffb100 44%, #e7c903 100%);
+    background-image: -moz-linear-gradient(0deg, #fff222 0%, #ffb100 44%, #e7c903 100%);
+    background-image: -webkit-linear-gradient(0deg, #fff222 0%, #ffb100 44%, #e7c903 100%);
+    background-image: -ms-linear-gradient(0deg, #fff222 0%, #ffb100 44%, #e7c903 100%);
     box-shadow: 0px 17px 40px 0px rgba(124, 78, 25, 0.35);
-    color: #ffffff;
+    color: #000000;
     border: none;
     font-size: 20px;
     width: auto;
     height: 40px;
     padding: 0 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 
+    &:hover {
+        background-color: #fff222;    }
+
     &:disabled {
         cursor: default;
-        background-image: linear-gradient(0deg, #2d2d2d 0%, #676767 44%, #9e9e9e 100%);
-        background-image: -moz-linear-gradient(0deg, #2d2d2d 0%, #676767 44%, #9e9e9e 100%);
-        background-image: -webkit-linear-gradient(0deg, #2d2d2d 0%, #676767 44%, #9e9e9e 100%);
-        background-image: -ms-linear-gradient(0deg, #2d2d2d 0%, #676767 44%, #9e9e9e 100%);
+        background: #9e9e9e;
     }
 
 }

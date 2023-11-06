@@ -1,71 +1,81 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import ModalWrapper from '../../components/UI/ModalWrapper/ModalWrapper';
-import BetsModal from '../../components/app/BetsModal/BetsModal';
-
 import classes from './Bets.module.scss';
 
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
+import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
+import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
+
+import { BsGraphUpArrow } from 'react-icons/bs';
+import { IoIosHelpCircleOutline } from 'react-icons/io';
 
 const Bets: React.FC = () => {
+    const { t } = useTranslation();
     const [step, setStep] = useState<number>(1);
     const [bet, setBet] = useState<string>('');
     const [evenOdd, setEvenOdd] = useState<string>('');
-    const [reward, setReward] = useState<string>('');
     const [betCompleted, setBetCompleted] = useState<boolean>(false);
+    const [multiplier, setMultiplier] = useState<string>('?');
     const [claimCompleted, setClaimCompleted] = useState<boolean>(false);
-    
-    const [modalIsShown, setModalIsShown] = useState<boolean>(false);
-    const { t } = useTranslation();
+    const [result, setResult] = useState<any>(null);
+    const [showResult, setShowResult] = useState<boolean>(false);
+
 
     const changeBet = (event: any) => {
-        console.log(event.target.value);
-        setBet(event.target.value);
-        setStep(prevStep => prevStep + 1);
+        if (step === 1) {
+            setBet(event.target.value);
+            setStep(2);
+        }
     };
 
     const changeEvenOdd = (event: any) => {
-        console.log(event.target.value);
-        setEvenOdd(event.target.value);
-        setStep(prevStep => prevStep + 1);
+        if (step === 2) {
+            setEvenOdd(event.target.value);
+            setStep(3);
+        }
     };
 
-    const hideModalHandler = () => {
-        setModalIsShown(false);
-        setBetCompleted(true);
-        setStep(prevStep => prevStep + 1);
+    const confirmBet = () => {
+        if (step === 3) {
+            console.log('Place bet', bet, evenOdd);
+            setBetCompleted(true);
+            // Connect to metamask or check if is connected
+            // Check result and then
+            const mockResult = {
+                multiplier: '3',
+                evenOdd: 'even',
+                evenOddValue: '4',
+                isWinner: true,
+                winAmount: 12,
+            };
+
+            setTimeout(() => {
+                setMultiplier(mockResult.multiplier);
+                setResult(mockResult);
+                setStep((prevStep) => prevStep + 1);
+            }, 1000);
+        }
     };
 
-    const acceptBet = (result: any) => {
-      /*   console.log("Accept bet and close", result); */
-    };
+    const revealBetResult = () => {
+        setShowResult(true);
 
-    const showModalBetRoutine = () => {
-        console.log('Place bet', bet, evenOdd);
-        setModalIsShown(true);
-    };
-    
+    }
 
     return (
-        <>
-            {modalIsShown && (
-                <ModalWrapper modalTitle="" showAcceptButton={true} onClose={hideModalHandler}>
-                    <BetsModal data={{ userId: '' }} onFinish={(result) => acceptBet(result)} />
-                </ModalWrapper>
-            )}
-            <div className={classes['bets-wrapper']}>
-                <div className={classes['bg-shape']}>
-                    <img src={roundShapeBgImg} alt="" />
-                </div>
-                <div className={`${classes.title} container`}>
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <h2>Bets</h2>
-                        </div>
+        <div className={classes['bets-wrapper']}>
+            <div className={classes['bg-shape']}>
+                <img src={roundShapeBgImg} alt="" />
+            </div>
+            <div className={`${classes.title} container`}>
+                <div className="row">
+                    <div className="col-lg-12">
+                        <h2>Bets</h2>
                     </div>
                 </div>
-                {/* <section className={classes['description-section']}>
+            </div>
+            {/* <section className={classes['description-section']}>
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
@@ -78,103 +88,165 @@ const Bets: React.FC = () => {
                         </div>
                     </div>
                 </section> */}
-                <section className={classes['steps-section']}>
-                    <div className="container">
-                        <div className="row mb-none-30">
-                            <div className="col-lg-3 mb-30">
-                                <div className={`${classes.globe} ${step === 1 ? classes['active-step'] : '' }`}>
-                                    {step !== 1 && (<div className={classes.disabled}></div>)}
-                                    <div className={`${classes.order} ${bet ? classes.completed : '' }`}>Step 1</div>
-                                    <div className={classes.content}>
-                                        <div className={classes['content-title']}>Choose BNB amount</div>
-                                        <div className={classes.description}>The maximun allowed bet amount is 5 BNB (no minimum limits). You need to have the BNB in your wallet (Bet amount and gas).</div>
-                                        <div className={classes['form-wrapper']}>
-                                            <form className={classes.form}>
-                                                <ul>
-                                                    <li>
-                                                        <input type="radio" name="bet" value="0.25" id="option1" checked={bet === '0.25'} onChange={(event) => changeBet(event)} />
-                                                        <label htmlFor="option1">0,25 ETH</label>
-                                                    </li>
-                                                    <li>
-                                                        <input type="radio" name="bet" value="0.5" id="option2" checked={bet === '0.5'} onChange={(event) => changeBet(event)} />
-                                                        <label htmlFor="option2">0,5 ETH</label>
-                                                    </li>
-                                                    <li>
-                                                        <input type="radio" name="bet" value="0.75" id="option3" checked={bet === '0.75'} onChange={(event) => changeBet(event)} />
-                                                        <label htmlFor="option3">0,75 ETH</label>
-                                                    </li>
-                                                    <li>
-                                                        <input type="radio" name="bet" value="1" id="option4" checked={bet === '1'} onChange={(event) => changeBet(event)} />
-                                                        <label htmlFor="option4">1 ETH</label>
-                                                    </li>
-                                                </ul>
-                                            </form>
-                                        </div>
+            <section className={classes['steps-section']}>
+                <div className="container">
+                    <div className="row mb-none-30">
+                        <div className="col-lg-3 mb-30">
+                            <div className={`${classes.box} ${step === 1 ? classes['active-step'] : ''} ${step !== 1 ? classes.disabled : ''}`}>
+                                <div className={classes.header}>
+                                    <img src={boxHeaderImg} alt="" />
+                                    <div className={classes['box-title']}>Amount</div>
+                                </div>
+                                <div className={classes.content}>
+                                    <div className={classes['form-wrapper']}>
+                                        <form className={classes.form}>
+                                            <ul className={classes['bets-amount']}>
+                                                <li>
+                                                    <input type="radio" name="bet" value="0.25" id="option1" checked={bet === '0.25'} onChange={(event) => changeBet(event)} />
+                                                    <label htmlFor="option1">
+                                                        <div className={classes.number}>0,25</div>
+                                                        <div className={classes.currency}>ETH</div>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" name="bet" value="0.5" id="option2" checked={bet === '0.5'} onChange={(event) => changeBet(event)} />
+                                                    <label htmlFor="option2">
+                                                        <div className={classes.number}>0,5</div>
+                                                        <div className={classes.currency}>ETH</div>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" name="bet" value="0.75" id="option3" checked={bet === '0.75'} onChange={(event) => changeBet(event)} />
+                                                    <label htmlFor="option3">
+                                                        <div className={classes.number}>0,75</div>
+                                                        <div className={classes.currency}>ETH</div>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" name="bet" value="1" id="option4" checked={bet === '1'} onChange={(event) => changeBet(event)} />
+                                                    <label htmlFor="option4">
+                                                        <div className={classes.number}>1</div>
+                                                        <div className={classes.currency}>ETH</div>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </form>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="col-lg-3 mb-30">
-                                <div className={`${classes.globe} ${step === 2 ? classes['active-step'] : '' }`}>
-                                    {step !== 2 && (<div className={classes.disabled}></div>)}
-                                    <div className={`${classes.order} ${evenOdd ? classes.completed : '' }`}>Step 2</div>
-                                    <div className={classes.content}>
-                                        <div className={classes['content-title']}>Choose 'Even' or 'Odd'</div>
-                                        <div className={classes.description}>Confirm your bet with a 50% real chance of winning. If you win, you will double the BNB amount of the bet.</div>
-                                        <div className={classes['form-wrapper']}>
-                                            <form className={`${classes.form} ${classes.flex}`}>
-                                                <ul>
-                                                    <li>
-                                                        <input type="radio" name="evenOdd" value="even" id="even" checked={evenOdd === 'even'} onChange={(event) => changeEvenOdd(event)} />
-                                                        <label htmlFor="even">Even</label>
-                                                    </li>
-                                                    <li>
-                                                        <input type="radio" name="evenOdd" value="odd" id="odd" checked={evenOdd === 'odd'} onChange={(event) => changeEvenOdd(event)} />
-                                                        <label htmlFor="odd">Odd</label>
-                                                    </li>
-                                                </ul>
-                                            </form>
-                                        </div>
-                                    </div>
+                                <div className={classes.footer}>
+                                    <img src={boxFooterImg} alt="" />
                                 </div>
                             </div>
-                            <div className="col-lg-3 mb-30">
-                                <div className={`${classes.globe} ${step === 3 ? classes['active-step'] : '' }`}>
-                                    {step !== 3 && (<div className={classes.disabled}></div>)}
-                                    <div className={`${classes.order} ${betCompleted ? classes.completed : '' }`}>Step 3</div>
-                                    <div className={classes.content}>
-                                        <div className={classes['content-title']}>Spin and multiply your prize</div>
-                                        <div className={classes.description}>Spin the wheel and get your prize multiplier. Confirm the bet and sign the transaction with your wallet.</div>
-                                        <div className={classes['form-wrapper']}>
+                        </div>
+                        <div className="col-lg-3 mb-30">
+                            <div className={`${classes.box} ${step === 2 ? classes['active-step'] : ''} ${step !== 2 ? classes.disabled : ''}`}>
+                                <div className={classes.header}>
+                                    <img src={boxHeaderImg} alt="" />
+                                    <div className={classes['box-title']}>Prediction</div>
+                                </div>
+                                <div className={classes.content}>
+                                    <div className={classes['form-wrapper']}>
+                                        <form className={classes.form}>
+                                            <ul className={classes['bets-prediction']}>
+                                                <li>
+                                                    <input type="radio" name="bet" value="even" id="even" checked={evenOdd === 'even'} onChange={(event) => changeEvenOdd(event)} />
+                                                    <label htmlFor="even">
+                                                        <div className={classes['even-odd-title']}>Even</div>
+                                                        <div className={classes.balls}>
+                                                            <div className={classes.ball}>0</div>
+                                                            <div className={classes.ball}>2</div>
+                                                            <div className={classes.ball}>4</div>
+                                                            <div className={classes.ball}>6</div>
+                                                            <div className={classes.ball}>8</div>
+                                                        </div>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" name="bet" value="odd" id="odd" checked={evenOdd === 'odd'} onChange={(event) => changeEvenOdd(event)} />
+                                                    <label htmlFor="odd">
+                                                        <div className={classes['even-odd-title']}>Odd</div>
+                                                        <div className={classes.balls}>
+                                                            <div className={classes.ball}>1</div>
+                                                            <div className={classes.ball}>3</div>
+                                                            <div className={classes.ball}>5</div>
+                                                            <div className={classes.ball}>7</div>
+                                                            <div className={classes.ball}>9</div>
+                                                        </div>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div className={classes.footer}>
+                                    <img src={boxFooterImg} alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 mb-30">
+                            <div className={`${classes.box} ${step === 3 ? classes['active-step'] : ''} ${step !== 3 ? classes.disabled : ''}`}>
+                                <div className={classes.header}>
+                                    <img src={boxHeaderImg} alt="" />
+                                    <div className={classes['box-title']}>Multiplier</div>
+                                </div>
+                                <div className={`${classes.content} ${classes['box-wrapper']}`}>
+                                    <div className={`${classes['box-result']} ${multiplier !== '?' ? classes['show-result-box'] : ''}`}>{multiplier}</div>
+                                    {multiplier === '?' && (<div className={classes['form-wrapper']}>
                                             <form className={`${classes.form} ${classes.flex}`}>
-                                                <button type="button" className={classes.large} disabled={bet === '' || evenOdd === ''} onClick={(e) => showModalBetRoutine()}>
+                                                <button type="button" className={classes.large} disabled={bet === '' || evenOdd === ''} onClick={(e) => confirmBet()}>
                                                     Confirm & Spin
                                                 </button>
                                             </form>
                                         </div>
-                                    </div>
+                                    )}
+                                </div>
+                                <div className={classes.footer}>
+                                    <img src={boxFooterImg} alt="" />
                                 </div>
                             </div>
-                            <div className="col-lg-3 mb-30">
-                                <div className={`${classes.globe} ${step === 4 ? classes['active-step'] : '' }`}>
-                                    {step !== 4 && (<div className={classes.disabled}></div>)}
-                                    <div className={`${classes.order} ${claimCompleted ? classes.completed : '' }`}>Step 4</div>
-                                    <div className={classes.content}>
-                                        <div className={classes['content-title']}>Claim your rewards</div>
-                                        <div className={classes.description}>Claim BNB rewards from your winning bets. You will receive your prizes instantly after your bets.</div>
-                                        <div className={classes['form-wrapper']}>
-                                            <div className={`${classes.form} ${classes.flex}`}>
-                                                <input type="number" name="prize" placeholder="0.0" readOnly={true} value={reward} />
-                                                <button type="button" disabled={!reward} >Claim</button>
+                        </div>
+                        <div className="col-lg-3 mb-30">
+                            <div className={`${classes.box} ${step === 4 ? classes['active-step'] : ''} ${step !== 4 ? classes.disabled : ''}`}>
+                                <div className={classes.header}>
+                                    <img src={boxHeaderImg} alt="" />
+                                    <div className={classes['box-title']}>result</div>
+                                </div>
+                                <div className={`${classes.content} ${classes['box-wrapper']}`}>
+                                    {!showResult ? ( 
+                                        <>
+                                            <div className={classes['box-result']}>?</div>
+                                            <div className={classes['form-wrapper']}>
+                                                <form className={`${classes.form} ${classes.flex}`}>
+                                                    <button type="button" className={classes.large} disabled={!result} onClick={() => revealBetResult()}>  
+                                                        Reveal
+                                                    </button>
+                                                </form>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className={`${classes['box-result']} ${classes['show-result-box']}`}>
+                                                <div className={classes['final-step-wrapper']}>
+                                                    <div className={classes['even-odd-value']}>{result.evenOdd}</div>
+                                                    <div className={classes.value}>{result.evenOddValue}</div>
+                                                </div>
+                                            </div>
+                                            <div className={classes['win-lose-wrapper']}>
+                                                <div className={`${classes['win-lose-box']} ${result.isWinner ? classes.active : ''}`}>Win</div>
+                                                <div className={`${classes['win-lose-box']} ${!result.isWinner ? classes.active : ''}`}>Lose</div>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                                <div className={classes.footer}>
+                                    <img src={boxFooterImg} alt="" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
-        </>
+                </div>
+            </section>
+        </div>
     );
 };
 
