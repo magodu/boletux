@@ -6,9 +6,13 @@ import classes from './Bets.module.scss';
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
 import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
 import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
+import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
+import betStepsImg from '../../assets/images/bet-steps.png';
 
+import { BsArrowRight } from 'react-icons/bs';
+import { BsArrowLeft } from 'react-icons/bs';
+import { BsQuestionCircle } from 'react-icons/bs';
 import { BsGraphUpArrow } from 'react-icons/bs';
-import { IoIosHelpCircleOutline } from 'react-icons/io';
 
 const Bets: React.FC = () => {
     const { t } = useTranslation();
@@ -63,6 +67,19 @@ const Bets: React.FC = () => {
 
     }
 
+    const collectAwards = () => {
+        console.log('Collect awwards method');
+    }
+
+    const newBet = () => {
+        console.log('New bet');
+    }
+
+    const navigateTo = (where: string) => {
+        console.log('navigate method to', where);
+    }
+    
+
     return (
         <div className={classes['bets-wrapper']}>
             <div className={classes['bg-shape']}>
@@ -88,6 +105,36 @@ const Bets: React.FC = () => {
                         </div>
                     </div>
                 </section> */}
+
+            <section className={classes['actions-section']}>
+                <div className="container">
+                    <div className={`${classes.actions} row mb-none-30`}>
+                        <div className={classes['collect-wrapper']}>
+                            <div className={classes.collect}>
+                                <div className={classes.image}>
+                                    <img src={ethereumLogoImg} alt="" />
+                                </div>
+                                <div className={classes.amount}>
+                                    <span className={classes.value}>56</span>
+                                    <button onClick={() => collectAwards()}>Collect</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={classes['steps-wrapper']}>
+                            <div className={classes.steps}>
+                                <img src={betStepsImg} alt="" />
+                                <div className={`${classes['left-arrow']} ${false ? classes.active : ''}`}><BsArrowLeft /></div>
+                                <div className={`${classes['right-arrow']} ${false ? classes.active : ''}`}><BsArrowRight /></div>
+                            </div>
+                        </div>
+                        <div className={classes.buttons}>
+                            <button className={`${classes['new-bet']} ${true ? classes.active : ''}`} onClick={() => newBet()}>New Bet</button>
+                            <button className={classes.info} onClick={() => navigateTo('info')}><BsQuestionCircle /></button> 
+                            <button className={classes.stats} onClick={() => navigateTo('stats')}><BsGraphUpArrow /></button> 
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section className={classes['steps-section']}>
                 <div className="container">
                     <div className="row mb-none-30">
