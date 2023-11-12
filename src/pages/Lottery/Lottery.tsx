@@ -1,12 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 
 import classes from './Lottery.module.scss';
 
 import Countdown from '../../components/app/Countdown/Countdown';
+import TabNavItem from '../../components/UI/Tabs/TabNavItem';
+import TabContent from '../../components/UI/Tabs/TabContent';
 
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
 import goldCoinsLogoImg from '../../assets/images/gold-coin-stacks-logo.png';
+
+import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
+import boxHeaderYellowImg from '../../assets/images/box-wrapper-header-yellow.png';
+import boxFooterYellowImg from '../../assets/images/box-wrapper-footer-yellow.png';
+import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
+import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
+
 import { FaTrashAlt } from 'react-icons/fa';
+import { BsQuestionCircle } from 'react-icons/bs';
+import { BsGraphUpArrow } from 'react-icons/bs';
 
 
 const setLotteryDate = (day: number, hour: number) => {
@@ -31,6 +42,19 @@ enum weekDays {
 const Lottery: React.FC = () => {
     const lotteryNumbers = Array.from({ length: 100 }, (_, index) => String(index).padStart(2, '0'));
     const lotteryDate = setLotteryDate(weekDays.sunday, 21);
+    const [activeTab, setActiveTab] = useState('buy');
+
+    const collectAwards = () => {
+        console.log('Collect awwards method');
+    }
+
+    const navigateTo = (where: string) => {
+        console.log('navigate method to', where);
+    }
+
+    const buyTickets = () => {
+        console.log('Buy Tickets');
+    }
 
     return (
         <div className={classes['lottery-wrapper']}>
@@ -44,135 +68,121 @@ const Lottery: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <section className={classes['description-section']}>
+
+            <section className={classes['actions-section']}>
                 <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className={classes.description}>
-                                <div className={classes.text}>A raffle every week and up to 5 winners. The winning number only depends on the Bitcoin price, so all prizes can be verified directly on the blockchain.</div>
+                    <div className={`${classes.actions} row mb-none-30`}>
+                        <div className={classes['collect-wrapper']}>
+                            <div className={classes.collect}>
+                                <div className={classes.image}>
+                                    <img src={ethereumLogoImg} alt="" />
+                                </div>
+                                <div className={classes.amount}>
+                                    <span className={classes.value}>56</span>
+                                    <button onClick={() => collectAwards()}>Collect</button>
+                                </div>
                             </div>
+                        </div>
+                        <Countdown endtime={lotteryDate} />
+                        <div className={classes.buttons}>
+                            <button className={`${classes.jackpot} ${classes.active}`}>Jackpot</button>
+                            <button className={classes.info} onClick={() => navigateTo('info')}><BsQuestionCircle /></button> 
+                            <button className={classes.stats} onClick={() => navigateTo('stats')}><BsGraphUpArrow /></button> 
                         </div>
                     </div>
                 </div>
             </section>
 
             <section className={classes['lottery-section']}>
-                <Countdown endtime={lotteryDate} />
                 <div className={classes.content}>
-                    <div className="row">
-                        <div className="col-lg-8 mb-3">
-                            <div className={classes['lottery-numbers-wrapper']}>
-                                <div className={classes['lottery-numbers']}>
-                                    <ul className={classes.numbers}>
-                                        {lotteryNumbers.map((number, i) => (
-                                            <li key={i}>{number}</li>
-                                        ))}
-                                    </ul>
+                    <div className={classes.jackpot}>
+                        <div className={classes.prizes}>
+                            <div className={`${classes.box} ${classes['box-yellow']}`}>
+                                <div className={classes.header}>
+                                    <img src={boxHeaderYellowImg} alt="" />
+                                    <div className={classes['box-title']}>Prize Pot</div>
+                                </div>
+                                <div className={`${classes.content} ${classes['box-wrapper']}`}>
+                                    <div className={classes['box-prize-pot']}>
+                                        <div className={classes['box-prize-pot-wrapper']}>
+                                            <div className={classes.value}>1.2</div>
+                                            <div className={classes['crypto-currency']}>ETH</div>
+                                        </div>
+                                    </div>
+                                    <div className={classes['pot-data-wrapper']}>
+                                        <div className={classes['pot-data-box']}>
+                                            <div className={classes.value}>#1</div>
+                                            <div className={classes.label}>DRAW</div>
+                                        </div>
+                                        <div className={`${classes['pot-data-box']}`}>
+                                            <div className={classes.value}>0.02</div>
+                                            <div className={classes.label}>ETH / TICKET</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={classes.footer}>
+                                    <img src={boxFooterYellowImg} alt="" />
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4">
-                            <div className={classes.jackpot}>
-                                <div className={classes.title}>
-                                    <h4>BNB Jackpot</h4>
+                        <div className={classes['lottery-numbers-wrapper']}>
+                            <div className={classes['lottery-numbers']}>
+                                <ul className={classes.numbers}>
+                                    {lotteryNumbers.map((number, i) => (
+                                        <li key={i}>{number}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                        <div className={classes.tickets}>
+                            <div className={classes.box}>
+                                <div className={classes.header}>
+                                    <img src={boxHeaderImg} alt="" />
+                                    <div className={classes['box-title']}>Tickets</div>
                                 </div>
-                                <div className={classes['jackpot-value']}>1.2</div>
-                                <div className={classes.week}>
-                                    <div className={classes.label}>Week</div>
-                                    <div className={classes.value}>2</div>
-                                </div>
-                                <div className={classes.price}>
-                                    <div className={classes.label}>Ticket price</div>
-                                    <div className={classes.value}>0.1 BNB</div>
-                                </div>
-                                <hr />
-                                <div className={classes['tickets-wrapper']}>
-                                    <div className={classes.label}>
-                                        <h5>Your tickets</h5>
-                                    </div>
-                                    <div className={classes.tickets}>
-                                        {/* <p>You haven't bought tickets yet</p> */}
-                                        <ul className={classes['tickets-list']}>
-                                            <li>03</li>
-                                            <li>20</li>
+                                <div className={`${classes.content} ${classes['box-wrapper']}`}>
+                                    <div className={classes['tabs-wrapper']}>
+                                        <ul className={`nav nav-tabs ${classes.tabs}`} role="tablist">
+                                            <TabNavItem title="Buy new" id="buy" activeTab={activeTab} setActiveTab={setActiveTab} />
+                                            <TabNavItem title="Your tickets" id="bought" activeTab={activeTab} setActiveTab={setActiveTab} />
                                         </ul>
                                     </div>
-                                </div>
-                                <hr />
-                                <div className={classes['new-tickets-wrapper']}>
-                                    <div className={classes.label}>
-                                        <h5>Get new tickets</h5>
-                                        <FaTrashAlt />
+                                    <div className={classes['tabs-content']}>
+                                        <TabContent id="buy" activeTab={activeTab}>
+                                            <div className={classes['tickets-wrapper']}>
+                                                <div className={classes['tickets-list']}>
+                                                    <p>Select your tickets in the panel and they will appear here</p>
+                                                </div>
+                                            </div>
+                                        </TabContent>
+                                        <TabContent id="bought" activeTab={activeTab}>
+                                            <div className={classes['tickets-wrapper']}>
+                                                <div className={classes['tickets-list']}>
+                                                    {/* <p>Your bougth tickets will appear here</p> */}
+                                                    <div className={classes.item}>22</div>
+                                                    <div className={classes.item}>31</div>
+                                                    <div className={classes.item}>32</div>
+                                                    <div className={classes.item}>23</div>
+                                                    <div className={classes.item}>28</div>
+                                                    <div className={classes.item}>88</div>
+                                                    <div className={classes.item}>89</div>
+                                                    <div className={classes.item}>90</div>
+                                                </div>
+                                            </div>
+                                        </TabContent>
                                     </div>
-                                    <div className={classes.tickets}>
-                                        <p>Select your tickets in the panel and they will appear here</p>
-                                        <ul className={classes['new-tickets-list']}>
-                                            <li>12</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className={classes.buy}>
-                                    <button className={classes['action-btn']} type="button" role="tab">
-                                        Buy tickets
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section className={classes['prizes-section']}>
-                <div className={classes.content}>
-                    <div className="row">
-                        <div className="col-lg-4">
-                            <div className={classes.prizes}>
-                                <div className={classes['coins-img']}>
-                                    <img src={goldCoinsLogoImg} alt="" />
-                                </div>
-                                <div className={classes.rewards}>
-                                    <div className={classes.label}>Your rewards:</div>
-                                    <div className={classes.value}>0 BNB</div>
-                                </div>
-                                <div className={classes.claim}>
-                                    <button className={classes['action-btn']} type="button" role="tab">
-                                        Claim
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-8">
-                            <div className={classes['latest-winners']}>
-                                <div className={classes.title}>
-                                    <h2>Latest winners</h2>
-                                </div>
-                                <div className={classes.winners}>
-                                    <div className={classes.item}>
-                                        <div className={classes.address}>0x234234234D23423423f234234234e234234234d234234</div>
-                                        <div className={classes.amount}>4.5 BNB</div>
-                                    </div>
-                                    <div className={classes.item}>
-                                        <div className={classes.address}>0x234234234D23423423f234234234e234234234d234234</div>
-                                        <div className={classes.amount}>4.5 BNB</div>
-                                    </div>
-                                    <div className={classes.item}>
-                                        <div className={classes.address}>0x234234234D23423423f234234234e234234234d234234</div>
-                                        <div className={classes.amount}>4.5 BNB</div>
-                                    </div>
-                                    <div className={classes.item}>
-                                        <div className={classes.address}>0x234234234D23423423f234234234e234234234d234234</div>
-                                        <div className={classes.amount}>4.5 BNB</div>
-                                    </div>
-                                    <div className={classes.item}>
-                                        <div className={classes.address}>0x234234234D23423423f234234234e234234234d234234</div>
-                                        <div className={classes.amount}>4.5 BNB</div>
-                                    </div>
-                                    <div className={classes.item}>
-                                        <div className={classes.address}>0x234234234D23423423f234234234e234234234d234234</div>
-                                        <div className={classes.amount}>4.5 BNB</div>
+                                    <div className={classes['form-wrapper']}>
+                                        <form className={classes.form}>
+                                            {activeTab === 'buy' && (<button type="button" className={classes.large} disabled={false} onClick={() => buyTickets()}>
+                                                    Buy Tickets
+                                                </button>
+                                            )}
+                                        </form>
                                     </div>
                                 </div>
-                                <div className={classes.pagination}></div>
+                                <div className={classes.footer}>
+                                    <img src={boxFooterImg} alt="" />
+                                </div>
                             </div>
                         </div>
                     </div>

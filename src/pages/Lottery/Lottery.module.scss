@@ -30,388 +30,443 @@
         }
     }
 
-    .description-section {
-        .description {
-            padding: 1rem;
-            background-image: linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            background-image: -moz-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            background-image: -webkit-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            background-image: -ms-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
-            -webkit-border-radius: 20px;
-            -moz-border-radius: 20px;
-            -ms-border-radius: 20px;
-            -o-border-radius: 20px;
+    .actions-section {
+        padding-top: 5rem;
 
-            .text {
-                font-size: 1rem;
-            }
-        }
-    }  
-
-    .lottery-section {
-        padding-top: 3rem;
-
-        .content {
-            margin: 0 4rem;
-
-            .lottery-numbers-wrapper {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                background-image: url('../../assets/images/background/lottery.jpg');
-                background-size: cover;
-                background-position: center;
-                border-radius: 10px;
-                width: 100%;
-                height: 100%;
-
-                .lottery-numbers {
-                    width: 640px;
-                    padding: 1rem;
-
-                    @media (max-width: 779px) {
-                        width: 430px;
+        .actions {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            .collect-wrapper {
+                .collect {
+                    display: flex;
+                    .image {
+                        z-index: 5;
+                        width: 50px;
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
                     }
-
-                    ul.numbers {
+                  
+                    .amount {
                         display: flex;
-                        -ms-flex-wrap: wrap;
-                        flex-wrap: wrap;
-                        justify-content: flex-start;
-                        padding-left: 0;
-                        gap: 10px;
-                        list-style: none;
-        
-                        li {
-                            padding: 10px 5px;
-                            text-align: center;
-                            width: auto;
-                            min-width: 50px;
-                            background-image: linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
-                            background-image: -moz-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
-                            background-image: -webkit-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
-                            background-image: -ms-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
-                            box-shadow: 0px 17px 40px 0px rgba(243, 42, 126, 0.35);
-                            border-radius: 5px;
-                            -webkit-border-radius: 5px;
-                            -moz-border-radius: 5px;
-                            -ms-border-radius: 5px;
-                            -o-border-radius: 5px;
+                        justify-content: space-between;
+                        margin-left: -20px;
+                        margin-top: 5px;
+                        height: 40px;
+                        background-color: #ffffff;
+                        width: 200px;
+                        border-radius: 5px;
+                        z-index: 2;
+                        padding-left: 35px;
+
+                        .value {
+                            color: #000000;
                             font-size: 20px;
+                            font-weight: 500;
+                            padding-top: 5px;
+                            width: 50px;
+                        }
+
+                        button {
+                            background: #000000;
+                            border: 2px solid #ffffff;
+                            border-radius: 7px;
                             color: #ffffff;
-                            line-height: 1;
-                            cursor: pointer;
-
-                            &:hover {
-                                background-size: 300%;
-                                background-image: linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(236, 3, 139) 100%);
-                            }
-
-                            @media (max-width: 779px) {
-                                min-width: 30px;
-                                padding: 5px 0;
-                            }
                         }
                     }
                 }
             }
 
+            .buttons {
+                display: flex;
+                gap: 10px;
+                button {
+                    background-image: url("../../assets/images/box-square-purple.png");
+                    background-position: 50% 50%;
+                    background-size: cover;
+                    margin-right: 5px;
+                    width: 45px;
+                    padding: 0;
+                    &.jackpot {    
+                        font-size: 13px;
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        line-height: 15px;
+                        width: auto;
+                        padding: 10px;
+                        &.active {
+                            background-image: url("../../assets/images/box-square-yellow.png");
+                        }
+                    }
+
+                    &.info, &.stats {
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+
+    .lottery-section {
+        display: flex;
+        justify-content: center;
+        padding-top: 2rem;
+
+        .content {
+            flex: 0 0 70%;
+            max-width: 950px;
+
             .jackpot {
+                position: relative;
+                display: flex;
                 padding: 1rem;
-                background-image: linear-gradient(180deg, rgb(84, 150, 255) 0%, rgb(135, 57, 230) 100%);
-                background-image: -moz-linear-gradient(180deg, rgb(84, 150, 255) 0%, rgb(135, 57, 230) 100%);
-                background-image: -webkit-linear-gradient(180deg, rgb(84, 150, 255) 0%, rgb(135, 57, 230) 100%);
-                background-image: -ms-linear-gradient(180deg, rgb(84, 150, 255) 0%, rgb(135, 57, 230) 100%);
-                box-shadow: 0px 19px 56px 0px rgba(0, 0, 0, 0.2);
+                background-image: linear-gradient(180deg, rgb(67, 0, 86) 0%, rgb(49, 2, 103) 100%);
+                background-image: -moz-linear-gradient(180deg, rgb(67, 0, 86) 0%, rgb(49, 2, 103) 100%);
+                background-image: -webkit-linear-gradient(180deg, rgb(67, 0, 86) 0%, rgb(49, 2, 103) 100%);
+                background-image: -ms-linear-gradient(180deg, rgb(67, 0, 86) 0%, rgb(49, 2, 103) 100%);
                 border-radius: 10px;
                 -webkit-border-radius: 10px;
                 -moz-border-radius: 10px;
                 -ms-border-radius: 10px;
                 -o-border-radius: 10px;
-                display: -ms-flexbox;
-                display: flex;
-                flex-direction: column;
 
-                @media (max-width: 830px) {
-                    margin-top: 2rem;
+                @media (max-width: 1024px) {
+                    flex-wrap: wrap;
+                    justify-content: space-around;
                 }
+                
+                .box {
+                    width: 252px;
+                    height: auto;
 
-                .title {
-                    margin-top: 0;
-                    text-align: center;
-
-                }
-                .jackpot-value {
-                    font-size: 50px;
-                    font-weight: 700;
-                    text-align: center;
-                    background-color: #d2d2d26e;
-                    border: 2px solid #5b6bf0;
-                    border-radius: 10px;
-                    height: 85px;
-                }
-
-                .week,
-                .price {
-                    display: flex;
-                    margin: 0.5rem 0;
-                    .label {
-                        flex: 1;
-                        padding-left: 2rem;
-                        font-weight: 600;
+                    @media (max-width: 1024px) {
+                        min-height: unset;
                     }
 
-                    .value {
-                        flex: 1;
+                    @media (max-width: 991px) {
+                        margin-bottom: 2rem;
+                    }
+
+                    .header {
+                        border-bottom: 2px solid black;
+        
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+        
+                        .box-title {
+                            font-size: 20px;
+                            font-weight: 600;
+                            background-color: #ff1c7d;
+                            padding-bottom: 1rem;
+                            text-align: center;
+                            text-transform: uppercase;
+                            margin-top: -1px;
+                        }
+                    }
+
+                    .content {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 1rem;
+                        min-height: 230px;
+                        background-image: linear-gradient(1turn, #6c065f, #ff1c7d);
+                        background-image: -ms-linear-gradient(90deg, #6c065f 0, #ff1c7d 100%);
+        
+                        @media (max-width: 991px) {
+                            min-height: unset;
+                        }
+                    }
+
+                    .footer {
+                        margin-top: -1px;
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+
+                    &.box-yellow {
+                        .header {
+                            .box-title {
+                                background-color: #ffb100;
+                            }
+                        }
+                        .content {
+                            background-image: linear-gradient(1turn, #ff7e00, #ffb100);
+                            background-image: -ms-linear-gradient(90deg, #ff7e00 0, #ffb100 100%);
+                        }
                     }
                 }
-                .tickets-wrapper,
-                .new-tickets-wrapper {
-                    text-align: center;
-                    .label {
-                        text-align: center;
-                    }
-                    .tickets {
-                        min-height: 85px;
-                        height: auto;
-                        font-size: 14px;
-                        padding: 0.5rem;
+                
+                .prizes {
+                    position: absolute;
+                    top: 50%;
+                    left: calc(252px/2 * -1);
+                    transform: translate(0, -50%);
 
-                        .tickets-list,
-                        .new-tickets-list {
+                    @media (max-width: 1024px) {
+                        order: 1;
+                        position: relative;
+                        transform: unset;
+                        left: unset;
+                        top: unset;
+                    }
+
+                    .header {
+                        color: #000000;
+                    }
+
+                    .box-wrapper {
+                        flex-wrap: wrap;
+    
+                        .box-prize-pot {
+                            width: 116px;
+                            height: 115px;
+                            background-image: url("../../assets/images/box-square-white.png");
+                            background-position: 50% 50%;
+                            background-size: cover;
+                            font-size: 75px;
+                            text-align: center;
+                            color: #000000;
+                            margin-bottom: 1.5rem;
+    
+                            .box-prize-pot-wrapper {
+                                display: flex;
+                                flex-wrap: wrap;
+                                align-items: center;
+                                justify-content: center;
+
+                                .value {
+                                    width: 100%;
+                                    height: 70px;
+                                    font-size: 55px;
+                                    font-weight: 700;
+                                }
+
+                                .crypto-currency {
+                                    width: 100%;
+                                    height: auto;
+                                    font-size: 25px;
+                                    font-weight: 500;
+                                    text-transform: uppercase;
+                                    line-height: 40px;
+                                    width: 50px;
+                                }
+                            }
+                        }
+    
+                        .pot-data-wrapper {
                             display: flex;
-                            gap: 5px;
-                            list-style: none;
-                            padding-left: 0;
-
-                            li {
-                                padding: 5px 3px;
+                            justify-content: space-around;
+                            width: 100%;
+                            .pot-data-box {
+                                width: 80px;
+                                height: 80px;
+                                text-transform: uppercase;
+                                font-size: 20px;
+                                font-weight: 500;
                                 text-align: center;
-                                width: 40px;
-                                background-image: linear-gradient(0deg, #ec038b 0%, #fb6468 44%, #fbb936 100%);
-                                background-image: -ms-linear-gradient(0deg, #ec038b 0%, #fb6468 44%, #fbb936 100%);
+                                padding-top: 8px;
+                                background-image: url("../../assets/images/box-square-black.png");
+                                background-position: 50% 50%;
+                                background-size: cover;
+
+                                .value {
+                                    color: #ffffff;
+                                    font-size: 30px;
+                                    font-weight: 600;
+                                }
+
+                                .label {
+                                    color: #ffb200;
+                                    font-size: 12px;
+                                    font-weight: 500;
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .lottery-numbers-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    background: transparent;
+                    border-radius: 10px;
+                    width: 100%;
+                    height: 100%;
+
+                    @media (max-width: 1024px) {
+                        width: 100%;;
+                        order: 3;
+                    }
+    
+                    .lottery-numbers {
+                        width: 480px;
+                        padding: 1rem;
+    
+                        @media (max-width: 779px) {
+                            width: 430px;
+                        }
+    
+                        ul.numbers {
+                            display: flex;
+                            -ms-flex-wrap: wrap;
+                            flex-wrap: wrap;
+                            justify-content: flex-start;
+                            padding-left: 0;
+                            gap: 10px;
+                            list-style: none;
+            
+                            li {
+                                padding: 10px 5px;
+                                text-align: center;
+                                width: auto;
+                                min-width: 35px;
+                                background-image: linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
+                                background-image: -moz-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
+                                background-image: -webkit-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
+                                background-image: -ms-linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(251, 100, 104) 44%, rgb(251, 185, 54) 100%);
+                                box-shadow: 0px 17px 40px 0px rgba(243, 42, 126, 0.35);
                                 border-radius: 5px;
                                 -webkit-border-radius: 5px;
                                 -moz-border-radius: 5px;
                                 -ms-border-radius: 5px;
                                 -o-border-radius: 5px;
-                                font-size: 20px;
+                                font-size: 15px;
+                                font-weight: 500;
                                 color: #ffffff;
                                 line-height: 1;
+                                cursor: pointer;
+    
+                                &:hover {
+                                    background-size: 300%;
+                                    background-image: linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(236, 3, 139) 100%);
+                                }
+    
+                                @media (max-width: 779px) {
+                                    min-width: 30px;
+                                    padding: 5px 0;
+                                }
                             }
                         }
-                        .tickets-list {
-                            li {
-                                background-image: linear-gradient(180deg, #0060f8 0%, #8739e6 100%);
-                                background-image: -ms-linear-gradient(180deg, #0060f8 0%, #8739e6 100%);
-                            } 
-                        }
-                        
-
-                        
                     }
-
                 }
 
-                .new-tickets-wrapper {
-                    margin-bottom: 1rem;
+                .tickets {
+                    position: absolute;
+                    top: 50%;
+                    right: calc(252px/2 * -1);
+                    transform: translate(0, -50%);
 
-                    .label {
+                    @media (max-width: 1024px) {
+                        order: 2;
                         position: relative;
-                        svg {
-                            position: absolute;
-                            right: 5px;
-                            top: 5px;
-                            color: red;
-                            cursor: pointer;
-                        }
+                        transform: unset;
+                        right: unset;
+                        top: unset;
                     }
-                }
 
-                .buy {
-                    margin: 0 auto;
-                }
-
-                hr {
-                    display: block;
-                    border-width: 1px;
-                    width: 95%;
-                    border-top: 1px solid rgba(36, 171, 238, 0.80);
-                }
-            }
-
-        }
-    }
-
-    .prizes-section {
-        padding-top: 3rem;
-
-        .content {
-            margin: 0 4rem;
-
-            .prizes {
-                display: -ms-flexbox;
-                display: flex;
-                width: 100%;
-                flex-wrap: wrap;
-                gap: 2rem;
-                padding: 1rem;
-                background-image: linear-gradient(180deg, rgb(15, 2, 51) 0%, rgb(119, 35, 232) 100%);
-                background-image: -moz-linear-gradient(180deg, rgb(15, 2, 51) 0%, rgb(119, 35, 232) 100%);
-                background-image: -webkit-linear-gradient(180deg, rgb(15, 2, 51) 0%, rgb(119, 35, 232) 100%);
-                background-image: -ms-linear-gradient(180deg, rgb(15, 2, 51) 0%, rgb(119, 35, 232) 100%);
-                box-shadow: 0px 19px 56px 0px rgba(0, 0, 0, 0.2);
-                border-radius: 10px;
-                -webkit-border-radius: 10px;
-                -moz-border-radius: 10px;
-                -ms-border-radius: 10px;
-                -o-border-radius: 10px;
-             
-                .coins-img {
-                    width: 100%;
-                    text-align: center;
-                    margin-bottom: 1rem;
-                    img {
-                        width: 80%;
-                        height: auto;
-
-                        @media (max-width: 991px) {
-                            width: 150px;
-                        }
+                    .header {
+                        color: #000000;
                     }
-                }
 
-                .rewards {
-                    display: flex;
-                    gap: 1rem;
-                    margin: 0.5rem 0;
-                    width: 100%;
-                    font-size: 18px;
-                    .label,
-                    .value {
-                        flex: 1;
-                        padding: 5px 0px;
-                        font-weight: 600;
-                        text-align: center;
-                        align-self: center;
-                        border: 1px solid white;
-                        border-radius: 15px;
-                        background-color: rgba(255, 255, 255, 0.20);
-                    }
-                   
-                }
-
-                .claim {
-                    margin: 0 auto;
-                }
-            }
-
-            .latest-winners {
-                display: block;
-                width: 100%;
-                height: auto;
-                padding: 0 1rem;
-
-                @media (max-width: 830px) {
-                    margin-top: 2rem;
-                }
-
-                .title {
-                    margin-top: 0;
-                    text-align: center;
-                }
-                .winners {
-                    width: auto;
-                    height: auto;
-                    .item {
-                        display: flex;
+                    .box-wrapper {
                         flex-wrap: wrap;
-                        gap: 2rem;
-                        padding: 0.5rem;
+                        align-items: flex-start;
 
-                        @media (max-width: 830px) {
-                            gap: 0.5rem;
+                        .tabs-wrapper {
+                            display: flex;
+                            border-bottom: none;
+                            width: 100%;
+
+                            .tabs {
+                                width: 100%;
+                                text-align: center;
+                                background-color: #5d233e;
+                                border-radius: 5px;
+                                border-bottom: none;
+                                margin-bottom: 1rem;
+                            }
                         }
-
-                        .address, 
-                        .amount {
+    
+                        .tickets-wrapper {
+                            width: 200px;
+                            height: 120px;
+                            background-image: url("../../assets/images/box-square-white.png");
+                            background-position: 50% 50%;
+                            background-size: cover;
+                            background-color: #ffffff;
+                            border-radius: 5px;
+                            color: #000000;
+                            font-size: 15px;
+                            margin-bottom: 1.5rem;
                             padding: 10px;
-                            font-weight: 600;
-                            text-align: center;
-                            align-self: center;
-                            border: 1px solid white;
-                            border-radius: 15px;
-                            background-color: rgba(255, 255, 255, 0.20);
+
+                            .tickets-list {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 10px;
+                                max-height: 100px;
+                                overflow-y: auto;
+
+                                .item {
+                                    width: 40px;
+                                    height: 35px;
+                                    text-align: center;
+                                    border-radius: 5px;
+                                    color: #ffffff;
+                                    padding: 5px 2px;
+                                    font-weight: 500;
+                                    background-color: #ff008f;
+                                }
+                            }
                         }
 
-                        .address {
-                            flex: 2;
-                            text-overflow: ellipsis;
-                            overflow: hidden;
-                            white-space: nowrap;
-                        }
+                        .form-wrapper {
+                            height: 40px;
+                            width: 100%;
 
-                        .amount {
-                            flex: 1;
+                            .form {
+                                text-align: center;
+                            }
                         }
-                     }
-                 }
-                 .pagination {
-                    
-                 }
-
-                
+                    }
+                }
             }
         }
     }
+
 }
 
 
-input {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.102);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    min-height: 60px;
-    padding-left: 25px;
-    background-color: white;
-    text-align: center;
 
-    &:focus, &:focus-visible, &:active {
-        border: 1px solid  #c0464d !important;
-    }
-}
-
-button.action-btn {
-    background-image: linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
-    background-image: -moz-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
-    background-image: -webkit-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
-    background-image: -ms-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
-    box-shadow: 0px 17px 40px 0px rgba(124, 78, 25, 0.35);
-    color: #ffffff;
+button {
+    background-image: url("../../assets/images/box-rectangle-yellow.png");
+    background-position: 50% 50%;
+    background-size: cover;
+    color: #000000;
+    border: none;
     font-size: 20px;
     width: auto;
-    height: 50px;
-    border-radius: 10px;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 5px;
+    cursor: pointer;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    border: 1px solid #ffffff;
-    padding: 5px 30px;
 
-    &:hover {
-        background-image: linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
-        background-image: -moz-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
-        background-image: -webkit-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
-        background-image: -ms-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
+    &:disabled {
+        cursor: default;
+        background-image: url("../../assets/images/box-rectangle-black.png");
     }
-
 }

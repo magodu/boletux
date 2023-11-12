@@ -11,11 +11,6 @@ const TabNavItem: React.FC<{ id: string; title: string; activeTab: string; setAc
         <li role="presentation" className={`${classes['nav-item']} ${activeTab === id ? classes.active : ''}`} onClick={handleClick}>
             {title}
         </li>
-      /*   <li role="presentation" className={`${classes['nav-item']} ${activeTab === id ? classes.active : ''}`} onClick={handleClick}>
-         <button type="button" role="tab" aria-controls="home-tab-pane" aria-selected="false">
-              {title}
-         </button>
-        </li> */
     );
 };
 

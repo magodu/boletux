@@ -92,19 +92,6 @@ const Bets: React.FC = () => {
                     </div>
                 </div>
             </div>
-            {/* <section className={classes['description-section']}>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className={classes.description}>
-                                    <div className={classes.text}>
-                                        All bets are placed on the blockchain, there are no algorithms, it just depends on the price of Bitcoin. Two chances to bet (Even or Odd), with a 50% guaranteed probability. Get up to x10!
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section> */}
 
             <section className={classes['actions-section']}>
                 <div className="container">
