@@ -1,13 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import classes from './Vault.module.scss';
 
-import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
+import TabNavItem from '../../components/UI/Tabs/TabNavItem';
+import TabContent from '../../components/UI/Tabs/TabContent';
 
-import { RiVipDiamondLine } from 'react-icons/ri';
-import { LuCopyCheck } from 'react-icons/lu';
+import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
+import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
+import boxHeaderYellowImg from '../../assets/images/box-wrapper-header-yellow.png';
+import boxFooterYellowImg from '../../assets/images/box-wrapper-footer-yellow.png';
+import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
+import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
+
+import { BsArrowRight } from 'react-icons/bs';
+import { BsArrowLeft } from 'react-icons/bs';
+
+import { BsQuestionCircle } from 'react-icons/bs';
+import { BsGraphUpArrow } from 'react-icons/bs';
+
+const MIN_INPUT_VALUE = 0;
+const MAX_INPUT_VALUE = 200;
 
 const Vault: React.FC = () => {
+    const [activeTab, setActiveTab] = useState<string>('add');
+    const [addInputValue, setAddInputValue] = useState<number>(0);
+    const [removeInputValue, setRemoveInputValue] = useState<number>(0);
+
+    const navigateTo = (where: string) => {
+        console.log('navigate method to', where);
+    }
+
+    const changeLiquidityValue = (event: any) => {
+        const value = event.target.value;
+        console.log('Collect awards method', value);
+
+        if (activeTab === 'add') {
+            setAddInputValue(value);
+        } else {
+            setRemoveInputValue(value);
+        }
+
+        // Calculate pair value
+    }
+
+    const collectAwards = () => {
+        console.log('Collect awards method');
+    }
+
+    const confirm = () => {
+        console.log('Confirm', activeTab);
+    }
+
     return (
         <div className={classes['vault-wrapper']}>
             <div className={classes['bg-shape']}>
@@ -21,88 +64,120 @@ const Vault: React.FC = () => {
                 </div>
             </div>
 
-            <section className={classes['vault-section']}>
-                <div className={classes.content}>
-                    <div className="row">
-                        <div className="col-lg-5">
-                            <div className={classes.vault}>
-                                <p className="mb-2">Max capacity: 200 BTX</p>
-                                <div className={classes.progressbar} data-perc="70%">
-                                    <div className={classes.bar} style={{ width: '70%' }}></div>
+            <section className={classes['actions-section']}>
+                <div className="container">
+                    <div className={`${classes.actions} row mb-none-30`}>
+                        <div className={classes['collect-wrapper']}>
+                            <div className={classes.collect}>
+                                <div className={classes.image}>
+                                    <img src={ethereumLogoImg} alt="" />
                                 </div>
-                                <p className={classes['remaining-capacity']}>Only 123 remaining!</p>
-                                <hr />
-                                <div className={classes['vault-data']}>
-                                    <div className={`${classes.data} ${classes.apr}`}>
-                                        <div className={classes.label}>APR</div>
-                                        <div className={classes.value}>21,35%</div>
-                                    </div>
-                                    <div className={classes.data}>
-                                        <div className={classes.label}>Index Price</div>
-                                        <div className={classes.value}>1 uBTX = 0.95 BNB</div>
-                                    </div>
-                                    <div className={classes.data}>
-                                        <div className={classes.label}>Total Staked</div>
-                                        <div className={classes.value}>174 uBTX</div>
-                                    </div>
-                                    <div className={classes.data}>
-                                        <div className={classes.label}>Lockup Period</div>
-                                        <div className={classes.value}>1 day</div>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className={classes['user-data']}>
-                                    <div className={classes.data}>
-                                        <div className={classes.label}>Your Staking</div>
-                                        <div className={classes.value}>4.34 uBTX (4.10 BNB)</div>
-                                    </div>
-                                    <div className={classes.data}>
-                                        <div className={classes.label}>Your Rewards</div>
-                                        <div className={classes.value}>0.04 BNB</div>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className={classes.buttons}>
-                                    <button  className={classes['action-btn']} type="button" role="tab" >
-                                        Add Fund
-                                    </button>
-                                    <button  className={classes['action-btn']} type="button" role="tab" >
-                                        Withdraw Funds
-                                    </button>
-                                    <button  className={classes['action-btn']} type="button" role="tab" >
-                                        Claim Rewards
-                                    </button>
+                                <div className={classes.amount}>
+                                    <span className={classes.value}>56</span>
+                                    <button onClick={() => collectAwards()}>Collect</button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-7">
-                            <div className={classes.wrapper}>
-                                <div className={classes.description}>
-                                    <div className={classes.text}>Winning bets will be paid with BNB deposited into the Vault and losing bets will be deposited into the Vault. All investors who deposit liquidity will receive BTX tokens based on the price of the index. The BTX tokens will automatically staked and the investor will start receiving the rewards:</div>
+                        <div className={classes.buttons}>
+                            <button className={classes.info} onClick={() => navigateTo('info')}><BsQuestionCircle /></button> 
+                            <button className={classes.stats} onClick={() => navigateTo('stats')}><BsGraphUpArrow /></button> 
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className={classes['vault-section']}>
+                <div className={classes.content}>
+                    <div className={classes.vault}>
+                        <div className={`${classes.box} ${classes['box-yellow']}`}>
+                            <div className={classes.header}>
+                                <img src={boxHeaderYellowImg} alt="" />
+                                <div className={classes['box-title']}>Vault</div>
+                            </div>
+                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
+                                <div className={classes['progressbar-wrapper']}>
+                                    <div className={classes.progressbar} data-perc="70%">
+                                        <div className={classes.bar} style={{ width: '70%' }}></div>
+                                    </div>
+                                    <p className="mb-2">Max capacity: 30 BLTX</p>
                                 </div>
-                                <div className={classes.rewards}>
-                                    <div className={classes['reward-item']}>
-                                        <div className={classes['item-thumb']}><RiVipDiamondLine /></div>
-                                        <div className={classes['item-content']} >
-                                            <div className={classes.percentage}>1.5%</div>
-                                            <div className={classes.text}>BNB Bets</div>
-                                        </div>
+                                <div className={classes['vault-data-wrapper']}>
+                                    <div className={classes['vault-data-box']}>
+                                        <div className={classes.value}>21.3%</div>
+                                        <div className={classes.label}>APR</div>
                                     </div>
-                                    <div className={classes['reward-item']}>
-                                        <div className={classes['item-thumb']}><LuCopyCheck /></div>
-                                        <div className={classes['item-content']} >
-                                            <div className={classes.percentage}>3%</div>
-                                            <div className={classes.text}>Real Yield NFTs</div>
-                                        </div>
-                                    </div>
-                                    <div className={classes['reward-item']}>
-                                        <div className={classes['item-thumb']}><LuCopyCheck /></div>
-                                        <div className={classes['item-content']} >
-                                            <div className={classes.percentage}>3%</div>
-                                            <div className={classes.text}>Tickets Lottery</div>
-                                        </div>
+                                    <div className={`${classes['vault-data-box']}`}>
+                                        <div className={classes.value}>0.95</div>
+                                        <div className={classes.label}>Price</div>
                                     </div>
                                 </div>
+                                <div className={classes['box-vault']}>
+                                    <div className={classes['user-liquidity-wrapper']}>
+                                        <div className={classes.value}>0.0 BLTX</div>
+                                        <div className={classes.label}>Your Liquidity</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={classes.footer}>
+                                <img src={boxFooterYellowImg} alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className={classes.liquidity}>
+                        <div className={classes.box}>
+                            <div className={classes.header}>
+                                <img src={boxHeaderImg} alt="" />
+                                <div className={classes['box-title']}>Liquidity</div>
+                            </div>
+                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
+                                <form className={classes.form}>
+                                    <div className={classes['tabs-wrapper']}>
+                                        <ul className={`nav nav-tabs ${classes.tabs}`} role="tablist">
+                                            <TabNavItem title="Add" id="add" activeTab={activeTab} setActiveTab={setActiveTab} />
+                                            <TabNavItem title="Remove" id="remove" activeTab={activeTab} setActiveTab={setActiveTab} />
+                                        </ul>
+                                    </div>
+                                    <div className={classes['tabs-content']}>
+                                        <TabContent id="add" activeTab={activeTab}>
+                                            <div className={classes['add-liquidity-wrapper']}>
+                                                <div className={classes['vault-data-input-box']}>
+                                                    <div className={classes.value}>
+                                                        <input type="number" step="0.1" min={MIN_INPUT_VALUE} max={MAX_INPUT_VALUE} value={addInputValue} onChange={(event) => changeLiquidityValue(event)}/>
+                                                    </div> 
+                                                    <div className={classes.label}>ETH</div>
+                                                </div>
+                                                <div className={classes['arrow']}><BsArrowRight /></div>
+                                                <div className={`${classes['vault-data-input-box']} ${classes['read-only']}`}>
+                                                    <div className={classes.value}>0.95</div>
+                                                    <div className={classes.label}>BLTX</div>
+                                                </div>
+                                            </div> 
+                                        </TabContent>
+                                        <TabContent id="remove" activeTab={activeTab}>
+                                            <div className={classes['remove-liquidity-wrapper']}>
+                                                <div className={`${classes['vault-data-input-box']} ${classes['read-only']}`}>
+                                                    <div className={classes.value}>0.0</div>
+                                                    <div className={classes.label}>ETH</div>
+                                                </div>
+                                                <div className={classes['arrow']}><BsArrowLeft /></div>
+                                                <div className={classes['vault-data-input-box']}>
+                                                    <div className={classes.value}>
+                                                        <input type="number" step="0.1" min={MIN_INPUT_VALUE} max={MAX_INPUT_VALUE} value={removeInputValue} onChange={(event) => changeLiquidityValue(event)}/>
+                                                    </div> 
+                                                    <div className={classes.label}>BLTX</div>
+                                                </div>
+                                            </div> 
+                                        </TabContent>
+                                    </div>
+                                    <div className={classes.buttons}>
+                                        <button type="button" className={classes.large} disabled={true} onClick={() => confirm()}>
+                                            Confirm
+                                        </button> 
+                                    </div>
+                                </form>
+                            </div>
+                            <div className={classes.footer}>
+                                <img src={boxFooterImg} alt="" />
                             </div>
                         </div>
                     </div>

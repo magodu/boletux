@@ -158,13 +158,14 @@
                         }
         
                         .box-title {
-                            font-size: 20px;
+                            font-size: 25px;
                             font-weight: 600;
                             background-color: #ff1c7d;
-                            padding-bottom: 1rem;
+                            padding-bottom: 0.5rem;
                             text-align: center;
                             text-transform: uppercase;
                             margin-top: -1px;
+                            color: #ffffff;
                         }
                     }
 
@@ -194,6 +195,7 @@
                         .header {
                             .box-title {
                                 background-color: #ffb100;
+                                color: #000000;
                             }
                         }
                         .content {
@@ -285,8 +287,7 @@
                                 .label {
                                     color: #ffb200;
                                     font-size: 12px;
-                                    font-weight: 500;
-
+                                    font-weight: 600;
                                 }
                             }
                         }

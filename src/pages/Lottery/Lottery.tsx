@@ -7,7 +7,6 @@ import TabNavItem from '../../components/UI/Tabs/TabNavItem';
 import TabContent from '../../components/UI/Tabs/TabContent';
 
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
-import goldCoinsLogoImg from '../../assets/images/gold-coin-stacks-logo.png';
 
 import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
 import boxHeaderYellowImg from '../../assets/images/box-wrapper-header-yellow.png';

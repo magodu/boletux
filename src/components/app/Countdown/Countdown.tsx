@@ -44,7 +44,7 @@ const Countdown: React.FC<{ endtime: Date | string | number }> = ({ endtime }) =
         if (interval === "days") {
             return (
                 <div className={classes['days-elem']} key={createIdKey()}>
-                    {timeLeft[interval]} d
+                    {timeLeft[interval]}d
                 </div>
             ); 
         } else {
