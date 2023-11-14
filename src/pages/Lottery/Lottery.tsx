@@ -15,9 +15,7 @@ import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
 import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
 
 import { FaTrashAlt } from 'react-icons/fa';
-import { BsQuestionCircle } from 'react-icons/bs';
-import { BsGraphUpArrow } from 'react-icons/bs';
-
+import { BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
 
 const setLotteryDate = (day: number, hour: number) => {
     let curr = new Date();

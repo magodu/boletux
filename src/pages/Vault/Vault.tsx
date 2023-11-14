@@ -12,11 +12,7 @@ import boxFooterYellowImg from '../../assets/images/box-wrapper-footer-yellow.pn
 import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
 import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
 
-import { BsArrowRight } from 'react-icons/bs';
-import { BsArrowLeft } from 'react-icons/bs';
-
-import { BsQuestionCircle } from 'react-icons/bs';
-import { BsGraphUpArrow } from 'react-icons/bs';
+import { BsArrowLeft, BsArrowRight, BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
 
 const MIN_INPUT_VALUE = 0;
 const MAX_INPUT_VALUE = 200;
@@ -87,7 +83,7 @@ const Vault: React.FC = () => {
             </section>
 
             <section className={classes['vault-section']}>
-                <div className={classes.content}>
+                <div className={classes['vault-content']}>
                     <div className={classes.vault}>
                         <div className={`${classes.box} ${classes['box-yellow']}`}>
                             <div className={classes.header}>

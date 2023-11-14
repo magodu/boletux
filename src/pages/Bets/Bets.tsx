@@ -9,10 +9,7 @@ import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
 import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
 import betStepsImg from '../../assets/images/bet-steps.png';
 
-import { BsArrowRight } from 'react-icons/bs';
-import { BsArrowLeft } from 'react-icons/bs';
-import { BsQuestionCircle } from 'react-icons/bs';
-import { BsGraphUpArrow } from 'react-icons/bs';
+import { BsArrowLeft, BsArrowRight, BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
 
 const Bets: React.FC = () => {
     const { t } = useTranslation();
