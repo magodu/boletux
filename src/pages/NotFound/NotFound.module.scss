@@ -48,6 +48,11 @@
 
     .buttons {
         margin: 0 auto;
+
+        .large {
+            width: 200px;
+            border-radius: 5px;
+        }
     }    
 }
 
