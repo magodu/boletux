@@ -38,6 +38,16 @@
             position: relative;
             display: flex;
             justify-content: space-between;
+
+            @media (max-width: 1024px) {
+                gap: 1rem;
+            }
+
+            @media (max-width: 481px) {
+                justify-content: center;
+                gap: 1.5rem;
+            }
+
             .collect-wrapper {
                 .collect {
                     display: flex;

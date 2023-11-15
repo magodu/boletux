@@ -12,11 +12,23 @@ import boxHeaderYellowImg from '../../assets/images/box-wrapper-header-yellow.pn
 import boxFooterYellowImg from '../../assets/images/box-wrapper-footer-yellow.png';
 import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
 import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
-
 import { BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
+
+import { setLotteryDate } from '../../utils';
+import { weekDays } from '../../models/appTypes';
 
 const Prizes: React.FC = () => {
     const [activeTab, setActiveTab] = useState('prize');
+    const weeklyRewardsCountdown = setLotteryDate(weekDays.sunday, 21);
+    const lotteryCountdown = setLotteryDate(weekDays.sunday, 21);
+
+    const countdownStyles = {
+        color: '#FFFFFF',
+        height: "40px",
+        fontSize: "24px",
+        fontWeight: "600",
+        paddingTop: "0",
+    };
 
     const collectAwards = () => {
         console.log('Collect awards method');
@@ -107,7 +119,9 @@ const Prizes: React.FC = () => {
                                 </div>
                                 <div className={classes['box-info']}> 
                                     <div className={classes['data-wrapper']}>
-                                        <div className={classes.value}>5d 04:03:52</div>
+                                        <div className={classes.value}>
+                                            <Countdown endtime={weeklyRewardsCountdown} style={countdownStyles} />
+                                        </div>
                                         <div className={classes.label}>Incentive #1</div>
                                     </div>
                                 </div>
@@ -153,8 +167,10 @@ const Prizes: React.FC = () => {
                                 </div>
                                 <div className={classes['box-info']}> 
                                     <div className={classes['data-wrapper']}>
-                                        <div className={classes.value}>5d 04:03:52</div>
-                                        <div className={classes.label}>Incentive #1</div>
+                                        <div className={classes.value}>
+                                            <Countdown endtime={lotteryCountdown} style={countdownStyles} />
+                                        </div>
+                                        <div className={classes.label}>Draw #7</div>
                                     </div>
                                 </div>
                             </div>

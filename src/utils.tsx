@@ -98,6 +98,15 @@ export const formatNumber = (num: number) => {
     return Math.round((num + Number.EPSILON) * 100) / 100;
 };
 
+export const setLotteryDate = (day: number, hour: number) => {
+    let curr = new Date();
+    let endOfWeek = curr.getDate() - curr.getDay() + day;
+    let lotteryDate = new Date(curr.setDate(endOfWeek));
+    lotteryDate.setHours(hour, 0, 0, 0);
+    
+    return lotteryDate;
+};
+
 
 export const wait = (milliseconds: number) => {
     return new Promise((resolve) => {

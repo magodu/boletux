@@ -39,6 +39,16 @@
             position: relative;
             display: flex;
             justify-content: space-between;
+
+            @media (max-width: 1024px) {
+                gap: 1rem;
+            }
+    
+            @media (max-width: 481px) {
+                justify-content: center;
+                gap: 1.5rem;
+            }
+
             .collect-wrapper {
                 .collect {
                     display: flex;
@@ -119,6 +129,10 @@
             justify-content: center;
             gap: 2rem;
 
+            @media (max-width: 800px) {
+                flex-wrap: wrap;
+            }
+
             .box {
                 width: 230px;
                 height: auto;
@@ -188,49 +202,60 @@
             }
 
             .nfts {
-                .header {
-                    color: #000000;
+
+                @media (max-width: 800px) {
+                    width: 100%;
                 }
 
-                .box-wrapper {
-                    flex-wrap: wrap;
-                    gap: 1rem;
-
-                    .box-nfts {
-                        width: 95%;
-                        height: 65px;
-                        background-image: url("../../assets/images/box-rectangle-black.png");
-                        background-position: 50% 50%;
-                        background-size: cover;
-                        font-size: 75px;
-                        text-align: center;
-                        color: #ffffff;
-                        border-radius: 5px;
-
-                        .data-wrapper {
-                            display: flex;
-                            flex-wrap: wrap;
-                            align-items: center;
-                            justify-content: center;
-
-                            .value {
-                                width: 100%;
-                                height: 33px;
-                                font-size: 25px;
-                                font-weight: 700;
-                            }
-
-                            .label {
-                                width: 100%;
-                                height: auto;
-                                color: #ff044d;
-                                font-size: 14px;
-                                font-weight: 600;
-                                text-transform: uppercase;
-                            }
-                        }
+                .box {
+                    @media (max-width: 800px) {
+                        margin: 0 auto;
                     }
 
+                    .header {
+                        color: #000000;
+                    }
+    
+                    .box-wrapper {
+                        flex-wrap: wrap;
+                        gap: 1rem;
+    
+                        .box-nfts {
+                            width: 95%;
+                            height: 65px;
+                            background-image: url("../../assets/images/box-rectangle-black.png");
+                            background-position: 50% 50%;
+                            background-size: cover;
+                            font-size: 75px;
+                            text-align: center;
+                            color: #ffffff;
+                            border-radius: 5px;
+    
+                            .data-wrapper {
+                                display: flex;
+                                flex-wrap: wrap;
+                                align-items: center;
+                                justify-content: center;
+    
+                                .value {
+                                    width: 100%;
+                                    height: 33px;
+                                    font-size: 25px;
+                                    font-weight: 700;
+                                }
+    
+                                .label {
+                                    width: 100%;
+                                    height: auto;
+                                    color: #ff044d;
+                                    font-size: 14px;
+                                    font-weight: 600;
+                                    text-transform: uppercase;
+                                }
+                            }
+                        }
+    
+                    }
                 }
             }
 

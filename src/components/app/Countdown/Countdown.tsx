@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 
 import { createIdKey } from '../../../utils'
 
 import classes from './Countdown.module.scss';
 
-import clockImg from '../../../assets/images/clock.png';
-
+type CountdownProps = {
+    endtime: Date | string | number;
+    timeUpMsg?: string;
+    style?: CSSProperties;
+};
 
 const setDigits = (time: number) => {
     return time < 10 ? `0${time}`: time ;
@@ -27,8 +30,9 @@ const calculateTimeLeft = (endtime: Date | string | number) => {
     return timeLeft;
 };
 
-const Countdown: React.FC<{ endtime: Date | string | number }> = ({ endtime }) => {
+const Countdown: React.FC<CountdownProps> = ({ endtime, timeUpMsg, style }) => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(endtime));
+    const endTimeMessage = timeUpMsg || "Time's up!";
 
     useEffect(() => {
         const id = setTimeout(() => {
@@ -42,7 +46,7 @@ const Countdown: React.FC<{ endtime: Date | string | number }> = ({ endtime }) =
 
     const timerComponents = Object.keys(timeLeft).map((interval) => {
         if (interval === "days") {
-            return (
+            return ( 
                 <div className={classes['days-elem']} key={createIdKey()}>
                     {timeLeft[interval]}d
                 </div>
@@ -57,17 +61,9 @@ const Countdown: React.FC<{ endtime: Date | string | number }> = ({ endtime }) =
     });
 
     return (
-        <div className={classes['time-wrapper']}>
-            <div className={classes.countdown}>
-                <div className={classes.image}>
-                    <img src={clockImg} alt="" />
-                </div>
-                <div className={classes.time}>
-                    <div className={classes.message}>Get your tickets</div>
-                    {timerComponents.length ? <span className={classes.value}>{timerComponents}</span> : <span className={classes.value}>Time's up!</span>}
-                </div>
-            </div>
-        </div>
+        <>
+            {timerComponents.length ? <span className={classes.value} style={style}>{timerComponents}</span> : <span className={classes.value}>{endTimeMessage}</span>}
+        </>
     );
 };
 

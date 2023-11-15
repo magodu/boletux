@@ -13,28 +13,13 @@ import boxHeaderYellowImg from '../../assets/images/box-wrapper-header-yellow.pn
 import boxFooterYellowImg from '../../assets/images/box-wrapper-footer-yellow.png';
 import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
 import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
-
+import clockImg from '../../assets/images/clock.png';
 import { FaTrashAlt } from 'react-icons/fa';
 import { BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
 
-const setLotteryDate = (day: number, hour: number) => {
-    let curr = new Date();
-    let endOfWeek = curr.getDate() - curr.getDay() + day;
-    let lotteryDate = new Date(curr.setDate(endOfWeek));
-    lotteryDate.setHours(hour, 0, 0, 0);
-    
-    return lotteryDate;
-};
+import { setLotteryDate } from '../../utils';
+import { weekDays } from '../../models/appTypes';
 
-enum weekDays {
-    monday = 1,
-    tuesday = 2,
-    wednesday = 3,
-    thursday = 4,
-    friday = 5,
-    saturday = 6,
-    sunday = 7,
-}
 
 const Lottery: React.FC = () => {
     const lotteryNumbers = Array.from({ length: 100 }, (_, index) => String(index).padStart(2, '0'));
@@ -80,7 +65,17 @@ const Lottery: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <Countdown endtime={lotteryDate} />
+                        <div className={classes['time-wrapper']}>
+                            <div className={classes.countdown}>
+                                <div className={classes.image}>
+                                    <img src={clockImg} alt="" />
+                                </div>
+                                <div className={classes.time}>
+                                    <div className={classes.message}>Get your tickets</div>
+                                    <Countdown endtime={lotteryDate} />
+                                </div>
+                            </div>
+                        </div>
                         <div className={classes.buttons}>
                             <button className={`${classes.jackpot} ${classes.active}`}>Jackpot</button>
                             <button className={classes.info} onClick={() => navigateTo('info')}><BsQuestionCircle /></button> 

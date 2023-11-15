@@ -38,6 +38,16 @@
             position: relative;
             display: flex;
             justify-content: space-between;
+
+            @media (max-width: 1024px) {
+                gap: 1rem;
+            }
+    
+            @media (max-width: 481px) {
+                justify-content: center;
+                gap: 1.5rem;
+            }
+
             .collect-wrapper {
                 .collect {
                     display: flex;
@@ -77,6 +87,10 @@
                             color: #ffffff;
                         }
                     }
+
+                    @media (max-width: 753px) {
+                        order: 1;
+                    }
                 }
             }
 
@@ -106,6 +120,10 @@
                         }
                     }
                 }
+
+                @media (max-width: 753px) {
+                    order: 3;
+                }
             }
 
             .buttons {
@@ -131,305 +149,336 @@
                     &.info, &.stats {
                         color: #ffffff;
                     }
+                }
 
-                    
-                
+                @media (max-width: 753px) {
+                    order: 2;
                 }
             }
-
         }
-
     }
 
-    .steps-section {
-        padding-top: 1rem;
+    .bets-section {
+        padding-top: 4rem;
 
-        .box {
-            width: 100%;
-            min-width: 220px;
-            height: auto;
+        .bets-content {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
 
-            &.active-step {
-                transform: scale(1.05);
+            @media (max-width: 1090px) {
+                flex-wrap: wrap;
             }
 
-            &.disabled {
-                filter: brightness(50%);
-            }
-
-            @media (max-width: 991px) {
-                margin-bottom: 2rem;
-            }
-
-            .header {
-                border-bottom: 2px solid black;
-
-                img {
-                    width: 100%;
-                    height: auto;
-                }
-
-                .box-title {
-                    font-size: 25px;
-                    font-weight: 600;
-                    background-color: #ff1c7d;
-                    padding-bottom: 0.5rem;
-                    text-align: center;
-                    text-transform: uppercase;
-                    margin-top: -1px;
-                }
-            }
-
-            .content {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 1rem;
-                min-height: 230px;
-                background-image: linear-gradient(1turn, #6c065f, #ff1c7d);
-                background-image: -ms-linear-gradient(90deg, #6c065f 0, #ff1c7d 100%);
+            .box {
+                width: 230px;
+                height: auto;
 
                 @media (max-width: 991px) {
-                    min-height: unset;
+                    margin-bottom: 2rem;
                 }
 
-                .form-wrapper {
-                    .form {
-                        ul {
-                            display: flex;
-                            justify-content: center;
-                            flex-wrap: wrap;
-                            gap: 10px;
-                            list-style-type: none;
-                            padding: 0;
-
-                            li {
-                                margin: 0 5px 0 0;
-
-                                input, label {
-                                    align-items: center;
-                                    justify-content: center;
-                                    display: flex;        
-                                }
-
-                                input[type=radio] {
-                                    min-height: 0;
-                                    width: auto;
-                                    opacity: 0;
-                                    z-index: 100;
-                                    display: none;
-                                }
-
-                                input[type="radio"]:checked+label {
-                                    font-weight: 600;
-                                    .amount {
-                                        color: #000000;
-                                    }
-                                }
-        
-                                label {
-                                    display: flex;
-                                    flex-wrap: wrap;
-                                    position: relative;
-                                    height: auto;
-                                    width: 100%;
-                                    cursor: pointer;
-                                    z-index: 90;
-                                    color: $main-color;
-                                    font-size: 20px;
-                                    text-align: center;
-                                    border-radius: 10px;
-                                    -webkit-border-radius: 10px;
-                                    -moz-border-radius: 10px;
-                                    -ms-border-radius: 10px;
-                                    -o-border-radius: 10px;
-                                    cursor: pointer;
-                                }
-                            }
-
-                            &.bets-amount {
-                                li {
-                                    input[type="radio"]:checked+label {
-                                        background-image: url("../../assets/images/box-square-yellow.png");
-                                    }
-
-                                    label {
-                                        display: flex;
-                                        flex-direction: column;
-                                        height: auto;
-                                        width: 100%;
-                                        min-width: 80px;
-                                        max-width: 110px;
-                                        min-height: 80px;
-                                        max-height: 100px;
-                                        background-image: url("../../assets/images/box-square-black.png");
-
-                                        .number {
-                                            width: 100%;
-                                            color: #ffffff;
-                                            font-size: 30px;
-                                            font-weight: 600;
-                                        }
+                .header {
+                    border-bottom: 2px solid black;
     
-                                        .currency {
-                                            width: 100%;
-                                            color: #ff1c7d;
-                                            font-size: 15px;
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+    
+                    .box-title {
+                        font-size: 25px;
+                        font-weight: 600;
+                        background-color: #ff1c7d;
+                        padding-bottom: 0.5rem;
+                        text-align: center;
+                        text-transform: uppercase;
+                        margin-top: -1px;
+                        color: #ffffff;
+                    }
+                }
+
+                .content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 1rem;
+                    min-height: 230px;
+                    background-image: linear-gradient(1turn, #6c065f, #ff1c7d);
+                    background-image: -ms-linear-gradient(90deg, #6c065f 0, #ff1c7d 100%);
+                }
+
+                .footer {
+                    margin-top: -1px;
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+
+                &.box-yellow {
+                    .header {
+                        .box-title {
+                            background-color: #ffb100;
+                            color: #000000;
+                        }
+                    }
+                    .content {
+                        background-image: linear-gradient(1turn, #ff7e00, #ffb100);
+                        background-image: -ms-linear-gradient(90deg, #ff7e00 0, #ffb100 100%);
+                    }
+                }
+            }
+
+            .bet-step {
+                .box {
+                    @media (max-width: 800px) {
+                        margin: 0 auto;
+                    }
+
+                    @media (max-width: 991px) {
+                        margin-bottom: 1rem;
+                    }
+
+                    &.active-step {
+                        transform: scale(1.05);
+                    }
+        
+                    &.disabled {
+                        filter: brightness(50%);
+                    }
+
+                    .header {
+                        border-bottom: 2px solid black;
+
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+
+                        .box-title {
+                            font-size: 25px;
+                            font-weight: 600;
+                            background-color: #ff1c7d;
+                            padding-bottom: 0.5rem;
+                            text-align: center;
+                            text-transform: uppercase;
+                            margin-top: -1px;
+                        }
+                    }
+
+                    .content {
+                        .form-wrapper {
+                            .form {
+                                ul {
+                                    display: flex;
+                                    justify-content: center;
+                                    flex-wrap: wrap;
+                                    gap: 10px;
+                                    list-style-type: none;
+                                    padding: 0;
+        
+                                    li {
+                                        margin: 0 5px 0 0;
+        
+                                        input, label {
+                                            align-items: center;
+                                            justify-content: center;
+                                            display: flex;        
+                                        }
+        
+                                        input[type=radio] {
+                                            min-height: 0;
+                                            width: auto;
+                                            opacity: 0;
+                                            z-index: 100;
+                                            display: none;
+                                        }
+        
+                                        input[type="radio"]:checked+label {
                                             font-weight: 600;
-                                        }
-                                    }
-                                }
-                                
-                            }
-
-                            &.bets-prediction {
-                                li {
-                                    width: 100%;
-                                    input[type="radio"]:checked+label {
-                                        background-image: url("../../assets/images/box-rectangle-yellow.png");
-
-                                        .even-odd-title {
-                                            color: #000000;
-                                        }
-                                    }
-
-                                    label {
-                                        height: 57px;
-                                        width: 100%;
-                                        max-width: 238px;
-                                        background-image: url("../../assets/images/box-rectangle-black.png");
-                                        flex-wrap: nowrap;
-                                        .even-odd-title {
-                                            margin-top: 0;
-                                            transform: rotate(270deg);
-                                            text-transform: uppercase;
-                                            font-size: 15px;
-                                            color: #ff1c7d;
-                                        }
-                                        .balls {
-                                            display: flex;
-                                            gap: 3px;
-                                            .ball {
-                                                width: 30px;
-                                                height: 30px;
-                                                background-image: url("../../assets/images/ball.png");
-                                                background-position: 50% 50%;
-                                                background-size: cover;
+                                            .amount {
                                                 color: #000000;
-                                                font-size: 18px;
-                                                font-weight: 600;
+                                            }
+                                        }
+                
+                                        label {
+                                            display: flex;
+                                            flex-wrap: wrap;
+                                            position: relative;
+                                            height: auto;
+                                            width: 100%;
+                                            cursor: pointer;
+                                            z-index: 90;
+                                            color: $main-color;
+                                            font-size: 20px;
+                                            text-align: center;
+                                            border-radius: 10px;
+                                            -webkit-border-radius: 10px;
+                                            -moz-border-radius: 10px;
+                                            -ms-border-radius: 10px;
+                                            -o-border-radius: 10px;
+                                            cursor: pointer;
+                                        }
+                                    }
+        
+                                    &.bets-amount {
+                                        li {
+                                            input[type="radio"]:checked+label {
+                                                background-image: url("../../assets/images/box-square-yellow.png");
+                                            }
+        
+                                            label {
+                                                display: flex;
+                                                flex-direction: column;
+                                                height: auto;
+                                                width: 100%;
+                                                min-width: 80px;
+                                                max-width: 110px;
+                                                min-height: 80px;
+                                                max-height: 100px;
+                                                background-image: url("../../assets/images/box-square-black.png");
+        
+                                                .number {
+                                                    width: 100%;
+                                                    color: #ffffff;
+                                                    font-size: 30px;
+                                                    font-weight: 600;
+                                                }
+            
+                                                .currency {
+                                                    width: 100%;
+                                                    color: #ff1c7d;
+                                                    font-size: 15px;
+                                                    font-weight: 600;
+                                                }
+                                            }
+                                        }
+                                        
+                                    }
+        
+                                    &.bets-prediction {
+                                        li {
+                                            width: 100%;
+                                            input[type="radio"]:checked+label {
+                                                background-image: url("../../assets/images/box-rectangle-yellow.png");
+        
+                                                .even-odd-title {
+                                                    color: #000000;
+                                                }
+                                            }
+        
+                                            label {
+                                                height: 57px;
+                                                width: 100%;
+                                                max-width: 238px;
+                                                background-image: url("../../assets/images/box-rectangle-black.png");
+                                                flex-wrap: nowrap;
+                                                .even-odd-title {
+                                                    margin-top: 0;
+                                                    transform: rotate(270deg);
+                                                    text-transform: uppercase;
+                                                    font-size: 15px;
+                                                    color: #ff1c7d;
+                                                }
+                                                .balls {
+                                                    display: flex;
+                                                    gap: 3px;
+                                                    width: 100%;
+                                                    .ball {
+                                                        width: 30px;
+                                                        height: 30px;
+                                                        background-image: url("../../assets/images/ball.png");
+                                                        background-position: 50% 50%;
+                                                        background-size: cover;
+                                                        color: #000000;
+                                                        font-size: 18px;
+                                                        font-weight: 600;
+
+                                                        &:last-child {
+                                                            margin-right: 5px;
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }
                                 }
-
-                                @media (max-width: 991px) {
-                                    flex-wrap: nowrap;
+                            }
+                        }
+        
+                        &.box-wrapper {
+                            flex-wrap: wrap;
+        
+                            .box-result {
+                                width: 116px;
+                                height: 115px;
+                                background-image: url("../../assets/images/box-square-black.png");
+                                background-position: 50% 50%;
+                                background-size: cover;
+                                font-size: 75px;
+                                text-align: center;
+                                color: #ff1c7d;
+        
+                                &.show-result-box {
+                                    background-image: url("../../assets/images/box-square-white.png");
+                                    color: #000000;
+                                }
+        
+                                .final-step-wrapper {
+                                    display: flex;
+                                    align-items: center;
+        
+                                    .even-odd-value {
+                                        transform: rotate(270deg);
+                                        font-size: 35px;
+                                        font-weight: 500;
+                                        text-transform: uppercase;
+                                        line-height: 40px;
+                                        width: 50px;
+                                        margin-top: 30px;
+                                    }
+        
+                                    .value {
+                                        font-size: 90px;
+                                        font-weight: 500;
+                                        display: block;
+                                        margin-top: -15px;
+                                    }
+                                }
+        
+                            }
+        
+                            .win-lose-wrapper {
+                                display: flex;
+                                justify-content: space-around;
+                                width: 100%;
+                                .win-lose-box {
+                                    width: 78px;
+                                    height: 44px;
+                                    text-transform: uppercase;
+                                    font-size: 20px;
+                                    font-weight: 500;
+                                    text-align: center;
+                                    padding-top: 8px;
+                                    background-image: url("../../assets/images/box-win-lose-off.png");
+        
+                                    &.active {
+                                        background-image: url("../../assets/images/box-win-lose-on.png");
+                                        color: #000000;
+                                        font-weight: 600;
+                                    }
                                 }
                             }
                         }
                     }
-                }
 
-                &.box-wrapper {
-                    flex-wrap: wrap;
-
-                    .box-result {
-                        width: 116px;
-                        height: 115px;
-                        background-image: url("../../assets/images/box-square-black.png");
-                        background-position: 50% 50%;
-                        background-size: cover;
-                        font-size: 75px;
-                        text-align: center;
-                        color: #ff1c7d;
-
-                        &.show-result-box {
-                            background-image: url("../../assets/images/box-square-white.png");
-                            color: #000000;
-                        }
-
-                        .final-step-wrapper {
-                            display: flex;
-                            align-items: center;
-
-                            .even-odd-value {
-                                transform: rotate(270deg);
-                                font-size: 35px;
-                                font-weight: 500;
-                                text-transform: uppercase;
-                                line-height: 40px;
-                                width: 50px;
-                                margin-top: 30px;
-                            }
-
-                            .value {
-                                font-size: 90px;
-                                font-weight: 500;
-                                display: block;
-                                margin-top: -15px;
-                            }
-                        }
-
+                    .box-wrapper {
+                        flex-wrap: wrap;
+                        gap: 1rem;
                     }
-
-                    .win-lose-wrapper {
-                        display: flex;
-                        justify-content: space-around;
-                        width: 100%;
-                        .win-lose-box {
-                            width: 78px;
-                            height: 44px;
-                            text-transform: uppercase;
-                            font-size: 20px;
-                            font-weight: 500;
-                            text-align: center;
-                            padding-top: 8px;
-                            background-image: url("../../assets/images/box-win-lose-off.png");
-
-                            &.active {
-                                background-image: url("../../assets/images/box-win-lose-on.png");
-                                color: #000000;
-                                font-weight: 600;
-                            }
-                        }
-                    }
-                }
-            }
-
-            .footer {
-                margin-top: -1px;
-                img {
-                    width: 100%;
-                    height: auto;
                 }
             }
         }
-    }
-}
-
-input[type="number"] {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.102);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    height: 40px;
-    min-height: 40px;
-    padding-left: 25px;
-    margin-right: 10px;
-    background-color: white;
-    text-align: center;
-
-    &:focus, &:focus-visible, &:active {
-        border: 1px solid  #c0464d !important;
-    }
-
-    @media (max-width: 991px) {
-        width: 50%;
-        text-align: center;
     }
 }

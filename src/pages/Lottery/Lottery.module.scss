@@ -38,6 +38,16 @@
             position: relative;
             display: flex;
             justify-content: space-between;
+
+            @media (max-width: 1024px) {
+                gap: 1rem;
+            }
+
+            @media (max-width: 481px) {
+                justify-content: center;
+                gap: 1.5rem;
+            }
+
             .collect-wrapper {
                 .collect {
                     display: flex;
@@ -75,6 +85,43 @@
                             border: 2px solid #ffffff;
                             border-radius: 7px;
                             color: #ffffff;
+                        }
+                    }
+                }
+            }
+
+            .time-wrapper {
+                .countdown {
+                    display: flex;
+                    .image {
+                        z-index: 5;
+                        width: 60px;
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+                  
+                    .time {
+                        position: relative;
+                        display: flex;
+                        justify-content: space-between;
+                        margin-left: -20px;
+                        margin-top: 10px;
+                        height: 40px;
+                        background-color: #ffffff;
+                        width: 190px;
+                        border-radius: 5px;
+                        z-index: 2;
+                        padding-left: 25px;
+            
+                        .message {
+                            position: absolute;
+                            top: -23px;
+                            right: 0;
+                            color: #ffffff;
+                            font-size: 14px;
+                            font-weight: 500;
                         }
                     }
                 }
