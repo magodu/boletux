@@ -100,8 +100,8 @@ const Lottery: React.FC = () => {
                                     <div className={classes['box-title']}>Prize Pot</div>
                                 </div>
                                 <div className={`${classes.content} ${classes['box-wrapper']}`}>
-                                    <div className={classes['box-prize-pot']}>
-                                        <div className={classes['box-prize-pot-wrapper']}>
+                                    <div className={classes['box-prize-pot-wrapper']}>
+                                        <div className={classes['box-prize-pot']}>
                                             <div className={classes.value}>1.2</div>
                                             <div className={classes['crypto-currency']}>ETH</div>
                                         </div>

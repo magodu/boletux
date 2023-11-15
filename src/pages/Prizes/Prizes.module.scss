@@ -30,242 +30,357 @@
         }
     }
 
-    .claimable-section {
-        padding-top: 4rem;
+    .actions-section {
+        padding-top: 5rem;
 
-        .content {
-            margin: 0 10rem;
+        .actions {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            .collect-wrapper {
+                .collect {
+                    display: flex;
+                    .image {
+                        z-index: 5;
+                        width: 50px;
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+                  
+                    .amount {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-left: -20px;
+                        margin-top: 5px;
+                        height: 40px;
+                        background-color: #ffffff;
+                        width: 200px;
+                        border-radius: 5px;
+                        z-index: 2;
+                        padding-left: 35px;
 
-            .claim {
-                display: -ms-flexbox;
+                        .value {
+                            color: #000000;
+                            font-size: 20px;
+                            font-weight: 500;
+                            padding-top: 5px;
+                            width: 50px;
+                        }
+
+                        button {
+                            background: #000000;
+                            border: 2px solid #ffffff;
+                            border-radius: 7px;
+                            color: #ffffff;
+                        }
+                    }
+                }
+            }
+
+            .buttons {
                 display: flex;
-                flex-direction: column;
-                padding: 1rem;
-                background-color: #4939c0;
-                box-shadow: 0px 19px 56px 0px rgba(0, 0, 0, 0.2);
-                border-radius: 10px;
-                -webkit-border-radius: 25px;
-                -moz-border-radius: 25px;
-                -ms-border-radius: 25px;
-                -o-border-radius: 25px;
+                gap: 10px;
+                button {
+                    background-image: url("../../assets/images/box-square-purple.png");
+                    background-position: 50% 50%;
+                    background-size: cover;
+                    margin-right: 5px;
+                    width: 45px;
+                    padding: 0;
+                    &.jackpot {    
+                        font-size: 13px;
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        line-height: 15px;
+                        width: auto;
+                        padding: 10px;
+                        &.active {
+                            background-image: url("../../assets/images/box-square-yellow.png");
+                        }
+                    }
+
+                    &.info, &.stats {
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+
+    .prizes-section {
+        padding-top: 2rem;
+
+        .prizes-content {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+
+            .box {
+                width: 260px;
+                height: auto;
+
+                @media (max-width: 1024px) {
+                    min-height: unset;
+                }
 
                 @media (max-width: 991px) {
-                    margin-bottom: 1rem;
+                    margin-bottom: 2rem;
                 }
 
-                @media (max-width: 830px) {
-                    margin-top: 2rem;
-                }
-
-                .title {
-                    margin-top: 0;
-                    text-align: center;
-                }
-
-                .rewards {
-                    display: flex;
-                    gap: 1rem;
-                    margin: 0.5rem 0 2.5rem 0;
-                    width: 100%;
-                    font-size: 18px;
-                    .label,
-                    .value {
-                        flex: 1;
-                        padding: 5px 0px;
-                        font-weight: 600;
-                        text-align: center;
-                        border: 1px solid white;
-                        border-radius: 15px;
-                        background-color: rgba(255, 255, 255, 0.2);
-                    }
-                }
-
-                .claim-btn {
-                    display: flex;
-                    gap: 0.5rem;
-                    margin: 0 auto;
-
-                    button {
-                        font-size: 15px;
-                        padding: 5px 20px;
-                    }
-                }
-
-                hr {
-                    display: block;
-                    border-width: 1px;
-                    width: 95%;
-                    border-top: 1px solid rgba(36, 171, 238, 0.8);
-                }
-            }
-
-            .wrapper {
-                .description {
-                    padding: 1rem;
-                    margin-bottom: 3rem;
-                    background-image: linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-                    background-image: -moz-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-                    background-image: -webkit-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-                    background-image: -ms-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-                    box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.3);
-                    border-radius: 20px;
-                    -webkit-border-radius: 20px;
-                    -moz-border-radius: 20px;
-                    -ms-border-radius: 20px;
-                    -o-border-radius: 20px;
-
-                    .product {
-                        font-size: 1.2rem;
-                        font-weight: 600;
-                        margin-bottom: 0.5rem;
-                    }
-
-                    .text {
-                        font-size: 1rem;
-                    }
-                }
-                .rewards {
-                    display: flex;
-                    gap: 1rem;
-
-                    .reward-item {
-                        display: flex;
-                        flex: 1;
-                        padding: 15px;
-                        background-color: #170943;
-                        .item-thumb {
-                            padding: 0 15px;
-                            font-size: 50px;
-                        }
-
-                        .item-content {
-                            padding: 10px;
-
-                            .percentage {
-                                color: #22b868;
-                                font-weight: bold;
-                                font-size: 25px;
-                            }
-
-                            .text {
-                                font-size: 16px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .airdrop-section,
-    .bets-section {
-        padding-top: 6rem;
-
-        .content {
-            margin: 0 10rem;
-
-            .prizes {
-                display: -ms-flexbox;
-                display: flex;
-                width: 100%;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-                padding: 1rem;
-                background-image: linear-gradient(180deg, rgb(15, 2, 51) 0%, rgb(119, 35, 232) 100%);
-                background-image: -moz-linear-gradient(180deg, rgb(15, 2, 51) 0%, rgb(119, 35, 232) 100%);
-                background-image: -webkit-linear-gradient(180deg, rgb(15, 2, 51) 0%, rgb(119, 35, 232) 100%);
-                background-image: -ms-linear-gradient(180deg, rgb(15, 2, 51) 0%, rgb(119, 35, 232) 100%);
-                box-shadow: 0px 19px 56px 0px rgba(0, 0, 0, 0.2);
-                border-radius: 10px;
-                -webkit-border-radius: 10px;
-                -moz-border-radius: 10px;
-                -ms-border-radius: 10px;
-                -o-border-radius: 10px;
-
-                .coins-img {
-                    width: 100%;
-                    text-align: center;
-                    margin-bottom: 1rem;
+                .header {
+                    border-bottom: 2px solid black;
+    
                     img {
-                        width: 80%;
+                        width: 100%;
                         height: auto;
+                    }
+    
+                    .box-title {
+                        font-size: 20px;
+                        font-weight: 600;
+                        background-color: #ff1c7d;
+                        padding-bottom: 0.5rem;
+                        text-align: center;
+                        text-transform: uppercase;
+                        margin-top: -1px;
+                        color: #ffffff;
+                    }
+                }
 
-                        @media (max-width: 991px) {
-                            width: 150px;
+                .content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 1.5rem;
+                    min-height: 200px;
+                    background-image: linear-gradient(1turn, #6c065f, #ff1c7d);
+                    background-image: -ms-linear-gradient(90deg, #6c065f 0, #ff1c7d 100%);
+    
+                    @media (max-width: 991px) {
+                        min-height: unset;
+                    }
+                }
+
+                .footer {
+                    margin-top: -1px;
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+
+                &.box-yellow {
+                    .header {
+                        .box-title {
+                            background-color: #ffb100;
+                            color: #000000;
                         }
                     }
-                }
-
-                .total-rewards,
-                .claim-rewards {
-                    display: flex;
-                    gap: 1rem;
-                    margin: 0.5rem 0;
-                    width: 100%;
-                    font-size: 18px;
-                    .label,
-                    .value {
-                        flex: 1;
-                        padding: 5px 0px;
-                        font-weight: 600;
-                        text-align: center;
-                        border: 1px solid white;
-                        border-radius: 15px;
-                        background-color: rgba(255, 255, 255, 0.2);
+                    .content {
+                        background-image: linear-gradient(1turn, #ff7e00, #ffb100);
+                        background-image: -ms-linear-gradient(90deg, #ff7e00 0, #ffb100 100%);
                     }
-                }
-                .claim-rewards {
-                    margin-bottom: 3rem;
                 }
             }
 
-            .stats {
-                display: block;
-                width: 100%;
-                height: auto;
-                padding: 0 1rem;
-
-                @media (max-width: 830px) {
-                    margin-top: 2rem;
+            .incentives,
+            .rewards {
+                .header {
+                    color: #000000;
                 }
 
-                .title {
-                    margin-top: 0;
-                    text-align: center;
+                .box-wrapper {
+                    flex-wrap: wrap;
+                    gap: 1rem;
+
+                    .box-value-wrapper {
+                        width: 132px;
+                        height: 131px;
+                        background-image: url("../../assets/images/box-square-white.png");
+                        background-position: 50% 50%;
+                        background-size: cover;
+                        text-align: center;
+                        color: #000000;
+
+                        .box-value {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            justify-content: center;
+
+                            .value {
+                                width: 100%;
+                                height: 85px;
+                                line-height: 90px;
+                                font-size: 55px;
+                                font-weight: 700;
+                            }
+
+                            .crypto-currency {
+                                width: 100%;
+                                height: auto;
+                                font-size: 35px;
+                                font-weight: 600;
+                                text-transform: uppercase;
+                                line-height: 40px;
+                            }
+                        }
+                    }
+
+                    .box-info {
+                        width: 180px;
+                        height: 70px;
+                        background-image: url("../../assets/images/box-rectangle-black.png");
+                        background-position: 50% 50%;
+                        background-size: cover;
+                        font-size: 75px;
+                        text-align: center;
+                        color: #ffffff;
+                        border-radius: 5px;
+
+                        .data-wrapper {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            justify-content: center;
+
+                            .value {
+                                width: 100%;
+                                height: 40px;
+                                font-size: 24px;
+                                font-weight: 600;
+                                padding-top: 5px;
+                            }
+
+                            .label {
+                                width: 100%;
+                                height: auto;
+                                color: #e59d00;
+                                font-size: 14px;
+                                font-weight: 600;
+                                text-transform: uppercase;
+                            }
+                        }
+                    }
                 }
-                .winners {
-                    width: auto;
-                    height: auto;
-                    .item {
+            }
+
+            .jackpot {
+                .header {
+                    color: #000000;
+                }
+
+                .box-wrapper {
+                    flex-wrap: wrap;
+                    align-items: flex-start;
+
+                    .tabs-wrapper {
                         display: flex;
-                        flex-wrap: wrap;
-                        gap: 2rem;
-                        padding: 0.5rem;
+                        border-bottom: none;
+                        width: 100%;
 
-                        @media (max-width: 830px) {
-                            gap: 0.5rem;
-                        }
-
-                        .address,
-                        .amount {
-                            padding: 10px 2rem;
-                            font-weight: 600;
-                            align-self: center;
+                        .tabs {
+                            width: 100%;
                             text-align: center;
-                            border: 1px solid white;
-                            border-radius: 15px;
-                            background-color: rgba(255, 255, 255, 0.2);
+                            background-color: #5d233e;
+                            border-radius: 5px;
+                            border-bottom: none;
+                            margin-bottom: 1rem;
+                        }
+                    }
+
+                    .prize-pot-wrapper,
+                    .tickets-wrapper {
+                        width: 180px;
+                        height: 85px;
+                        background-image: url("../../assets/images/box-square-white.png");
+                        background-position: 50% 50%;
+                        background-size: cover;
+                        background-color: #ffffff;
+                        border-radius: 5px;
+                        color: #000000;
+                        font-size: 15px;
+                        margin-bottom: 1rem;
+                        padding: 10px;
+
+                        .box-value {
+                            display: flex;
+                            flex-wrap: wrap;
+                            .value {
+                                width: 100%;
+                                height: 50px;
+                                line-height: 30px;
+                                font-size: 40px;
+                                font-weight: 700;
+                                text-align: center;
+                            }
+
+                            .crypto-currency {
+                                width: 100%;
+                                height: 20px;
+                                font-size: 30px;
+                                font-weight: 600;
+                                text-transform: uppercase;
+                                line-height: 5px;
+                                text-align: center;
+                            }
                         }
 
-                        .address {
-                            flex: 2;
-                            text-overflow: ellipsis;
-                            overflow: hidden;
-                            white-space: nowrap;
-                        }
+                        .tickets-list {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 10px;
+                            max-height: 70px;
+                            overflow-y: auto;
 
-                        .amount {
-                            flex: 1;
+                            .item {
+                                width: 35px;
+                                height: 30px;
+                                text-align: center;
+                                border-radius: 5px;
+                                color: #ffffff;
+                                padding: 3px 2px;
+                                font-weight: 500;
+                                background-color: #ff008f;
+                            }
+                        }
+                    }
+
+                    .box-info {
+                        width: 180px;
+                        height: 70px;
+                        background-image: url("../../assets/images/box-rectangle-black.png");
+                        background-position: 50% 50%;
+                        background-size: cover;
+                        font-size: 75px;
+                        text-align: center;
+                        color: #ffffff;
+                        border-radius: 5px;
+
+                        .data-wrapper {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            justify-content: center;
+
+                            .value {
+                                width: 100%;
+                                height: 40px;
+                                font-size: 24px;
+                                font-weight: 600;
+                                padding-top: 5px;
+                            }
+
+                            .label {
+                                width: 100%;
+                                height: auto;
+                                color: #e59d00;
+                                font-size: 14px;
+                                font-weight: 600;
+                                text-transform: uppercase;
+                            }
                         }
                     }
                 }
@@ -274,49 +389,27 @@
     }
 }
 
-input {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.102);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    min-height: 60px;
-    padding-left: 25px;
-    background-color: white;
-    text-align: center;
-
-    &:focus,
-    &:focus-visible,
-    &:active {
-        border: 1px solid #c0464d !important;
-    }
-}
-
-button.action-btn {
-    background-image: linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
-    background-image: -moz-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
-    background-image: -webkit-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
-    background-image: -ms-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(143, 61, 245) 100%);
-    box-shadow: 0px 17px 40px 0px rgba(124, 78, 25, 0.35);
-    color: #ffffff;
+button {
+    background-image: url("../../assets/images/box-rectangle-yellow.png");
+    background-position: 50% 50%;
+    background-size: cover;
+    color: #000000;
+    border: none;
     font-size: 20px;
     width: auto;
-    height: 50px;
-    border-radius: 10px;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 5px;
+    cursor: pointer;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    border: 1px solid #ffffff;
-    padding: 5px 30px;
 
-    &:hover {
-        background-image: linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
-        background-image: -moz-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
-        background-image: -webkit-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
-        background-image: -ms-linear-gradient(90deg, rgb(215, 61, 245) 0%, rgb(215, 61, 245) 100%);
+    &:disabled {
+        cursor: default;
+        background-image: url("../../assets/images/box-rectangle-black.png");
     }
 }
+
+

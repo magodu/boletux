@@ -226,7 +226,7 @@
                     .box-wrapper {
                         flex-wrap: wrap;
     
-                        .box-prize-pot {
+                        .box-prize-pot-wrapper {
                             width: 116px;
                             height: 115px;
                             background-image: url("../../assets/images/box-square-white.png");
@@ -237,7 +237,7 @@
                             color: #000000;
                             margin-bottom: 1.5rem;
     
-                            .box-prize-pot-wrapper {
+                            .box-prize-pot {
                                 display: flex;
                                 flex-wrap: wrap;
                                 align-items: center;

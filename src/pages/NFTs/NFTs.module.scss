@@ -110,48 +110,6 @@
         }
     }
 
-    .description-section {
-        .description {
-            padding: 1rem;
-            background-image: linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            background-image: -moz-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            background-image: -webkit-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            background-image: -ms-linear-gradient(270deg, #3b26db 1%, #7b19cb 100%);
-            box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
-            -webkit-border-radius: 20px;
-            -moz-border-radius: 20px;
-            -ms-border-radius: 20px;
-            -o-border-radius: 20px;
-
-            .text {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 70px;
-                font-size: 1rem;
-            }
-        }
-
-        .nft-stats {
-            font-size: 20px;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-around;
-
-            .nft-staked,
-            .nft-percentage {
-                margin: 0 auto;
-                .cipher {
-                    font-size: 40px;
-                }
-                .title {
-                    margin-top: 0;
-                }
-            }
-        }
-    }
-
     .nfts-section {
         padding-top: 4rem;
 
