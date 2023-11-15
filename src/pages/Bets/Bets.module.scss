@@ -1,4 +1,5 @@
 @import '../../scss/_variables';
+@import '../../scss/_button';
 
 .bets-wrapper {
     position: relative;
@@ -430,29 +431,5 @@ input[type="number"] {
     @media (max-width: 991px) {
         width: 50%;
         text-align: center;
-    }
-}
-
-
-button {
-    background-image: url("../../assets/images/box-rectangle-yellow.png");
-    background-position: 50% 50%;
-    background-size: cover;
-    color: #000000;
-    border: none;
-    font-size: 20px;
-    width: auto;
-    height: 40px;
-    padding: 0 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-
-    &:disabled {
-        cursor: default;
-        background-image: url("../../assets/images/box-rectangle-black.png");
     }
 }
