@@ -1,7 +1,8 @@
 {
     "common": {
         "search": "Buscar",
-        "notFoundMsg": "La página que buscas no existe."
+        "notPageFoundMsg": "Ups, página no encontrada.",
+        "notFoundGoBackMsg": "Por favor vuelve a nuestra home para ver nuestro catálogo de apuestas y juegos."
     },
     "login": {
         "title": "Login",

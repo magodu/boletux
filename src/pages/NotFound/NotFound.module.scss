@@ -1,65 +1,55 @@
 @import '../../scss/_variables';
+@import '../../scss/_button';
 
-.container {
-    flex-direction: row;
-    align-items: center;
-    background: url('../../assets/images/404-image.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
+.not_found-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #0f0233;
+    padding-top: 10rem;
+    padding-bottom: 4rem;
+
+    .image-wrapper {
+        margin: 0 auto;
+        .image {
+            width: 600px;
+            height: 334px;
+    
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    .error {
+        text-align: center;
+
+        .error-text {
+            h4 {
+                font-size: 50px;
+                background: -webkit-linear-gradient(#fcb503 43%, #e5881b 57%, #fcb11a);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                letter-spacing: 0px;
+                animation: bulb 10s infinite;
+            }
+        }
+    }
 
     .text {
         display: flex;
         align-content: flex-end;
-        height: 100%;
-        padding: 4rem;
+        margin: 0 auto;
+        font-size: 25px;
+        font-weight: 500;
+        margin-bottom: 1rem;
     }
 
-    .error {
-        position: absolute;
-        top: 43%;
-        left: 50%;
-        width: 600px;
-        text-align: center;
-        transform: translate(-50%, -50%);
-
-        .error-text {
-
-            &:before {
-                content: 'Not Found';
-                font-size: 34px;
-                line-height: 34px;
-                color: #fff;
-                text-transform: uppercase;
-                position: absolute;
-                top: 100%;
-                left: 83%;
-                font-weight: 700;
-                width: 600px;
-                text-align: center;
-                letter-spacing: -3px;
-                transform: translate(-50%, -50%) rotate(-20deg);
-            }
-            h4 {
-                font-size: 130px;
-                line-height: 120px;
-                background: -webkit-linear-gradient(#fcb503 43%, #e5881b 57%, #fcb11a);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                text-transform: uppercase;
-                letter-spacing: -10px;
-                animation: bulb 10s infinite;
-            }
-          
-        }
-    }
-
-   
+    .buttons {
+        margin: 0 auto;
+    }    
 }
-
 
 /* ===============================
             animation

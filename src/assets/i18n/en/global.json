@@ -1,7 +1,8 @@
 {
     "common": {
         "search": "Search",
-        "notFoundMsg": "The page you are looking for was not found."
+        "notPageFoundMsg": "Opps, page not found.",
+        "notFoundGoBackMsg": "Please head back to our homepage to see our range of bets and games"
     },
     "login": {
         "title": "Login",
