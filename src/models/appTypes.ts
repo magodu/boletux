@@ -43,7 +43,7 @@ export type BoletuxContextObj = {
     language: string;
     isLoggedIn: boolean;
     setLanguageHandler: (language: string) => void;
-    setLogUserHandler: (logged: boolean) => void;
+    setLoggedUser: (logged: boolean) => void;
 };
 
 export interface nftList {

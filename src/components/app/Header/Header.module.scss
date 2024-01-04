@@ -383,17 +383,43 @@
                     }
     
                     .connect-wallet {
-                        width: 100px;
+                        width: auto;
                         margin-left: 0;
                     }
                 }
 
                 
             }
+
+            .dropdown-menu-end {
+                padding: 3px 0;
+                right: 0;
+                left: auto;
+
+                li {
+                    padding: 0.25rem 1rem;
+                    cursor: pointer;
+
+                    span {
+                        font-weight: 400;
+                        color: #212529;
+                        background-color: transparent;
+                    }
+                }
+
+                svg {
+                    margin-top: -2px;
+                    margin-right: 5px;
+                }
+
+                &.open {
+                    display: block;
+                }
+            }
         }
     }
 
-    a.button {
+    .button, .user-wallet {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -409,10 +435,6 @@
         background-image: linear-gradient(80deg, #ec1379, #6c0092);
         background-image: -ms-linear-gradient(7deg, #ec1379 0, #6c0092 100%);
         box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.35);
-        img {
-            width: 25px;
-            height: auto;
-        }
 
         &:hover {
             background-size: 300%;

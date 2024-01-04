@@ -42,7 +42,7 @@ const BoletuxContextProvider: React.FC<InputProps> = ( props ) => {
         language: language,
         isLoggedIn: userLogged,
         setLanguageHandler: setLanguageHandler,
-        setLogUserHandler: setLogUserHandler,
+        setLoggedUser: setLogUserHandler,
     };
 
 
