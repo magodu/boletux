@@ -56,7 +56,13 @@
         "buyTicketsButtonText": "Buy Tickets",
         "infoMessageTransactionSent": "Transaction {{transactionNumber}} sent.",
         "successMessageTransactionConfirmed": "Transaction {{transactionNumber}} confirmed!",
-        "errorMessageMaxTickets": "Cannot select more than 10 tickets at a time."
+        "errorMessageMaxTickets": "Cannot select more than 10 tickets at a time.",
+        "latestDraws": "Latest Draws",
+        "drawTableHeader": "Draw",
+        "dateTableHeader": "Date",
+        "prizePotTableHeader": "Prize Pot",
+        "winnerNumTableHeader": "Winner Num",
+        "winnerTableHeader": "Winner"
     },
     "vault": {
         "sectionTitle": "Invest against gamblers",

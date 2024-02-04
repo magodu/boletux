@@ -34,7 +34,7 @@
             text-align: center;
         }
 
-        p.subtitle {  
+        p.subtitle {
             font-weight: 500;
             text-align: center;
         }
@@ -68,7 +68,7 @@
                             height: auto;
                         }
                     }
-                  
+
                     .amount {
                         display: flex;
                         justify-content: space-between;
@@ -111,7 +111,7 @@
                             transform: rotate(20deg);
                         }
                     }
-                  
+
                     .time {
                         position: relative;
                         display: flex;
@@ -124,7 +124,7 @@
                         border-radius: 5px;
                         z-index: 2;
                         padding-left: 25px;
-            
+
                         .message {
                             position: absolute;
                             top: -23px;
@@ -141,13 +141,13 @@
                 display: flex;
                 gap: 10px;
                 button {
-                    background-image: url("../../assets/images/box-square-purple.png");
+                    background-image: url('../../assets/images/box-square-purple.png');
                     background-position: 50% 50%;
                     background-size: cover;
                     margin-right: 5px;
                     width: 45px;
                     padding: 0;
-                    &.jackpot {    
+                    &.jackpot {
                         font-size: 13px;
                         text-transform: uppercase;
                         font-weight: 600;
@@ -155,11 +155,12 @@
                         width: auto;
                         padding: 10px;
                         &.active {
-                            background-image: url("../../assets/images/box-square-yellow.png");
+                            background-image: url('../../assets/images/box-square-yellow.png');
                         }
                     }
 
-                    &.info, &.stats {
+                    &.info,
+                    &.stats {
                         color: #ffffff;
                     }
                 }
@@ -194,79 +195,11 @@
                     flex-wrap: wrap;
                     justify-content: space-around;
                 }
-                
-            /*     .box {
-                    width: 252px;
-                    height: auto;
 
-                    @media (max-width: 1024px) {
-                        min-height: unset;
-                    }
-
-                    @media (max-width: 991px) {
-                        margin-bottom: 2rem;
-                    }
-
-                    .header {
-                        border-bottom: 2px solid black;
-        
-                        img {
-                            width: 100%;
-                            height: auto;
-                        }
-        
-                        .box-title {
-                            font-size: 25px;
-                            font-weight: 600;
-                            background-color: #ff1c7d;
-                            padding-bottom: 0.5rem;
-                            text-align: center;
-                            text-transform: uppercase;
-                            margin-top: -1px;
-                            color: #ffffff;
-                        }
-                    }
-
-                    .content {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        padding: 1rem;
-                        min-height: 230px;
-                        background-image: linear-gradient(1turn, #6c065f, #ff1c7d);
-                        background-image: -ms-linear-gradient(90deg, #6c065f 0, #ff1c7d 100%);
-        
-                        @media (max-width: 991px) {
-                            min-height: unset;
-                        }
-                    }
-
-                    .footer {
-                        margin-top: -1px;
-                        img {
-                            width: 100%;
-                            height: auto;
-                        }
-                    }
-
-                    &.box-yellow {
-                        .header {
-                            .box-title {
-                                background-color: #ffb100;
-                                color: #000000;
-                            }
-                        }
-                        .content {
-                            background-image: linear-gradient(1turn, #ff7e00, #ffb100);
-                            background-image: -ms-linear-gradient(90deg, #ff7e00 0, #ffb100 100%);
-                        }
-                    }
-                } */
-                
                 .prizes {
                     position: absolute;
                     top: 50%;
-                    left: calc(252px/2 * -1);
+                    left: calc(252px / 2 * -1);
                     transform: translate(0, -50%);
 
                     @media (max-width: 1024px) {
@@ -277,37 +210,23 @@
                         top: unset;
                     }
 
-                  /*   .content {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        padding: 1rem;
-                        min-height: 230px;
-                        background-image: linear-gradient(1turn, #6c065f, #ff1c7d);
-                        background-image: -ms-linear-gradient(90deg, #6c065f 0, #ff1c7d 100%);
-        
-                        @media (max-width: 991px) {
-                            min-height: unset;
-                        }
-                    } */
-
                     .box-wrapper {
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         flex-wrap: wrap;
-    
+
                         .box-prize-pot-wrapper {
                             width: 116px;
                             height: 115px;
-                            background-image: url("../../assets/images/box-square-white.png");
+                            background-image: url('../../assets/images/box-square-white.png');
                             background-position: 50% 50%;
                             background-size: cover;
                             font-size: 75px;
                             text-align: center;
                             color: #000000;
                             margin-bottom: 1.5rem;
-    
+
                             .box-prize-pot {
                                 display: flex;
                                 flex-wrap: wrap;
@@ -332,7 +251,7 @@
                                 }
                             }
                         }
-    
+
                         .pot-data-wrapper {
                             display: flex;
                             justify-content: space-around;
@@ -345,7 +264,7 @@
                                 font-weight: 500;
                                 text-align: center;
                                 padding-top: 8px;
-                                background-image: url("../../assets/images/box-square-black.png");
+                                background-image: url('../../assets/images/box-square-black.png');
                                 background-position: 50% 50%;
                                 background-size: cover;
 
@@ -376,18 +295,18 @@
                     height: 100%;
 
                     @media (max-width: 1024px) {
-                        width: 100%;;
+                        width: 100%;
                         order: 3;
                     }
-    
+
                     .lottery-numbers {
                         width: 480px;
                         padding: 1rem;
-    
+
                         @media (max-width: 779px) {
                             width: 430px;
                         }
-    
+
                         ul.numbers {
                             display: flex;
                             -ms-flex-wrap: wrap;
@@ -396,7 +315,7 @@
                             padding-left: 0;
                             gap: 10px;
                             list-style: none;
-            
+
                             li {
                                 padding: 10px 5px;
                                 text-align: center;
@@ -417,7 +336,7 @@
                                 color: #ffffff;
                                 line-height: 1;
                                 cursor: pointer;
-    
+
                                 &:hover {
                                     background-size: 300%;
                                     background-image: linear-gradient(0deg, rgb(236, 3, 139) 0%, rgb(236, 3, 139) 100%);
@@ -434,11 +353,11 @@
                                 }
 
                                 &.selected {
-                                    background: #FFFFFF;
+                                    background: #ffffff;
                                     color: #ff1c7d;
                                     border: 1px solid #ff1c7d;
                                 }
-    
+
                                 @media (max-width: 779px) {
                                     min-width: 30px;
                                     padding: 5px 0;
@@ -451,7 +370,7 @@
                 .tickets {
                     position: absolute;
                     top: 50%;
-                    right: calc(252px/2 * -1);
+                    right: calc(252px / 2 * -1);
                     transform: translate(0, -50%);
 
                     @media (max-width: 1024px) {
@@ -482,12 +401,12 @@
                                 margin-bottom: 1rem;
                             }
                         }
-    
+
                         .tickets-wrapper {
                             position: relative;
                             width: 200px;
                             height: 120px;
-                            background-image: url("../../assets/images/box-square-white.png");
+                            background-image: url('../../assets/images/box-square-white.png');
                             background-position: 50% 50%;
                             background-size: cover;
                             background-color: #ffffff;
@@ -548,55 +467,102 @@
             flex: 0 0 70%;
             max-width: 950px;
 
-            .table {
+            .table-wrapper {
+                position: relative;
                 display: flex;
-                justify-content: center;
+                padding: 1rem;
+                background-image: linear-gradient(180deg, rgb(49, 2, 103) 0%, rgb(67, 0, 86) 100%);
+                background-image: -moz-linear-gradient(180deg, rgb(49, 2, 103) 0%, rgb(67, 0, 86) 100%);
+                background-image: -webkit-linear-gradient(180deg, rgb(49, 2, 103) 0%, rgb(67, 0, 86) 100%);
+                background-image: -ms-linear-gradient(180deg, rgb(49, 2, 103) 0%, rgb(67, 0, 86) 100%);
+                border-radius: 10px;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                -ms-border-radius: 10px;
+                -o-border-radius: 10px;
 
-                thead {
+                table {
+                    border-collapse: collapse;
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    table-layout: fixed;
+
+                    caption {
+                        font-size: 1.5em;
+                        margin: 0.5em 0 0.75em;
+                    }
+
                     tr {
-                        th {
-                            font-size: 14px;
-                            font-weight: 600;
-                            color: #b0bbde;
-                            text-transform: uppercase;
-                            text-align: center;
-                            padding: 15px 30px;
-                            border-bottom: 1px solid #9186e6;
+                        background-color: transparent;
+                        padding: 0.35em;
 
-                            &:first-child {
-                                text-align: left;
+                        th,
+                        td {
+                            padding: 0.625em;
+                            text-align: center;
+
+                            .prize {
+                                color: #ffa100;
+                                font-weight: 500;
                             }
+                        }
+                        th {
+                            font-size: 0.85em;
+                            letter-spacing: 0.1em;
+                            text-transform: uppercase;
                         }
                     }
                 }
-                tbody {
-                    background-color: #4c3eb9;
-                    tr {
-                        td {
-                            padding: 15px;
-                            text-align: center;
-                            color: $main-color;
 
-                            &:first-child {
-                                text-align: left;
-                                padding-left: 30px;
-                            }
+                @media screen and (max-width: 1024px) {
+                    table {
+                        border: 0;
 
-                            span {
-                                color: #ffffff;
-                                font-size: 16px;
-                                text-transform: uppercase;
+                        caption {
+                            font-size: 1.3em;
+                        }
 
-                                &.prize {
-                                    color: #ff044d;
-                                    font-weight: 500;
+                        thead {
+                            border: none;
+                            clip: rect(0 0 0 0);
+                            height: 1px;
+                            margin: -1px;
+                            overflow: hidden;
+                            padding: 0;
+                            position: absolute;
+                            width: 1px;
+                        }
+
+                        tr {
+                            border: 1px solid #9186e6;
+                            border-bottom: 3px solid #9186e6;
+                            display: block;
+                            margin-bottom: 0.625em;
+
+                            td {
+                                border-bottom: 1px solid #9186e6;
+                                display: block;
+                                font-size: 0.8em;
+                                text-align: right!important;
+
+                                &::before {
+
+                                    content: attr(data-label);
+                                    float: left;
+                                    font-weight: bold;
+                                    text-transform: uppercase;
+                                }
+
+                                &:last-child {
+                                    border-bottom: 0;
                                 }
                             }
                         }
+    
                     }
                 }
             }
         }
     }
-
 }

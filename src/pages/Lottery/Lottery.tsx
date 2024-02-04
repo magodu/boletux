@@ -390,37 +390,35 @@ const Lottery: React.FC = () => {
 
                 <section className={classes['draws-section']}>
                     <div className={classes.content}>
-                        <div className={classes['past-draw-wrapper']} >
-                            <h3 className={classes.title}>Past Draws</h3>
-                            <div className={classes.table} >
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Draw</th>
-                                            <th>Winner</th>
-                                            <th>Winner num</th>
-                                            <th>Prize</th>
-                                            <th>Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><span><b>#1</b></span></td>
-                                            <td><span className={classes.address}>0xed2cR9DR9DR9DR9DR9DR9DR9D607d</span></td>
-                                            <td><span>32</span></td>
-                                            <td><span className={classes.prize}>5 ETH</span></td>
-                                            <td><span>2024.01.12</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span><b>#2</b></span></td>
-                                            <td><span className={classes.address}>0xed2cR9DVasdasdERETWR9D607dR9D</span></td>
-                                            <td><span>89</span></td>
-                                            <td><span className={classes.prize}>2 ETH</span></td>
-                                            <td><span>2024.01.24</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <h3 className={classes.title}>{t('lottery.latestDraws')}</h3>
+                        <div className={classes['table-wrapper']}> 
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>{t('lottery.drawTableHeader')}</th>
+                                        <th>{t('lottery.dateTableHeader')}</th>
+                                        <th>{t('lottery.prizePotTableHeader')}</th>
+                                        <th>{t('lottery.winnerNumTableHeader')}</th>
+                                        <th colSpan={3}>{t('lottery.winnerTableHeader')}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-label={t('lottery.drawTableHeader')}><span><b>#2</b></span></td>
+                                        <td data-label={t('lottery.dateTableHeader')}><span>2024.01.23</span></td>
+                                        <td data-label={t('lottery.prizePotTableHeader')}><span className={classes.prize}>10 ETH</span></td>
+                                        <td data-label={t('lottery.winnerNumTableHeader')}><span>7</span></td>
+                                        <td data-label={t('lottery.winnerTableHeader')} colSpan={3}><span className={classes.address}>0xed2cR9DR9DRYRe5R9DR9DjR9D607d</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label={t('lottery.drawTableHeader')}><span><b>#1</b></span></td>
+                                        <td data-label={t('lottery.dateTableHeader')}><span>2024.01.12</span></td>
+                                        <td data-label={t('lottery.prizePotTableHeader')}><span className={classes.prize}>5 ETH</span></td>
+                                        <td data-label={t('lottery.winnerNumTableHeader')}><span>32</span></td>
+                                        <td data-label={t('lottery.winnerTableHeader')} colSpan={3}><span className={classes.address}>0xed2cR9DR9DR9DR9DR9DR9DR9D607d</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </section>

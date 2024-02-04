@@ -47,7 +47,7 @@
         "prizePot": "Bote",
         "tickets": "Tickets",
         "ticket": "Ticket",
-        "draw": "Draw",
+        "draw": "Sorteo",
         "buyNewTab": "Compra",
         "ticketsTab": "Tus tickets",
         "buyNewTabEmpty": "Los tickets seleccionados en el panel aparecerán aquí",
@@ -56,7 +56,13 @@
         "buyTicketsButtonText": "Comprar Tickets",
         "infoMessageTransactionSent": "Transacción {{transactionNumber}} enviada.",
         "successMessageTransactionConfirmed": "Transacción {{transactionNumber}} confirmada!",
-        "errorMessageMaxTickets": "No se pueden seleccionar más de 10 tickets a la vez."
+        "errorMessageMaxTickets": "No se pueden seleccionar más de 10 tickets a la vez.",
+        "latestDraws": "Últimos sorteos",
+        "drawTableHeader": "Sorteo",
+        "dateTableHeader": "Fecha",
+        "prizePotTableHeader": "Premio",
+        "winnerNumTableHeader": "Resultado",
+        "winnerTableHeader": "Ganador"
     },
     "vault": {
         "sectionTitle": "Invierte contra jugadores",
