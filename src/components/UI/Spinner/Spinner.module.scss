@@ -1,17 +1,186 @@
-.spinner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 50%;
-    left: 0;
-    width: 100%;
+$squarew: 15px;
+$squareh: 15px;
+$squareMargin: 5px;
+$loaderw: $squarew * 3 + $squareMargin * 2;
+$loaderh: $squareh * 3 + $squareMargin * 2;
+$delayEnter: 0.3s;
+$topenter: -10px;
+$color: #ff044d;
+
+@mixin transition($value) {
+    -webkit-transition: $value;
+    -moz-transition: $value;
+    transition: $value;
+}
+
+@mixin delay($delay) {
+    -webkit-animation-delay: $delay;
+    -moz-animation-delay: $delay;
+    animation-delay: $delay;
+}
+
+.backdrop {
     position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
     z-index: 999;
 
-    .loading-color {
-        color: #ff044d;
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        position: fixed;
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 150px;
+            background-color: #ededed;
+            border-radius: 10px;
+
+            .content {
+                .loader-wrapper {
+                    height: 70px;
+                    width: 70px;
+                    margin: 0 auto;
+                    .loader {
+                        width: 100%;
+                        height: auto;
+
+                        .square {
+                            background: $color;
+                            width: $squarew;
+                            height: $squareh;
+                            float: left;
+                            top: $topenter;
+                            margin-right: $squareMargin;
+                            margin-top: $squareMargin;
+                            position: relative;
+                            opacity: 0;
+                            -webkit-animation: enter 6s infinite;
+                            animation: enter 6s infinite;
+                            &:nth-child(1) {
+                                @include delay(6 * $delayEnter);
+                            }
+                            &:nth-child(2) {
+                                @include delay(7 * $delayEnter);
+                            }
+                            &:nth-child(3) {
+                                @include delay(8 * $delayEnter);
+                                background: #ffb100;
+                            }
+                            &:nth-child(4) {
+                                @include delay(3 * $delayEnter);
+                            }
+                            &:nth-child(5) {
+                                @include delay(4 * $delayEnter);
+                            }
+                            &:nth-child(6) {
+                                @include delay(5 * $delayEnter);
+                            }
+                            &:nth-child(7) {
+                            }
+                            &:nth-child(8) {
+                                @include delay(1 * $delayEnter);
+                            }
+                            &:nth-child(9) {
+                                @include delay(2 * $delayEnter);
+                            }
+                        }
+                        .enter {
+                            top: 0px;
+                            opacity: 1;
+                        }
+
+                        .clear {
+                            clear: both;
+                        }
+                        .last {
+                            margin-right: 0;
+                        }
+                    }
+                }
+
+                .text {
+                    margin-top: 5px;
+                    color: #000000;
+                    letter-spacing: 2px;
+                    opacity: 0.4;
+                    animation: blink 1s ease-out infinite alternate;
+                }
+            }
+        }
     }
 }
 
+@-webkit-keyframes enter {
+    0% {
+        opacity: 0;
+        top: $topenter;
+    }
+    5% {
+        opacity: 1;
+        top: 0px;
+    }
+    50.9% {
+        opacity: 1;
+        top: 0px;
+    }
+    55.9% {
+        opacity: 0;
+        top: -$topenter;
+    }
+}
+@keyframes enter {
+    0% {
+        opacity: 0;
+        top: $topenter;
+    }
+    5% {
+        opacity: 1;
+        top: 0px;
+    }
+    50.9% {
+        opacity: 1;
+        top: 0px;
+    }
+    55.9% {
+        opacity: 0;
+        top: -$topenter;
+    }
+}
+@-moz-keyframes enter {
+    0% {
+        opacity: 0;
+        top: $topenter;
+    }
+    5% {
+        opacity: 1;
+        top: 0px;
+    }
+    50.9% {
+        opacity: 1;
+        top: 0px;
+    }
+    55.9% {
+        opacity: 0;
+        top: -$topenter;
+    }
+}
 
-
+@keyframes blink {
+    from {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 0.95;
+    }
+}

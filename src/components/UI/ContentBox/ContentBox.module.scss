@@ -1,0 +1,72 @@
+@import '../../../scss/_variables';
+@import '../../../scss/_button';
+
+.box {
+    width: 250px;
+    height: auto;
+
+    @media (max-width: 1024px) {
+        min-height: unset;
+    }
+
+    @media (max-width: 991px) {
+        margin-bottom: 2rem;
+    }
+
+    @media (max-width: 880px) {
+        margin: 0 auto;
+    } 
+
+    .header {
+        border-bottom: 2px solid black;
+        color: #000000;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .box-title {
+            font-size: 25px;
+            font-weight: 600;
+            background-color: #ff1c7d;
+            padding-bottom: 0.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            margin-top: -1px;
+            color: #ffffff;
+        }
+    }
+
+    .content {
+        padding: 1rem;
+        min-height: 230px;
+        background-image: linear-gradient(1turn, #6c065f, #ff1c7d);
+        background-image: -ms-linear-gradient(90deg, #6c065f 0, #ff1c7d 100%);
+
+        @media (max-width: 991px) {
+            min-height: unset;
+        }
+    }
+
+    .footer {
+        margin-top: -1px;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &.box-yellow {
+        .header {
+            .box-title {
+                background-color: #ffb100;
+                color: #000000;
+            }
+        }
+        .content {
+            background-image: linear-gradient(1turn, #ff7e00, #ffb100);
+            background-image: -ms-linear-gradient(90deg, #ff7e00 0, #ffb100 100%);
+        }
+    }
+}

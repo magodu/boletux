@@ -78,7 +78,7 @@
                             font-size: 20px;
                             font-weight: 500;
                             padding-top: 5px;
-                            width: 50px;
+                            width: auto;
                         }
 
                         button {
@@ -133,141 +133,64 @@
                 flex-wrap: wrap;
             }
 
-            .box {
-                width: 250px;
-                height: auto;
-
-                @media (max-width: 1024px) {
-                    min-height: unset;
-                }
-
-                @media (max-width: 991px) {
-                    margin-bottom: 2rem;
-                }
-
-                .header {
-                    border-bottom: 2px solid black;
-    
-                    img {
-                        width: 100%;
-                        height: auto;
-                    }
-    
-                    .box-title {
-                        font-size: 25px;
-                        font-weight: 600;
-                        background-color: #ff1c7d;
-                        padding-bottom: 0.5rem;
-                        text-align: center;
-                        text-transform: uppercase;
-                        margin-top: -1px;
-                        color: #ffffff;
-                    }
-                }
-
-                .content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 1.5rem;
-                    min-height: 220px;
-                    background-image: linear-gradient(1turn, #6c065f, #ff1c7d);
-                    background-image: -ms-linear-gradient(90deg, #6c065f 0, #ff1c7d 100%);
-    
-                    @media (max-width: 991px) {
-                        min-height: unset;
-                    }
-                }
-
-                .footer {
-                    margin-top: -1px;
-                    img {
-                        width: 100%;
-                        height: auto;
-                    }
-                }
-
-                &.box-yellow {
-                    .header {
-                        .box-title {
-                            background-color: #ffb100;
-                            color: #000000;
-                        }
-                    }
-                    .content {
-                        background-image: linear-gradient(1turn, #ff7e00, #ffb100);
-                        background-image: -ms-linear-gradient(90deg, #ff7e00 0, #ffb100 100%);
-                    }
-                }
-            }
-
             .nfts {
 
                 @media (max-width: 800px) {
                     width: 100%;
                 }
 
-                .box {
-                    @media (max-width: 800px) {
-                        margin: 0 auto;
-                    }
+                .box-wrapper {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    gap: 0rem;
+                    height: 225px;
 
-                    .header {
-                        color: #000000;
-                    }
-    
-                    .box-wrapper {
-                        flex-wrap: wrap;
-                        gap: 1rem;
-    
-                        .box-nfts {
-                            width: 95%;
-                            height: 65px;
-                            background-image: url("../../assets/images/box-rectangle-black.png");
-                            background-position: 50% 50%;
-                            background-size: cover;
-                            font-size: 75px;
-                            text-align: center;
-                            color: #ffffff;
-                            border-radius: 5px;
-    
-                            .data-wrapper {
-                                display: flex;
-                                flex-wrap: wrap;
-                                align-items: center;
-                                justify-content: center;
-    
-                                .value {
-                                    width: 100%;
-                                    height: 33px;
-                                    font-size: 25px;
-                                    font-weight: 700;
-                                }
-    
-                                .label {
-                                    width: 100%;
-                                    height: auto;
-                                    color: #ff044d;
-                                    font-size: 14px;
-                                    font-weight: 600;
-                                    text-transform: uppercase;
-                                }
+                    .box-nfts {
+                        width: 95%;
+                        height: 65px;
+                        background-image: url("../../assets/images/box-rectangle-black.png");
+                        background-position: 50% 50%;
+                        background-size: cover;
+                        font-size: 75px;
+                        text-align: center;
+                        color: #ffffff;
+                        border-radius: 5px;
+
+                        .data-wrapper {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            justify-content: center;
+
+                            .value {
+                                width: 100%;
+                                height: 33px;
+                                font-size: 25px;
+                                font-weight: 700;
+                            }
+
+                            .label {
+                                width: 100%;
+                                height: auto;
+                                color: #ff044d;
+                                font-size: 14px;
+                                font-weight: 600;
+                                text-transform: uppercase;
                             }
                         }
-    
                     }
                 }
             }
 
             .carousel {
-                .header {
-                    color: #000000;
-                }
 
                 .box-wrapper {
                     display: flex;
                     flex-wrap: wrap;
-                    align-items: flex-start;
+                    align-items: center;
+                    justify-content: center;
                     padding: 1rem 0 0 0;
                     gap: 1rem;
                     .carousel-content {

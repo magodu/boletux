@@ -6,14 +6,7 @@ export interface InputProps {
     children: React.ReactElement;
 }
 
-export type AuthContextObj = {
-    loginData: any,
-    token: string | null,
-    duration: number;
-    isLoggedIn: boolean;
-    setLoginDataHandler: (loginData: any) => void;
-    logoutHandler: () => void;
-};
+
 
 export interface imageInputDataType {
     imageId: string;
@@ -34,7 +27,7 @@ export interface alertModalDataType {
     errorDetails?: string[];
 }
 
-export interface alertEventPayload {
+export interface toastEventPayload {
     message: string;
     type?: string
 }
@@ -42,8 +35,12 @@ export interface alertEventPayload {
 export type BoletuxContextObj = {
     language: string;
     isLoggedIn: boolean;
+    web3Provider: any,
+    web3Contracts: any,
     setLanguageHandler: (language: string) => void;
     setLoggedUser: (logged: boolean) => void;
+    setWeb3Provider: (provider: any ) => void,
+    setWeb3Contract: (contractType: string, contract: any ) => void,
 };
 
 export interface nftList {
@@ -61,3 +58,5 @@ export enum weekDays {
     saturday = 6,
     sunday = 7,
 }
+
+export type ActionReducerType = { type: string; value: any };

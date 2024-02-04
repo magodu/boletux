@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Carousel from '../../components/app/Carousel/Carousel';
+import ContentBox from '../../components/UI/ContentBox/ContentBox';
 
 import classes from './NFTs.module.scss';
 
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
 import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
-import boxHeaderYellowImg from '../../assets/images/box-wrapper-header-yellow.png';
-import boxFooterYellowImg from '../../assets/images/box-wrapper-footer-yellow.png';
-import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
-import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
 import Nft0Img from '../../assets/images/NFTs/0.png';
 import Nft1Img from '../../assets/images/NFTs/1.png';
 import Nft2Img from '../../assets/images/NFTs/2.png';
@@ -39,6 +37,8 @@ const nftWalletList: nftList[] = [
 const nftStakingList: nftList[] = [];
 
 const NFTs: React.FC = () => {
+    const { t } = useTranslation();
+
     const [stakeNft, setStakeNft] = useState<string | number | null>(null);
     const [unstakeNft, setUnstakeNft] = useState<string | number | null>(null);
 
@@ -57,7 +57,6 @@ const NFTs: React.FC = () => {
         } else if (slider === 'unstake') {
             setUnstakeNft(elem);
         }
-        
     };
 
     const stake = () => {
@@ -96,7 +95,9 @@ const NFTs: React.FC = () => {
                             </div>
                         </div>
                         <div className={classes.buttons}>
-                            <button className={`${classes.jackpot} ${classes.active}`} onClick={() => navigateTo('opensea')}>Buy NFTs</button>
+                            <button className={`${classes.jackpot} ${classes.active}`} onClick={() => navigateTo('opensea')}>
+                                Buy NFTs
+                            </button>
                             <button className={classes.info} onClick={() => navigateTo('info')}>
                                 <BsQuestionCircle />
                             </button>
@@ -111,12 +112,8 @@ const NFTs: React.FC = () => {
             <section className={classes['nfts-section']}>
                 <div className={classes['nfts-content']}>
                     <div className={classes.nfts}>
-                        <div className={`${classes.box} ${classes['box-yellow']}`}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderYellowImg} alt="" />
-                                <div className={classes['box-title']}>NFTs</div>
-                            </div>
-                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
+                        <ContentBox type="special" title="NFTs">
+                            <div className={classes['box-wrapper']}>
                                 <div className={classes['box-nfts']}>
                                     <div className={classes['data-wrapper']}>
                                         <div className={classes.value}>46 / 100</div>
@@ -130,18 +127,11 @@ const NFTs: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterYellowImg} alt="" />
-                            </div>
-                        </div>
+                        </ContentBox>
                     </div>
                     <div className={classes.carousel}>
-                        <div className={classes.box}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderImg} alt="" />
-                                <div className={classes['box-title']}>In wallet</div>
-                            </div>
-                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
+                        <ContentBox title="In wallet">
+                            <div className={classes['box-wrapper']}>
                                 <div className={classes['carousel-content']}>
                                     <Carousel list={nftWalletList} emptyText="Buy NFTs on Marketplace" onSelect={(elem) => selectSideHandler(elem, 'stake')} />
                                 </div>
@@ -151,20 +141,13 @@ const NFTs: React.FC = () => {
                                     </button>
                                 </div>
                             </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterImg} alt="" />
-                            </div>
-                        </div>
+                        </ContentBox>
                     </div>
                     <div className={classes.carousel}>
-                        <div className={classes.box}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderImg} alt="" />
-                                <div className={classes['box-title']}>My stake</div>
-                            </div>
-                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
+                        <ContentBox title="My stake">
+                            <div className={classes['box-wrapper']}>
                                 <div className={classes['carousel-content']}>
-                                    <Carousel list={nftStakingList} emptyText="Stake your NFTs and get Passive Income" onSelect={(elem) => selectSideHandler(elem, 'unstake')}/>
+                                    <Carousel list={nftStakingList} emptyText="Stake your NFTs and get Passive Income" onSelect={(elem) => selectSideHandler(elem, 'unstake')} />
                                 </div>
                                 <div className={classes.buttons}>
                                     <button type="button" className={classes.large} disabled={nftStakingList.length > 0 ? false : true} onClick={() => unstake()}>
@@ -172,10 +155,7 @@ const NFTs: React.FC = () => {
                                     </button>
                                 </div>
                             </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterImg} alt="" />
-                            </div>
-                        </div>
+                        </ContentBox>
                     </div>
                 </div>
             </section>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { twitterUrl, discordUrl } from '../../../constants';
 
@@ -10,6 +11,7 @@ import round_shape_2 from '../../../assets/images/background/footer-shape.png';
 import classes from './Footer.module.scss';
 
 const Footer = () => {
+    const { t } = useTranslation();
 
     const getCurrentYear = () => {
         return new Date().getFullYear();
@@ -44,7 +46,7 @@ const Footer = () => {
                 <div className={`${classes['footer-bottom']} row py-5 align-items-center`}>
                     <div className="col-lg-6">
                         <p className={`${classes['copyright-text']} mb-lg-0`} >
-                            Copyright © {getCurrentYear()}. All Rights Reserved By Boletux
+                            {t('footer.copyright')} © {getCurrentYear()}. {t('footer.rights')}
                         </p>
                     </div>
                     <div className="col-lg-6">

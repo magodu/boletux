@@ -77,7 +77,7 @@
                             font-size: 20px;
                             font-weight: 500;
                             padding-top: 5px;
-                            width: 50px;
+                            width: auto;
                         }
 
                         button {
@@ -134,80 +134,20 @@
             }
 
             .box {
-                width: 260px;
-                height: auto;
-
-                @media (max-width: 1024px) {
-                    min-height: unset;
-                }
-
-                @media (max-width: 991px) {
-                    margin-bottom: 2rem;
-                }
-
                 .header {
-                    border-bottom: 2px solid black;
-    
-                    img {
-                        width: 100%;
-                        height: auto;
-                    }
-    
                     .box-title {
-                        font-size: 20px;
-                        font-weight: 600;
-                        background-color: #ff1c7d;
-                        padding-bottom: 0.5rem;
-                        text-align: center;
-                        text-transform: uppercase;
-                        margin-top: -1px;
-                        color: #ffffff;
-                    }
-                }
-
-                .content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 1rem;
-                    min-height: 200px;
-                    background-image: linear-gradient(1turn, #6c065f, #ff1c7d);
-                    background-image: -ms-linear-gradient(90deg, #6c065f 0, #ff1c7d 100%);
-    
-                    @media (max-width: 991px) {
-                        min-height: unset;
-                    }
-                }
-
-                .footer {
-                    margin-top: -1px;
-                    img {
-                        width: 100%;
-                        height: auto;
-                    }
-                }
-
-                &.box-yellow {
-                    .header {
-                        .box-title {
-                            background-color: #ffb100;
-                            color: #000000;
-                        }
-                    }
-                    .content {
-                        background-image: linear-gradient(1turn, #ff7e00, #ffb100);
-                        background-image: -ms-linear-gradient(90deg, #ff7e00 0, #ffb100 100%);
+                        font-size: 20px;   // FIXME: ADD this and delete
                     }
                 }
             }
 
             .incentives,
             .rewards {
-                .header {
-                    color: #000000;
-                }
 
                 .box-wrapper {
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: center;
                     flex-wrap: wrap;
                     gap: 1rem;
 
@@ -289,127 +229,120 @@
                     width: 100%;
                 }
 
-                .box {
-                    @media (max-width: 880px) {
-                        margin: 0 auto;
+                .box-wrapper {
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    gap: 1rem;
+
+                    .tabs-wrapper {
+                        display: flex;
+                        border-bottom: none;
+                        width: 100%;
+
+                        .tabs {
+                            width: 100%;
+                            text-align: center;
+                            background-color: #5d233e;
+                            border-radius: 5px;
+                            border-bottom: none;
+                            margin-bottom: 0.5rem;
+                        }
                     }
 
-                    .header {
+                    .prize-pot-wrapper,
+                    .tickets-wrapper {
+                        width: 180px;
+                        height: 85px;
+                        background-image: url("../../assets/images/box-square-white.png");
+                        background-position: 50% 50%;
+                        background-size: cover;
+                        background-color: #ffffff;
+                        border-radius: 5px;
                         color: #000000;
-                    }
-    
-                    .box-wrapper {
-                        flex-wrap: wrap;
-                        align-items: flex-start;
-    
-                        .tabs-wrapper {
+                        font-size: 15px;
+                        padding: 10px;
+
+                        .box-value {
                             display: flex;
-                            border-bottom: none;
-                            width: 100%;
-    
-                            .tabs {
+                            flex-wrap: wrap;
+                            .value {
                                 width: 100%;
+                                height: 50px;
+                                line-height: 30px;
+                                font-size: 40px;
+                                font-weight: 700;
                                 text-align: center;
-                                background-color: #5d233e;
+                            }
+
+                            .crypto-currency {
+                                width: 100%;
+                                height: 20px;
+                                font-size: 30px;
+                                font-weight: 600;
+                                text-transform: uppercase;
+                                line-height: 5px;
+                                text-align: center;
+                            }
+                        }
+
+                        .tickets-list {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 10px;
+                            max-height: 70px;
+                            overflow-y: auto;
+
+                            .item {
+                                width: 35px;
+                                height: 30px;
+                                text-align: center;
                                 border-radius: 5px;
-                                border-bottom: none;
-                                margin-bottom: 1rem;
+                                color: #ffffff;
+                                padding: 3px 2px;
+                                font-weight: 500;
+                                background-color: #ff008f;
                             }
                         }
-    
-                        .prize-pot-wrapper,
-                        .tickets-wrapper {
-                            width: 180px;
-                            height: 85px;
-                            background-image: url("../../assets/images/box-square-white.png");
-                            background-position: 50% 50%;
-                            background-size: cover;
-                            background-color: #ffffff;
-                            border-radius: 5px;
-                            color: #000000;
-                            font-size: 15px;
-                            margin-bottom: 1rem;
-                            padding: 10px;
-    
-                            .box-value {
-                                display: flex;
-                                flex-wrap: wrap;
-                                .value {
-                                    width: 100%;
-                                    height: 50px;
-                                    line-height: 30px;
-                                    font-size: 40px;
-                                    font-weight: 700;
-                                    text-align: center;
-                                }
-    
-                                .crypto-currency {
-                                    width: 100%;
-                                    height: 20px;
-                                    font-size: 30px;
-                                    font-weight: 600;
-                                    text-transform: uppercase;
-                                    line-height: 5px;
-                                    text-align: center;
-                                }
+                    }
+
+                    .box-info {
+                        width: 180px;
+                        height: 70px;
+                        background-image: url("../../assets/images/box-rectangle-black.png");
+                        background-position: 50% 50%;
+                        background-size: cover;
+                        font-size: 75px;
+                        text-align: center;
+                        color: #ffffff;
+                        border-radius: 5px;
+
+                        .data-wrapper {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            justify-content: center;
+
+                            .value {
+                                height: 40px;
+                                font-size: 24px;
+                                font-weight: 600;
+                                padding-top: 5px;
                             }
-    
-                            .tickets-list {
-                                display: flex;
-                                flex-wrap: wrap;
-                                gap: 10px;
-                                max-height: 70px;
-                                overflow-y: auto;
-    
-                                .item {
-                                    width: 35px;
-                                    height: 30px;
-                                    text-align: center;
-                                    border-radius: 5px;
-                                    color: #ffffff;
-                                    padding: 3px 2px;
-                                    font-weight: 500;
-                                    background-color: #ff008f;
-                                }
-                            }
-                        }
-    
-                        .box-info {
-                            width: 180px;
-                            height: 70px;
-                            background-image: url("../../assets/images/box-rectangle-black.png");
-                            background-position: 50% 50%;
-                            background-size: cover;
-                            font-size: 75px;
-                            text-align: center;
-                            color: #ffffff;
-                            border-radius: 5px;
-    
-                            .data-wrapper {
-                                display: flex;
-                                flex-wrap: wrap;
-                                align-items: center;
-                                justify-content: center;
-    
-                                .value {
-                                    height: 40px;
-                                    font-size: 24px;
-                                    font-weight: 600;
-                                    padding-top: 5px;
-                                }
-    
-                                .label {
-                                    width: 100%;
-                                    height: auto;
-                                    color: #e59d00;
-                                    font-size: 14px;
-                                    font-weight: 600;
-                                    text-transform: uppercase;
-                                }
+
+                            .label {
+                                width: 100%;
+                                height: auto;
+                                color: #e59d00;
+                                font-size: 14px;
+                                font-weight: 600;
+                                text-transform: uppercase;
                             }
                         }
                     }
                 }
+                
             }
         }
     }

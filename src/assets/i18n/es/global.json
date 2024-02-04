@@ -2,37 +2,10 @@
     "common": {
         "search": "Buscar",
         "notPageFoundMsg": "Ups, página no encontrada.",
-        "notFoundGoBackMsg": "Por favor vuelve a nuestra home para ver nuestro catálogo de apuestas y juegos."
-    },
-    "login": {
-        "title": "Login",
-        "email": "Correo electrónico",
-        "password": "Contraseña",
-        "loginBtn": "Entrar",
-        "forgotPassword": "¿Olvidaste tu contraseña?",
-        "noAccount": "¿aún no tienes cuenta en Coollections?",
-        "signup": "Date de alta",
-        "googleLogin": "Login con Google",
-        "metamaskLogin": "Login con Metamask",
-        "metaworldsLogin": "Login con Metaworlds"
-    },
-    "signup": {
-        "title": "Nueva cuenta",
-        "username": "Nombre de usuario",
-        "password": "Contraseña",
-        "repeatPassword": "Confirma contraseña",
-        "alias": "Alias",
-        "email": "Correo electrónico",
-        "signupBtn": "Crear cuenta",
-        "loginLink": "Volver a login",
-        "accountCreatedSuccessMsg": "Cuenta creada correctamente. Por favor revisa tu correo para activar tu cuenta."
-    },
-    "recoverPassword": {
-        "title": "Recuperar contraseña",
-        "email": "Correo electrónico",
-        "username": "Nombre de usuario",
-        "sendBtn": "Enviar",
-        "loginLink": "Volver a login"
+        "notFoundGoBackMsg": "Por favor vuelve a nuestra home para ver nuestro catálogo de apuestas y juegos.",
+        "loading": "Cargando",
+        "processing": "En proceso",
+        "collect": "Reclamar"
     },
     "navBar": {
         "menu": "Menú",
@@ -51,44 +24,54 @@
         "language_spanish": "Español",
         "language_english": "Inglés"
     },
-    "categories": {
-        "all": "Todos",
-        "leaders": "Líderes",
-        "troops": "Tropas",
-        "specialist": "Especialista",
-        "weapon": "Armas",
-        "cosmetics": "Cosméticos",
-        "resources": "Recursos"
+    "bets": {
+        "sectionTitle": "Apuestas",
+        "sectionSubtitle": "Elige la cantidad de tu apuesta y tu preducción para ganar ETH. ¡Puedes multiplicar tu premio hasta por 10!",
+        "amountHeader": "Cantidad",
+        "predictionHeader": "Predicción",
+        "multiplierHeader": "Multiplicador",
+        "resultHeader": "Resultado",
+        "even": "Par",
+        "odd": "Impar",
+        "newBetButton": "New Bet",
+        "confirmButton": "Confirmar",
+        "revealButton": "Revelar",
+        "win": "Win",
+        "lose": "Lose"
     },
-    "filter": {
-        "title": "Filtros",
-        "qualityFilter": {
-            "title": "Calidad",
-            "optionCommon": "Común",
-            "optionRare": "Raro",
-            "optionEpic": "Épico",
-            "optionLegendary": "Legendario"
-        },
-        "otherFilter": {
-            "title": "Otro filtro",
-            "optionA": "a",
-            "optionB": "b",
-            "optionC": "c",
-            "optionD": "d"
-        }  
+    "lottery": {
+        "sectionTitle": "Lotería",
+        "sectionSubtitle": "Compra tickets, espera al sorteo y comprueba los premios en ETH",
+        "jackpotButtonText": "Jackpot",
+        "getYourTickets": "Consigue tus tickets",
+        "prizePot": "Bote",
+        "tickets": "Tickets",
+        "ticket": "Ticket",
+        "draw": "Draw",
+        "buyNewTab": "Compra",
+        "ticketsTab": "Tus tickets",
+        "buyNewTabEmpty": "Los tickets seleccionados en el panel aparecerán aquí",
+        "ticketsTabEmpty": "Aquí aparecerán tus tickets comprados",
+        "removeTicketsButtonText": "Eliminar tickets",
+        "buyTicketsButtonText": "Comprar Tickets",
+        "infoMessageTransactionSent": "Transacción {{transactionNumber}} enviada.",
+        "successMessageTransactionConfirmed": "Transacción {{transactionNumber}} confirmada!",
+        "errorMessageMaxTickets": "No se pueden seleccionar más de 10 tickets a la vez."
     },
-    "itemList": {
-        "type": "Tipo",
-        "level": "Nivel",
-        "id": "ID"
+    "vault": {
+        "sectionTitle": "Invierte contra jugadores",
+        "vault": "Bóveda",
+        "liquidity": "Liquidez"
+    },
+    "footer": {
+        "copyright": "Copyright",
+        "rights": "Todos los derechos reservados por Boletux"
     },
     "successMessages": {
-        "recoverPasswordEmailSent": "Se ha enviado un email a la dirección introducida para confirmar. Por favor, revisa tu email (también la carpeta de spam) y haz click en el link para continuar con el proceso de recuperación de contraseña."
+        "recoverPasswordEmailSent": ""
     },
     "errorMessages": {
-        "requiredFields": "Todos los campos son obligatorios",
-        "requiredField": "Campo obligatorio",
-        "usernameNotMatch": "No se encuentra el nombre de usuario introducido o no coincide o el correo electrónico."
+        "requiredFields": "Todos los campos son obligatorios"
     }
 
 }

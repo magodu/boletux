@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import classes from './Vault.module.scss';
 
 import TabNavItem from '../../components/UI/Tabs/TabNavItem';
 import TabContent from '../../components/UI/Tabs/TabContent';
+import ContentBox from '../../components/UI/ContentBox/ContentBox';
 
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
 import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
-import boxHeaderYellowImg from '../../assets/images/box-wrapper-header-yellow.png';
-import boxFooterYellowImg from '../../assets/images/box-wrapper-footer-yellow.png';
-import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
-import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
 
 import { BsArrowLeft, BsArrowRight, BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
 
 const MIN_INPUT_VALUE = 0;
 const MAX_INPUT_VALUE = 200;
+const boxStyles = {
+    box: { width: '270px' },
+};
 
 const Vault: React.FC = () => {
+    const { t } = useTranslation();
+
     const [activeTab, setActiveTab] = useState<string>('add');
     const [addInputValue, setAddInputValue] = useState<number>(0);
     const [removeInputValue, setRemoveInputValue] = useState<number>(0);
@@ -55,7 +58,7 @@ const Vault: React.FC = () => {
             <div className={`${classes.title} container`}>
                 <div className="row">
                     <div className="col-lg-12">
-                        <h2>Invest against gamblers</h2>
+                        <h2>{t('vault.sectionTitle')}</h2>
                     </div>
                 </div>
             </div>
@@ -85,13 +88,9 @@ const Vault: React.FC = () => {
             <section className={classes['vault-section']}>
                 <div className={classes['vault-content']}>
                     <div className={classes.vault}>
-                        <div className={`${classes.box} ${classes['box-yellow']}`}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderYellowImg} alt="" />
-                                <div className={classes['box-title']}>Vault</div>
-                            </div>
-                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
-                                <div className={classes['progressbar-wrapper']}>
+                        <ContentBox type="special" title={t('vault.vault')} styles={boxStyles} >
+                            <div className={classes['box-wrapper']}>
+                            <div className={classes['progressbar-wrapper']}>
                                     <div className={classes.progressbar} data-perc="70%">
                                         <div className={classes.bar} style={{ width: '70%' }}></div>
                                     </div>
@@ -113,20 +112,14 @@ const Vault: React.FC = () => {
                                         <div className={classes.label}>Your Liquidity</div>
                                     </div>
                                 </div>
+
                             </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterYellowImg} alt="" />
-                            </div>
-                        </div>
+                        </ContentBox>
                     </div>
                     <div className={classes.liquidity}>
-                        <div className={classes.box}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderImg} alt="" />
-                                <div className={classes['box-title']}>Liquidity</div>
-                            </div>
-                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
-                                <form className={classes.form}>
+                        <ContentBox title={t('vault.vault')} styles={boxStyles} >
+                            <div className={classes['box-wrapper']}>
+                            <form className={classes.form}>
                                     <div className={classes['tabs-wrapper']}>
                                         <ul className={`nav nav-tabs ${classes.tabs}`} role="tablist">
                                             <TabNavItem title="Add" id="add" activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -171,11 +164,9 @@ const Vault: React.FC = () => {
                                         </button> 
                                     </div>
                                 </form>
+
                             </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterImg} alt="" />
-                            </div>
-                        </div>
+                        </ContentBox>
                     </div>
                 </div>
             </section>

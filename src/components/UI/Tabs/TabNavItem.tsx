@@ -2,9 +2,12 @@ import React from 'react';
 
 import classes from './TabNavItem.module.scss';
 
-const TabNavItem: React.FC<{ id: string; title: string; activeTab: string; setActiveTab: (id: string) => void }> = ({ id, title, activeTab, setActiveTab }) => {
+const TabNavItem: React.FC<{ id: string; title: string; activeTab: string; setActiveTab: (id: string) => void, onClick?: () => void }> = ({ id, title, activeTab, setActiveTab, onClick }) => {
     const handleClick = () => {
         setActiveTab(id);
+        if (onClick) {
+            onClick();
+        }
     };
 
     return (

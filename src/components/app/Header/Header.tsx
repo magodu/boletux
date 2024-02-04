@@ -3,7 +3,9 @@ import { useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ethers } from 'ethers';
 
-import faucetContract from "../../../ethereum/faucet";
+import { ToastEventChannel } from '../../eventChannels/ToastEventChannel';
+
+import connectContract from "../../../ethereum/connect";
 
 import { BoletuxContext } from '../../../store/boletux-context';
 
@@ -14,7 +16,7 @@ import { twitterUrl, discordUrl } from '../../../constants';
 import { BsTwitter as TwitterIcon } from 'react-icons/bs';
 import { BsDiscord as DiscordIcon } from 'react-icons/bs';
 import { BiChevronDown } from 'react-icons/bi';
-import { RiLogoutCircleLine } from "react-icons/ri";
+// import { RiLogoutCircleLine } from "react-icons/ri";
 
 import logoImg from '../../../assets/images/boletux-logo-text-white.png';
 import esLangImg from '../../../assets/images/es.svg';
@@ -28,7 +30,7 @@ interface languageMenu {
 
 const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void }> = ({ data, onChangeLanguage }) => {
     const [menuOpened, setMenuOpened] = useState<boolean>(false);
-    const [disconnectMenuOpened, setDisconnectMenuOpened] = useState<boolean>(false);
+    // const [disconnectMenuOpened, setDisconnectMenuOpened] = useState<boolean>(false);
     const [windowHeight, setWindowHeight] = useState<number>(0);
     const [open, setOpen] = useState<string>('');
     const { isLoggedIn, language, setLanguageHandler, setLoggedUser } = useContext(BoletuxContext);
@@ -36,9 +38,6 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
     const [walletAddress, setWalletAddress] = useState<any>('');
     const [signer, setSigner] = useState<any>();
     const [fcContract, setFcContract] = useState<any>();
-    const [withdrawError, setWithdrawError] = useState<any>('');
-    const [withdrawSuccess, setWithdrawSuccess] = useState<any>('');
-    const [transactionData, setTransactionData] = useState<any>('');
 
     const { t } = useTranslation();
 
@@ -90,12 +89,14 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                     /* get signer */
                     setSigner(provider.getSigner());
                     /* local contract instance */
-                    setFcContract(faucetContract(provider));
+                    setFcContract(connectContract(provider));
                     /* set active wallet address */
                     setWalletAddress(accounts[0]);
                     /* store log value in context */
                     setLoggedUser(true);
-                } catch (err) {
+                    ToastEventChannel.emit('onSendToast', { type: 'success', message: 'Wallet connected' });
+
+                } catch (err: any) {
                     console.error(err.message);
                     setLoggedUser(false);
                 }
@@ -118,7 +119,7 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                     /* get signer */
                     setSigner(provider.getSigner());
                     /* local contract instance */
-                    setFcContract(faucetContract(provider));
+                    setFcContract(connectContract(provider));
                     /* set active wallet address */
                     setWalletAddress(accounts[0]);
 
@@ -231,7 +232,7 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
                         <div className="col-sm-6">
                             <div className={`${classes.left} d-flex align-items-center`}>
                                 <div className={classes.language}>
-                                    <Link to="" title="Language">
+                                    <Link to={void 0} title="Language">
                                         <span>{t(`navBar.${language}`)}</span>
                                     </Link>
                                     <ul className={classes['languages-sub-menu']}>

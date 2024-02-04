@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Countdown from '../../components/app/Countdown/Countdown';
 import TabNavItem from '../../components/UI/Tabs/TabNavItem';
 import TabContent from '../../components/UI/Tabs/TabContent';
+import ContentBox from '../../components/UI/ContentBox/ContentBox';
 
 import classes from './Prizes.module.scss';
 
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
 import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
-import boxHeaderYellowImg from '../../assets/images/box-wrapper-header-yellow.png';
-import boxFooterYellowImg from '../../assets/images/box-wrapper-footer-yellow.png';
-import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
-import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
 import { BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
 
 import { setLotteryDate } from '../../utils';
 import { weekDays } from '../../models/appTypes';
 
+const boxStyles = {
+    box: { width: '260px' },
+    'box-title': { fontSize: '20px' }
+};
+
 const Prizes: React.FC = () => {
+    const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState('prize');
     const weeklyRewardsCountdown = setLotteryDate(weekDays.sunday, 21);
     const lotteryCountdown = setLotteryDate(weekDays.sunday, 21);
@@ -80,12 +84,8 @@ const Prizes: React.FC = () => {
             <section className={classes['prizes-section']}>
                 <div className={classes['prizes-content']}>
                     <div className={classes.incentives}>
-                        <div className={`${classes.box} ${classes['box-yellow']}`}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderYellowImg} alt="" />
-                                <div className={classes['box-title']}>Incentives program</div>
-                            </div>
-                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
+                        <ContentBox type="special" title="Incentives program" styles={boxStyles} >
+                            <div className={classes['box-wrapper']}>
                                 <div className={classes['box-value-wrapper']}>
                                         <div className={classes['box-value']}>
                                             <div className={classes.value}>1.2</div>
@@ -99,18 +99,11 @@ const Prizes: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterYellowImg} alt="" />
-                            </div>
-                        </div>
+                        </ContentBox>
                     </div>
                     <div className={classes.rewards}>
-                        <div className={`${classes.box} ${classes['box-yellow']}`}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderYellowImg} alt="" />
-                                <div className={classes['box-title']}>Weekly rewards</div>
-                            </div>
-                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
+                        <ContentBox type="special" title="Weekly rewards" styles={boxStyles} >
+                            <div className={classes['box-wrapper']}>
                                 <div className={classes['box-value-wrapper']}>
                                         <div className={classes['box-value']}>
                                             <div className={classes.value}>1.45</div>
@@ -126,19 +119,12 @@ const Prizes: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterYellowImg} alt="" />
-                            </div>
-                        </div>
+                        </ContentBox>
                     </div>
                     <div className={classes.jackpot}>
-                        <div className={classes.box}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderImg} alt="" />
-                                <div className={classes['box-title']}>Lottery jackpot</div>
-                            </div>
-                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
-                                <div className={classes['tabs-wrapper']}>
+                        <ContentBox title="Lottery jackpot" styles={boxStyles} >
+                            <div className={classes['box-wrapper']}>
+                            <div className={classes['tabs-wrapper']}>
                                     <ul className={`nav nav-tabs ${classes.tabs}`} role="tablist">
                                         <TabNavItem title="Prize pot" id="prize" activeTab={activeTab} setActiveTab={setActiveTab} />
                                         <TabNavItem title="Your tickets" id="tickets" activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -174,10 +160,7 @@ const Prizes: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterImg} alt="" />
-                            </div>
-                        </div>
+                        </ContentBox>
                     </div>
                 </div>
             </section>

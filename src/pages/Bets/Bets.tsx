@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import Spinner from '../../components/UI/Spinner/Spinner';
+
 import classes from './Bets.module.scss';
+
+import { criptocurrency } from '../../constants';
+import { ActionReducerType } from '../..//models/appTypes';
 
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
 import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
@@ -11,63 +16,144 @@ import betStepsImg from '../../assets/images/bet-steps.png';
 
 import { BsArrowLeft, BsArrowRight, BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
 
+const betOptions = [
+    {
+        id: 'option1',
+        betValue: 0.005,
+        betText: '0,005',
+    },
+    {
+        id: 'option2',
+        betValue: 0.025,
+        betText: '0,025',
+    },
+    {
+        id: 'option3',
+        betValue: 0.1,
+        betText: '0,1',
+    },
+    {
+        id: 'option4',
+        betValue: 0.25,
+        betText: '0,25',
+    },
+];
+
+interface ReducerState {
+    isLoading: boolean;
+    step: string;
+    bet: string;
+    evenOdd: string;
+    betCompleted: boolean;
+    multiplier: string;
+    result: any;
+    showResult: boolean;
+}
+
+const initialState = {
+    isLoading: false,
+    step: 1,
+    bet: '',
+    evenOdd: '',
+    betCompleted: false,
+    multiplier: '?',
+    result: null,
+    showResult: false,
+};
+
+const betsReducer = (state: ReducerState, action: ActionReducerType) => {
+    const { type } = action;
+    switch (type) {
+        case 'SET_LOADING':
+            return { ...state, isLoading: action.value };
+        case 'SET_STEP':
+            return { ...state, step: action.value };
+        case 'SET_BET':
+            return { ...state, bet: action.value };
+        case 'SET_EVEN_ODD':
+            return { ...state, evenOdd: action.value };
+        case 'SET_BET_COMPLETED':
+            return { ...state, betCompleted: action.value };
+        case 'SET_MULTIPLIER':
+            return { ...state, multiplier: action.value };
+        case 'SET_RESULT':
+            return { ...state, result: action.value };
+        case 'SET_SHOW_RESULT':
+            return { ...state, showResult: action.value };
+        case 'RESET':
+            return { ...state, ...initialState };
+        default:
+            return state;
+    }
+};
+
 const Bets: React.FC = () => {
     const { t } = useTranslation();
-    const [step, setStep] = useState<number>(1);
-    const [bet, setBet] = useState<string>('');
-    const [evenOdd, setEvenOdd] = useState<string>('');
-    const [betCompleted, setBetCompleted] = useState<boolean>(false);
-    const [multiplier, setMultiplier] = useState<string>('?');
-    // const [claimCompleted, setClaimCompleted] = useState<boolean>(false);
-    const [result, setResult] = useState<any>(null);
-    const [showResult, setShowResult] = useState<boolean>(false);
+    const [state, dispatch] = useReducer(betsReducer, initialState);
+    const { isLoading, step, bet, evenOdd, betCompleted, multiplier, result, showResult } = state;
 
     const changeBet = (event: any) => {
         if (step === 1) {
-            setBet(event.target.value);
-            setStep(2);
+            dispatch({ type: 'SET_BET', value: event.target.value });
+            dispatch({ type: 'SET_STEP', value: 2 });
         }
     };
 
     const changeEvenOdd = (event: any) => {
         if (step === 2) {
-            setEvenOdd(event.target.value);
-            setStep(3);
+            dispatch({ type: 'SET_EVEN_ODD', value: event.target.value });
+            dispatch({ type: 'SET_STEP', value: 3 });  
         }
     };
 
     const confirmBet = () => {
         if (step === 3) {
             console.log('Place bet', bet, evenOdd);
-            setBetCompleted(true);
+            dispatch({ type: 'SET_BET_COMPLETED', value: true });
+            dispatch({ type: 'SET_LOADING', value: true });
             // Connect to metamask or check if is connected
             // Check result and then
+            const result = 'odd';
             const mockResult = {
                 multiplier: '3',
-                evenOdd: 'even',
-                evenOddValue: '4',
+                evenOdd: t(`bets.${result}`),
                 isWinner: true,
                 winAmount: 12,
             };
 
             setTimeout(() => {
-                setMultiplier(mockResult.multiplier);
-                setResult(mockResult);
-                setStep((prevStep) => prevStep + 1);
+                dispatch({ type: 'SET_MULTIPLIER', value: mockResult.multiplier });  
+                dispatch({ type: 'SET_RESULT', value: mockResult });  
+                dispatch({ type: 'SET_STEP', value: state.step + 1 });  
+                dispatch({ type: 'SET_LOADING', value: false });
             }, 1000);
         }
     };
 
     const revealBetResult = () => {
-        setShowResult(true);
+        dispatch({ type: 'SET_SHOW_RESULT', value: true });
+    };
+
+    const goStepBack = () => {
+        if (step === 2 || step === 3) {
+            dispatch({ type: 'SET_STEP', value: state.step - 1 });
+        }
+    };
+
+    const goStepForward = () => {
+        if (bet && evenOdd && step < 3) {
+            dispatch({ type: 'SET_STEP', value: state.step + 1 });
+        }
     };
 
     const collectAwards = () => {
-        console.log('Collect awwards method');
+        console.log('Collect awards method');
     };
 
     const newBet = () => {
-        console.log('New bet');
+        if (showResult) {
+            dispatch({ type: 'RESET', value: '' });
+        }
     };
 
     const navigateTo = (where: string) => {
@@ -75,257 +161,86 @@ const Bets: React.FC = () => {
     };
 
     return (
-        <div className={classes['bets-wrapper']}>
-            <div className={classes['bg-shape']}>
-                <img src={roundShapeBgImg} alt="" />
-            </div>
-            <div className={`${classes.title} container`}>
-                <div className="row">
-                    <div className="col-lg-12">
-                        <h2>Bets</h2>
-                    </div>
+        <>
+            {isLoading && <Spinner message={t('common.processing')} />}
+            <div className={classes['bets-wrapper']}>
+                <div className={classes['bg-shape']}>
+                    <img src={roundShapeBgImg} alt="" />
                 </div>
-            </div>
-
-            <section className={classes['actions-section']}>
-                <div className="container">
-                    <div className={`${classes.actions} row mb-none-30`}>
-                        <div className={classes['collect-wrapper']}>
-                            <div className={classes.collect}>
-                                <div className={classes.image}>
-                                    <img src={ethereumLogoImg} alt="" />
-                                </div>
-                                <div className={classes.amount}>
-                                    <span className={classes.value}>56</span>
-                                    <button onClick={() => collectAwards()}>Collect</button>
-                                </div>
-                            </div>
+                <div className={`${classes.title} container`}>
+                    <div className={`${classes.row} row`}>
+                        <div className="col-lg-12">
+                            <h2>{t('bets.sectionTitle')}</h2>
                         </div>
-                        <div className={classes['steps-wrapper']}>
-                            <div className={classes.steps}>
-                                <img src={betStepsImg} alt="" />
-                                <div className={`${classes['left-arrow']} ${false ? classes.active : ''}`}>
-                                    <BsArrowLeft />
-                                </div>
-                                <div className={`${classes['right-arrow']} ${false ? classes.active : ''}`}>
-                                    <BsArrowRight />
-                                </div>
-                            </div>
-                        </div>
-                        <div className={classes.buttons}>
-                            <button className={`${classes['new-bet']} ${true ? classes.active : ''}`} onClick={() => newBet()}>
-                                New Bet
-                            </button>
-                            <button className={classes.info} onClick={() => navigateTo('info')}>
-                                <BsQuestionCircle />
-                            </button>
-                            <button className={classes.stats} onClick={() => navigateTo('stats')}>
-                                <BsGraphUpArrow />
-                            </button>
+                    </div>
+                    <div className={`${classes.row} row`}>
+                        <div className="col-lg-12">
+                            <p className={classes.subtitle}>{t('bets.sectionSubtitle')}</p>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <section className={classes['bets-section']}>
-                <div className={classes['bets-content']}>
-                    <div className={classes['bet-step']}>
-                        <div className={`${classes.box} ${step === 1 ? classes['active-step'] : ''} ${step !== 1 ? classes.disabled : ''}`}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderImg} alt="" />
-                                <div className={classes['box-title']}>Amount</div>
-                            </div>
-                            <div className={classes.content}>
-                                <div className={classes['form-wrapper']}>
-                                    <form className={classes.form}>
-                                        <ul className={classes['bets-amount']}>
-                                            <li>
-                                                <input type="radio" name="bet" value="0.25" id="option1" checked={bet === '0.25'} onChange={(event) => changeBet(event)} />
-                                                <label htmlFor="option1">
-                                                    <div className={classes.number}>0,25</div>
-                                                    <div className={classes.currency}>ETH</div>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="bet" value="0.5" id="option2" checked={bet === '0.5'} onChange={(event) => changeBet(event)} />
-                                                <label htmlFor="option2">
-                                                    <div className={classes.number}>0,5</div>
-                                                    <div className={classes.currency}>ETH</div>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="bet" value="0.75" id="option3" checked={bet === '0.75'} onChange={(event) => changeBet(event)} />
-                                                <label htmlFor="option3">
-                                                    <div className={classes.number}>0,75</div>
-                                                    <div className={classes.currency}>ETH</div>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="bet" value="1" id="option4" checked={bet === '1'} onChange={(event) => changeBet(event)} />
-                                                <label htmlFor="option4">
-                                                    <div className={classes.number}>1</div>
-                                                    <div className={classes.currency}>ETH</div>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </form>
-                                </div>
-                            </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterImg} alt="" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className={classes['bet-step']}>
-                        <div className={`${classes.box} ${step === 2 ? classes['active-step'] : ''} ${step !== 2 ? classes.disabled : ''}`}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderImg} alt="" />
-                                <div className={classes['box-title']}>Prediction</div>
-                            </div>
-                            <div className={classes.content}>
-                                <div className={classes['form-wrapper']}>
-                                    <form className={classes.form}>
-                                        <ul className={classes['bets-prediction']}>
-                                            <li>
-                                                <input type="radio" name="bet" value="even" id="even" checked={evenOdd === 'even'} onChange={(event) => changeEvenOdd(event)} />
-                                                <label htmlFor="even">
-                                                    <div className={classes['even-odd-title']}>Even</div>
-                                                    <div className={classes.balls}>
-                                                        <div className={classes.ball}>0</div>
-                                                        <div className={classes.ball}>2</div>
-                                                        <div className={classes.ball}>4</div>
-                                                        <div className={classes.ball}>6</div>
-                                                        <div className={classes.ball}>8</div>
-                                                    </div>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="bet" value="odd" id="odd" checked={evenOdd === 'odd'} onChange={(event) => changeEvenOdd(event)} />
-                                                <label htmlFor="odd">
-                                                    <div className={classes['even-odd-title']}>Odd</div>
-                                                    <div className={classes.balls}>
-                                                        <div className={classes.ball}>1</div>
-                                                        <div className={classes.ball}>3</div>
-                                                        <div className={classes.ball}>5</div>
-                                                        <div className={classes.ball}>7</div>
-                                                        <div className={classes.ball}>9</div>
-                                                    </div>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </form>
-                                </div>
-                            </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterImg} alt="" />
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div className={classes['bet-step']}>
-                        <div className={`${classes.box} ${step === 3 ? classes['active-step'] : ''} ${step !== 3 ? classes.disabled : ''}`}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderImg} alt="" />
-                                <div className={classes['box-title']}>Multiplier</div>
-                            </div>
-                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
-                                <div className={`${classes['box-result']} ${multiplier !== '?' ? classes['show-result-box'] : ''}`}>{multiplier}</div>
-                                {multiplier === '?' && (
-                                    <div className={classes['form-wrapper']}>
-                                        <form className={`${classes.form} ${classes.flex}`}>
-                                            <button type="button" className={classes.large} disabled={bet === '' || evenOdd === ''} onClick={(e) => confirmBet()}>
-                                                Confirm & Spin
-                                            </button>
-                                        </form>
+                <section className={classes['actions-section']}>
+                    <div className="container">
+                        <div className={`${classes.actions} row mb-none-30`}>
+                            <div className={classes['collect-wrapper']}>
+                                <div className={classes.collect}>
+                                    <div className={classes.image}>
+                                        <img src={ethereumLogoImg} alt="" />
                                     </div>
-                                )}
+                                    <div className={classes.amount}>
+                                        <span className={classes.value}>xx</span>
+                                        <button onClick={() => collectAwards()}>{t('common.collect')}</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterImg} alt="" />
+                            <div className={classes['steps-wrapper']}>
+                                <div className={classes.steps}>
+                                    <img src={betStepsImg} alt="" />
+                                    <div className={`${classes['left-arrow']} ${step === 2 || step === 3 ? classes.active : ''}`} onClick={() => goStepBack()} >
+                                        <BsArrowLeft />
+                                    </div>
+                                    <div className={`${classes['right-arrow']} ${step < 3 ? classes.active : ''}`} onClick={() => goStepForward()}>
+                                        <BsArrowRight />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div className={classes['bet-step']}>
-                        <div className={`${classes.box} ${step === 4 ? classes['active-step'] : ''} ${step !== 4 ? classes.disabled : ''}`}>
-                            <div className={classes.header}>
-                                <img src={boxHeaderImg} alt="" />
-                                <div className={classes['box-title']}>result</div>
-                            </div>
-                            <div className={`${classes.content} ${classes['box-wrapper']}`}>
-                                {!showResult ? (
-                                    <>
-                                        <div className={classes['box-result']}>?</div>
-                                        <div className={classes['form-wrapper']}>
-                                            <form className={`${classes.form} ${classes.flex}`}>
-                                                <button type="button" className={classes.large} disabled={!result} onClick={() => revealBetResult()}>
-                                                    Reveal
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <>
-                                        <div className={`${classes['box-result']} ${classes['show-result-box']}`}>
-                                            <div className={classes['final-step-wrapper']}>
-                                                <div className={classes['even-odd-value']}>{result.evenOdd}</div>
-                                                <div className={classes.value}>{result.evenOddValue}</div>
-                                            </div>
-                                        </div>
-                                        <div className={classes['win-lose-wrapper']}>
-                                            <div className={`${classes['win-lose-box']} ${result.isWinner ? classes.active : ''}`}>Win</div>
-                                            <div className={`${classes['win-lose-box']} ${!result.isWinner ? classes.active : ''}`}>Lose</div>
-                                        </div>
-                                    </>
-                                )}
-                            </div>
-                            <div className={classes.footer}>
-                                <img src={boxFooterImg} alt="" />
+                            <div className={classes.buttons}>
+                                <button className={`${classes['new-bet']} ${showResult ? classes.active : ''}`} onClick={() => newBet()}>
+                                    {t('bets.newBetButton')}
+                                </button>
+                                <button className={classes.info} onClick={() => navigateTo('info')}>
+                                    <BsQuestionCircle />
+                                </button>
+                                <button className={classes.stats} onClick={() => navigateTo('stats')}>
+                                    <BsGraphUpArrow />
+                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-             {/*    <div className="container">
-                    <div className="row mb-none-30">
-                        <div className="col-lg-3 mb-30">
+                <section className={classes['bets-section']}>
+                    <div className={classes['bets-content']}>
+                        <div className={classes['bet-step']}>
                             <div className={`${classes.box} ${step === 1 ? classes['active-step'] : ''} ${step !== 1 ? classes.disabled : ''}`}>
                                 <div className={classes.header}>
                                     <img src={boxHeaderImg} alt="" />
-                                    <div className={classes['box-title']}>Amount</div>
+                                    <div className={classes['box-title']}>{t('bets.amountHeader')}</div>
                                 </div>
                                 <div className={classes.content}>
                                     <div className={classes['form-wrapper']}>
                                         <form className={classes.form}>
                                             <ul className={classes['bets-amount']}>
-                                                <li>
-                                                    <input type="radio" name="bet" value="0.25" id="option1" checked={bet === '0.25'} onChange={(event) => changeBet(event)} />
-                                                    <label htmlFor="option1">
-                                                        <div className={classes.number}>0,25</div>
-                                                        <div className={classes.currency}>ETH</div>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <input type="radio" name="bet" value="0.5" id="option2" checked={bet === '0.5'} onChange={(event) => changeBet(event)} />
-                                                    <label htmlFor="option2">
-                                                        <div className={classes.number}>0,5</div>
-                                                        <div className={classes.currency}>ETH</div>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <input type="radio" name="bet" value="0.75" id="option3" checked={bet === '0.75'} onChange={(event) => changeBet(event)} />
-                                                    <label htmlFor="option3">
-                                                        <div className={classes.number}>0,75</div>
-                                                        <div className={classes.currency}>ETH</div>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <input type="radio" name="bet" value="1" id="option4" checked={bet === '1'} onChange={(event) => changeBet(event)} />
-                                                    <label htmlFor="option4">
-                                                        <div className={classes.number}>1</div>
-                                                        <div className={classes.currency}>ETH</div>
-                                                    </label>
-                                                </li>
+                                                {betOptions.map((elem: any) => (
+                                                    <li key={elem.id}>
+                                                        <input type="radio" name="bet" value={elem.betValue} id={elem.id} checked={bet === elem.betValue.toString() } onChange={(event) => changeBet(event)} />
+                                                        <label htmlFor={elem.id}>
+                                                            <div className={classes.number}>{elem.betText}</div>
+                                                            <div className={classes.currency}>{criptocurrency}</div>
+                                                        </label>
+                                                    </li>
+                                                ))}
                                             </ul>
                                         </form>
                                     </div>
@@ -335,11 +250,11 @@ const Bets: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 mb-30">
+                        <div className={classes['bet-step']}>
                             <div className={`${classes.box} ${step === 2 ? classes['active-step'] : ''} ${step !== 2 ? classes.disabled : ''}`}>
                                 <div className={classes.header}>
                                     <img src={boxHeaderImg} alt="" />
-                                    <div className={classes['box-title']}>Prediction</div>
+                                    <div className={classes['box-title']}>{t('bets.amountHeader')}</div>
                                 </div>
                                 <div className={classes.content}>
                                     <div className={classes['form-wrapper']}>
@@ -348,27 +263,13 @@ const Bets: React.FC = () => {
                                                 <li>
                                                     <input type="radio" name="bet" value="even" id="even" checked={evenOdd === 'even'} onChange={(event) => changeEvenOdd(event)} />
                                                     <label htmlFor="even">
-                                                        <div className={classes['even-odd-title']}>Even</div>
-                                                        <div className={classes.balls}>
-                                                            <div className={classes.ball}>0</div>
-                                                            <div className={classes.ball}>2</div>
-                                                            <div className={classes.ball}>4</div>
-                                                            <div className={classes.ball}>6</div>
-                                                            <div className={classes.ball}>8</div>
-                                                        </div>
+                                                        <div className={classes['even-odd-title']}>{t('bets.even')}</div>
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <input type="radio" name="bet" value="odd" id="odd" checked={evenOdd === 'odd'} onChange={(event) => changeEvenOdd(event)} />
                                                     <label htmlFor="odd">
-                                                        <div className={classes['even-odd-title']}>Odd</div>
-                                                        <div className={classes.balls}>
-                                                            <div className={classes.ball}>1</div>
-                                                            <div className={classes.ball}>3</div>
-                                                            <div className={classes.ball}>5</div>
-                                                            <div className={classes.ball}>7</div>
-                                                            <div className={classes.ball}>9</div>
-                                                        </div>
+                                                        <div className={classes['even-odd-title']}>{t('bets.odd')}</div>
                                                     </label>
                                                 </li>
                                             </ul>
@@ -380,19 +281,22 @@ const Bets: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 mb-30">
+                        
+                        <div className={classes['bet-step']}>
                             <div className={`${classes.box} ${step === 3 ? classes['active-step'] : ''} ${step !== 3 ? classes.disabled : ''}`}>
                                 <div className={classes.header}>
                                     <img src={boxHeaderImg} alt="" />
-                                    <div className={classes['box-title']}>Multiplier</div>
+                                    <div className={classes['box-title']}>{t('bets.multiplierHeader')}</div>
                                 </div>
                                 <div className={`${classes.content} ${classes['box-wrapper']}`}>
-                                    <div className={`${classes['box-result']} ${multiplier !== '?' ? classes['show-result-box'] : ''}`}>{multiplier}</div>
+                                    <div className={`${classes['box-result']} ${multiplier !== '?' ? classes['show-result-box'] : ''}`}>
+                                        {multiplier !== '?' && (<span className={classes.multiplier}>x</span>)}{multiplier}
+                                    </div>
                                     {multiplier === '?' && (
                                         <div className={classes['form-wrapper']}>
                                             <form className={`${classes.form} ${classes.flex}`}>
                                                 <button type="button" className={classes.large} disabled={bet === '' || evenOdd === ''} onClick={(e) => confirmBet()}>
-                                                    Confirm & Spin
+                                                    {t('bets.confirmButton')}
                                                 </button>
                                             </form>
                                         </div>
@@ -403,11 +307,12 @@ const Bets: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 mb-30">
+                        
+                        <div className={classes['bet-step']}>
                             <div className={`${classes.box} ${step === 4 ? classes['active-step'] : ''} ${step !== 4 ? classes.disabled : ''}`}>
                                 <div className={classes.header}>
                                     <img src={boxHeaderImg} alt="" />
-                                    <div className={classes['box-title']}>result</div>
+                                    <div className={classes['box-title']}>{t('bets.resultHeader')}</div>
                                 </div>
                                 <div className={`${classes.content} ${classes['box-wrapper']}`}>
                                     {!showResult ? (
@@ -416,7 +321,7 @@ const Bets: React.FC = () => {
                                             <div className={classes['form-wrapper']}>
                                                 <form className={`${classes.form} ${classes.flex}`}>
                                                     <button type="button" className={classes.large} disabled={!result} onClick={() => revealBetResult()}>
-                                                        Reveal
+                                                        {t('bets.revealButton')}
                                                     </button>
                                                 </form>
                                             </div>
@@ -426,12 +331,11 @@ const Bets: React.FC = () => {
                                             <div className={`${classes['box-result']} ${classes['show-result-box']}`}>
                                                 <div className={classes['final-step-wrapper']}>
                                                     <div className={classes['even-odd-value']}>{result.evenOdd}</div>
-                                                    <div className={classes.value}>{result.evenOddValue}</div>
                                                 </div>
                                             </div>
                                             <div className={classes['win-lose-wrapper']}>
-                                                <div className={`${classes['win-lose-box']} ${result.isWinner ? classes.active : ''}`}>Win</div>
-                                                <div className={`${classes['win-lose-box']} ${!result.isWinner ? classes.active : ''}`}>Lose</div>
+                                                <div className={`${classes['win-lose-box']} ${result.isWinner ? classes.active : ''}`}>{t('bets.win')}</div>
+                                                <div className={`${classes['win-lose-box']} ${!result.isWinner ? classes.active : ''}`}>{t('bets.lose')}</div>
                                             </div>
                                         </>
                                     )}
@@ -442,9 +346,9 @@ const Bets: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                </div> */}
-            </section>
-        </div>
+                </section>
+            </div>
+        </>
     );
 };
 
