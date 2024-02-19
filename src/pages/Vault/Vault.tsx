@@ -11,9 +11,12 @@ import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.p
 import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
 
 import { BsArrowLeft, BsArrowRight, BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
+import { RxExternalLink } from "react-icons/rx";
 
 const MIN_INPUT_VALUE = 0;
 const MAX_INPUT_VALUE = 200;
+const VAULT_CAPACITY_VALUE = '50 BLTX';
+
 const boxStyles = {
     box: { width: '270px' },
 };
@@ -55,13 +58,6 @@ const Vault: React.FC = () => {
             <div className={classes['bg-shape']}>
                 <img src={roundShapeBgImg} alt="" />
             </div>
-            <div className={`${classes.title} container`}>
-                <div className="row">
-                    <div className="col-lg-12">
-                        <h2>{t('vault.sectionTitle')}</h2>
-                    </div>
-                </div>
-            </div>
 
             <section className={classes['actions-section']}>
                 <div className="container">
@@ -73,7 +69,7 @@ const Vault: React.FC = () => {
                                 </div>
                                 <div className={classes.amount}>
                                     <span className={classes.value}>56</span>
-                                    <button onClick={() => collectAwards()}>Collect</button>
+                                    <button onClick={() => collectAwards()}>{t('common.collect')}</button>
                                 </div>
                             </div>
                         </div>
@@ -94,22 +90,22 @@ const Vault: React.FC = () => {
                                     <div className={classes.progressbar} data-perc="70%">
                                         <div className={classes.bar} style={{ width: '70%' }}></div>
                                     </div>
-                                    <p className="mb-2">Max capacity: 30 BLTX</p>
+                                    <p className="mb-2">{t('vault.capacity')} {VAULT_CAPACITY_VALUE}</p>
                                 </div>
                                 <div className={classes['vault-data-wrapper']}>
                                     <div className={classes['vault-data-box']}>
                                         <div className={classes.value}>21.3%</div>
-                                        <div className={classes.label}>APR</div>
+                                        <div className={classes.label}>{t('vault.totalETH')}</div>
                                     </div>
                                     <div className={`${classes['vault-data-box']}`}>
                                         <div className={classes.value}>0.95</div>
-                                        <div className={classes.label}>Price</div>
+                                        <div className={classes.label}>{t('vault.price')}</div>
                                     </div>
                                 </div>
                                 <div className={classes['box-vault']}>
                                     <div className={classes['user-liquidity-wrapper']}>
                                         <div className={classes.value}>0.0 BLTX</div>
-                                        <div className={classes.label}>Your Liquidity</div>
+                                        <div className={classes.label}>{t('vault.your_liquidity')}</div>
                                     </div>
                                 </div>
 
@@ -117,13 +113,13 @@ const Vault: React.FC = () => {
                         </ContentBox>
                     </div>
                     <div className={classes.liquidity}>
-                        <ContentBox title={t('vault.vault')} styles={boxStyles} >
+                        <ContentBox title={t('vault.liquidity')} styles={boxStyles} >
                             <div className={classes['box-wrapper']}>
                             <form className={classes.form}>
                                     <div className={classes['tabs-wrapper']}>
                                         <ul className={`nav nav-tabs ${classes.tabs}`} role="tablist">
-                                            <TabNavItem title="Add" id="add" activeTab={activeTab} setActiveTab={setActiveTab} />
-                                            <TabNavItem title="Remove" id="remove" activeTab={activeTab} setActiveTab={setActiveTab} />
+                                            <TabNavItem title={t('vault.add_tab')} id="add" activeTab={activeTab} setActiveTab={setActiveTab} />
+                                            <TabNavItem title={t('vault.remove_tab')} id="remove" activeTab={activeTab} setActiveTab={setActiveTab} />
                                         </ul>
                                     </div>
                                     <div className={classes['tabs-content']}>
@@ -160,7 +156,7 @@ const Vault: React.FC = () => {
                                     </div>
                                     <div className={classes.buttons}>
                                         <button type="button" className={classes.large} disabled={true} onClick={() => confirm()}>
-                                            Confirm
+                                            {t('vault.confirm_btn')}
                                         </button> 
                                     </div>
                                 </form>
@@ -170,6 +166,32 @@ const Vault: React.FC = () => {
                     </div>
                 </div>
             </section>
+
+            <section className={classes['instructions-section']}>
+                    <div className={classes.content}>
+                        <h3 className={classes.title}>{t('vault.instructions_title')}</h3>
+                        <div className={classes['instructions-wrapper']}>                             
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('vault.instructions_step')} 1</div>
+                                <div className={classes.title}>{t('vault.instructions_step1_title')}</div>
+                                <div className={classes.text}>{t('vault.instructions_step1_text')}</div>
+                            </div>
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('vault.instructions_step')} 2</div>
+                                <div className={classes.title}>{t('vault.instructions_step2_title')}</div>
+                                <div className={classes.text}>{t('vault.instructions_step2_text')}</div>
+                            </div>
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('vault.instructions_step')} 3</div>
+                                <div className={classes.title}>{t('vault.instructions_step3_title')}</div>
+                                <div className={classes.text}>{t('vault.instructions_step3_text')}</div>
+                            </div>
+                        </div>
+                        <div className={classes['detail-link']}>
+                            <a href="https://boletux.gitbook.io/docs/v/espa/real-yield-investments/vault" target="_blank">{t('bets.instructions_details_link')} <RxExternalLink /></a>
+                        </div>
+                    </div>
+                </section>
         </div>
     );
 };

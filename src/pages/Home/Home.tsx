@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import e1BgImg from '../../assets/images/background/hero-2-e1.png';
 import e2BgImg from '../../assets/images/background/hero-2-e2.png';
@@ -7,8 +8,6 @@ import e3BgImg from '../../assets/images/background/hero-2-e3.png';
 import e4BgImg from '../../assets/images/background/hero-2-e4.png';
 import e5BgImg from '../../assets/images/background/hero-2-e5.png';
 import shapeBgImg from '../../assets/images/background/hero-3-shape.png';
-import roundShapeBgImg from '../../assets/images/background/round-shape-3.png';
-import contestBgImg from '../../assets/images/background/contest-bg.png';
 import animation1Img from '../../assets/images/home-animation/home01.png';
 import animation2Img from '../../assets/images/home-animation/home02.png';
 import animation3Img from '../../assets/images/home-animation/home03.png';
@@ -24,7 +23,8 @@ import vaultImgOn from '../../assets/images/options/vault_on.png';
 import vaultImgOff from '../../assets/images/options/vault_off.png';
 import nftsImgOn from '../../assets/images/options/nfts_on.png';
 import nftsImgOff from '../../assets/images/options/nfts_off.png';
-import nftImg from '../../assets/images/NFT-animated.gif';
+import coinTrunkImg from '../../assets/images/coin-trunk.png';
+
 
 import classes from './Home.module.scss';
 
@@ -53,6 +53,7 @@ const hoverImages = {
 };
 
 const Home: React.FC = () => {
+    const { t } = useTranslation();
     const [ hoverImagesData, setHoverImagesData ] = useState<any>(hoverImages);
 
     const changeImage = (imageId: string, action: string) => {
@@ -67,9 +68,9 @@ const Home: React.FC = () => {
                     <div className={classes['shape-left']}>
                         <img src={shapeBgImg} alt="round shape 3" />
                     </div>
-                    <div className={classes['shape']}>
+                 {/*    <div className={classes['shape']}>
                         <img src={roundShapeBgImg} alt="" />
-                    </div>
+                    </div> */}
                     <div className={classes['hero-e1']}>
                         <img src={e1BgImg} alt="" />
                     </div>
@@ -89,9 +90,9 @@ const Home: React.FC = () => {
                         <div className="row justify-content-center justify-content-lg-start">
                             <div className="col-xl-8 col-lg-8 col-md-12">
                                 <div className={classes.content}>
-                                    <div className={classes.subtitle}>Gambling & Real Yield</div>
-                                    <h2 className={classes.title}>Choose your option to win</h2>
-                                    <p className={classes.subtitle2}>Will you be our next lucky winner?</p>
+                                    <div className={classes.pretitle}>{t('home.pretitle')}</div>
+                                    <h2 className={classes.title}>{t('home.title')}</h2>
+                                    <p className={classes.subtitle}>{t('home.subtitle')}</p>
                                 </div>
                             </div>
                             <div className="col-xl-4 col-lg-4 col-md-12">
@@ -109,17 +110,14 @@ const Home: React.FC = () => {
                 </section>
 
                 <section className={`${classes['options-section']}`}>
-                    <div className={classes['bg-el']}>
-                        <img src={contestBgImg} alt="contest" />
-                    </div>
                     <div className="container">
                         <div className="row mb-0 mt-0">
                             <div className="col-lg-12">
                                 <div className={`row ${classes.product}`}>
-                                    <div className={`${classes['nft-image']} col-lg-3`}>
-                                        <img src={nftImg} alt="Boletux NFT" />
+                                    <div className={classes['trunk-image']}>
+                                        <img src={coinTrunkImg} alt="" />
                                     </div>
-                                    <div className="col-lg-9">
+                                    <div className={classes['product-options']}>
                                         <div className={classes['options-wrapper']}>
                                             <div className={classes.title}>
                                                 How it works?
@@ -133,12 +131,13 @@ const Home: React.FC = () => {
                                                         <img src={hoverImagesData.bets.srcActive} alt="Boletux bets" />
                                                     </div>
                                                     <div className={classes.content}>
-                                                    <div className={classes.title}>
-                                                        BNB Bets
+                                                        <div className={classes.title}>
+                                                            BNB Bets
+                                                        </div>
+                                                        <div className={classes.description}>
+                                                            Real BNB Betting on the blockchain. Spin the wheel and multiply your bets up to 10x.
+                                                        </div>
                                                     </div>
-                                                    <div className={classes.description}>
-                                                        Real BNB Betting on the blockchain. Spin the wheel and multiply your bets up to 10x.
-                                                    </div></div>
                                                     <div className={classes.link}>
                                                         <Link to="/bets">Make a bet</Link>
                                                     </div>

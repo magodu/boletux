@@ -24,9 +24,12 @@
         "language_spanish": "Español",
         "language_english": "Inglés"
     },
+    "home": {
+        "pretitle": "Puro juego on-chain y rendimento real",
+        "title": "Gana recompensas en ETH cada día Win ETH",
+        "subtitle": "Completamente descentralizado, sin login ni baneos."
+    },
     "bets": {
-        "sectionTitle": "Apuestas",
-        "sectionSubtitle": "Elige la cantidad de tu apuesta y tu preducción para ganar ETH. ¡Puedes multiplicar tu premio hasta por 10!",
         "amountHeader": "Cantidad",
         "predictionHeader": "Predicción",
         "multiplierHeader": "Multiplicador",
@@ -37,11 +40,24 @@
         "confirmButton": "Confirmar",
         "revealButton": "Revelar",
         "win": "Win",
-        "lose": "Lose"
+        "lose": "Lose",
+        "instructions_title": "Cómo jugar",
+        "instructions_step": "Paso",
+        "instructions_step1_title": "Elige tu apuesta",
+        "instructions_step1_text": "Hay cuatro apuestas disponibles y dos posibles prediccioness. ¿Apostarás par o impar?",
+        "instructions_step2_title": "Spin your multiplier",
+        "instructions_step2_text": "El multiplicador determina el premio de la apuesta. ¡Multiplica tu premio hasta x10!",
+        "instructions_step3_title": "Comprueba tu premio en ETH",
+        "instructions_step3_text": "Una vez revelado el multiplicador, comprueba si has ganado.",
+        "instructions_details_link": "Más información",
+        "latest_title": "Últimas apuestas",
+        "betTableHeader": "Bet",
+        "amountTableHeader": "Cantidad",
+        "multiplierTableHeader": "Multiplicador",
+        "resultNumTableHeader": "Resultado",
+        "winnerTableHeader": "Ganador"
     },
     "lottery": {
-        "sectionTitle": "Lotería",
-        "sectionSubtitle": "Compra tickets, espera al sorteo y comprueba los premios en ETH",
         "jackpotButtonText": "Jackpot",
         "getYourTickets": "Consigue tus tickets",
         "prizePot": "Bote",
@@ -57,17 +73,41 @@
         "infoMessageTransactionSent": "Transacción {{transactionNumber}} enviada.",
         "successMessageTransactionConfirmed": "Transacción {{transactionNumber}} confirmada!",
         "errorMessageMaxTickets": "No se pueden seleccionar más de 10 tickets a la vez.",
-        "latestDraws": "Últimos sorteos",
-        "drawTableHeader": "Sorteo",
-        "dateTableHeader": "Fecha",
-        "prizePotTableHeader": "Premio",
-        "winnerNumTableHeader": "Resultado",
-        "winnerTableHeader": "Ganador"
+        "instructions_title": "Cómo jugar",
+        "instructions_step": "Paso",
+        "instructions_step1_title": "Compra tickets",
+        "instructions_step1_text": "Los precios se marcan cuando empieza el sorteo. También puedes conseguir tickets gratis para el sorteo.",
+        "instructions_step2_title": "Espera al sorteo",
+        "instructions_step2_text": "Hay un sorteo cada día que empieza aproximadamente a las 21:30 UTC",
+        "instructions_step3_title": "Comprueba tu premio en ETH",
+        "instructions_step3_text": "Una vez que finaliza el sorteo, vuelve a la página a comprobar si has ganado.",
+        "instructions_details_link": "Más información",
+        "latest_title": "Últimos sorteos",
+        "betTableHeader": "Bet",
+        "amountTableHeader": "Amount",
+        "multiplierTableHeader": "Multiplier",
+        "resultNumTableHeader": "Result",
+        "winnerTableHeader": "Winner"
     },
     "vault": {
-        "sectionTitle": "Invierte contra jugadores",
         "vault": "Bóveda",
-        "liquidity": "Liquidez"
+        "liquidity": "Liquidez",
+        "capacity": "Máx. capacidad:",
+        "totalETH": "ETH Total",
+        "price": "Precio",
+        "your_liquidity": "Tu liquidez",
+        "add_tab": "Añadir",
+        "remove_tab": "Quitar",
+        "confirm_btn": "Confirmar",
+        "instructions_title": "BLTX index provides liquidity to gamblers",
+        "instructions_step": "Step",
+        "instructions_step1_title": "Choose ETH amount",
+        "instructions_step1_text": "Buy BLTX tokens providong eTH liquidity.",
+        "instructions_step2_title": "Stake BLTX tokens",
+        "instructions_step2_text": "Deposit BLTX into the Vault to earn gambler´s losses.",
+        "instructions_step3_title": "Vault price changes",
+        "instructions_step3_text": "Gambler´s losses are directñy reinvested into the Vault, increasing the price of BLTX.",
+        "instructions_details_link": "Details"
     },
     "footer": {
         "copyright": "Copyright",
@@ -79,5 +119,4 @@
     "errorMessages": {
         "requiredFields": "Todos los campos son obligatorios"
     }
-
 }

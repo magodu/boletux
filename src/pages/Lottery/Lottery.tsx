@@ -26,6 +26,7 @@ import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
 import clockImg from '../../assets/images/clock.png';
 import { FaTrashAlt } from 'react-icons/fa';
 import { BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
+import { RxExternalLink } from "react-icons/rx";
 
 const addr_contract = process.env.REACT_APP_LOTTERY_CONTRACT || '';
 const boxStyles = {
@@ -247,18 +248,6 @@ const Lottery: React.FC = () => {
                 <div className={classes['bg-shape']}>
                     <img src={roundShapeBgImg} alt="" />
                 </div>
-                <div className={`${classes.title} container`}>
-                    <div className={`${classes.row} row`}>
-                        <div className="col-lg-12">
-                            <h2>{t('lottery.sectionTitle')}</h2>
-                        </div>
-                    </div>
-                    <div className={`${classes.row} row`}>
-                        <div className="col-lg-12">
-                            <p className={classes.subtitle}>{t('lottery.sectionSubtitle')}</p>
-                        </div>
-                    </div>
-                </div>
 
                 <section className={classes['actions-section']}>
                     <div className="container">
@@ -388,9 +377,35 @@ const Lottery: React.FC = () => {
                     </div>
                 </section>
 
+                <section className={classes['instructions-section']}>
+                    <div className={classes.content}>
+                        <h3 className={classes.title}>{t('lottery.instructions_title')}</h3>
+                        <div className={classes['instructions-wrapper']}>                             
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('lottery.instructions_step')} 1</div>
+                                <div className={classes.title}>{t('lottery.instructions_step1_title')}</div>
+                                <div className={classes.text}>{t('lottery.instructions_step1_text')}</div>
+                            </div>
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('lottery.instructions_step')} 2</div>
+                                <div className={classes.title}>{t('lottery.instructions_step2_title')}</div>
+                                <div className={classes.text}>{t('lottery.instructions_step2_text')}</div>
+                            </div>
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('lottery.instructions_step')} 3</div>
+                                <div className={classes.title}>{t('lottery.instructions_step3_title')}</div>
+                                <div className={classes.text}>{t('lottery.instructions_step3_text')}</div>
+                            </div>
+                        </div>
+                        <div className={classes['detail-link']}>
+                            <a href="https://boletux.gitbook.io/docs/v/espa/gambling-and-betting/lottery" target="_blank">{t('lottery.instructions_details_link')} <RxExternalLink /></a>
+                        </div>
+                    </div>
+                </section>
+
                 <section className={classes['draws-section']}>
                     <div className={classes.content}>
-                        <h3 className={classes.title}>{t('lottery.latestDraws')}</h3>
+                        <h3 className={classes.title}>{t('lottery.latest_title')}</h3>
                         <div className={classes['table-wrapper']}> 
                             <table>
                                 <thead>
@@ -415,7 +430,7 @@ const Lottery: React.FC = () => {
                                         <td data-label={t('lottery.dateTableHeader')}><span>2024.01.12</span></td>
                                         <td data-label={t('lottery.prizePotTableHeader')}><span className={classes.prize}>5 ETH</span></td>
                                         <td data-label={t('lottery.winnerNumTableHeader')}><span>32</span></td>
-                                        <td data-label={t('lottery.winnerTableHeader')} colSpan={3}><span className={classes.address}>0xed2cR9DR9DR9DR9DR9DR9DR9D607d</span></td>
+                                        <td data-label={t('lottery.winnerTableHeader')} colSpan={3}><span className={classes.address}>0xed2cR9DR9DR9DR9DR9R9DR9D607d</span></td>
                                     </tr>
                                 </tbody>
                             </table>

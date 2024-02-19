@@ -47,13 +47,6 @@ const Prizes: React.FC = () => {
             <div className={classes['bg-shape']}>
                 <img src={roundShapeBgImg} alt="" />
             </div>
-            <div className={`${classes.title} container`}>
-                <div className="row">
-                    <div className="col-lg-12">
-                        <h2>Invest against gamblers</h2>
-                    </div>
-                </div>
-            </div>
 
             <section className={classes['actions-section']}>
                 <div className="container">
@@ -65,7 +58,7 @@ const Prizes: React.FC = () => {
                                 </div>
                                 <div className={classes.amount}>
                                     <span className={classes.value}>56</span>
-                                    <button onClick={() => collectAwards()}>Collect</button>
+                                    <button onClick={() => collectAwards()}>{t('common.collect')}</button>
                                 </div>
                             </div>
                         </div>

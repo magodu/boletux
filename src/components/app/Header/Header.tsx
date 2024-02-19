@@ -13,7 +13,8 @@ import classes from './Header.module.scss';
 
 import { twitterUrl, discordUrl } from '../../../constants';
 
-import { BsTwitter as TwitterIcon } from 'react-icons/bs';
+import { BsTwitterX as TwitterIcon } from 'react-icons/bs';
+
 import { BsDiscord as DiscordIcon } from 'react-icons/bs';
 import { BiChevronDown } from 'react-icons/bi';
 // import { RiLogoutCircleLine } from "react-icons/ri";

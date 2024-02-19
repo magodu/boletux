@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { twitterUrl, discordUrl } from '../../../constants';
 
-import { BsTwitter as TwitterIcon } from 'react-icons/bs';
+import { BsTwitterX as TwitterIcon } from 'react-icons/bs';
 import { BsDiscord as DiscordIcon} from 'react-icons/bs';
 import round_shape_2 from '../../../assets/images/background/footer-shape.png';
 

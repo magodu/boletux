@@ -13,6 +13,7 @@ import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
 import boxFooterImg from '../../assets/images/box-wrapper-footer.png';
 import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
 import betStepsImg from '../../assets/images/bet-steps.png';
+import { RxExternalLink } from "react-icons/rx";
 
 import { BsArrowLeft, BsArrowRight, BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
 
@@ -141,7 +142,7 @@ const Bets: React.FC = () => {
     };
 
     const goStepForward = () => {
-        if (bet && evenOdd && step < 3) {
+        if ((step === 1 && bet) || (step === 2 && evenOdd) ||  (bet && evenOdd && step < 3)) {
             dispatch({ type: 'SET_STEP', value: state.step + 1 });
         }
     };
@@ -166,18 +167,6 @@ const Bets: React.FC = () => {
             <div className={classes['bets-wrapper']}>
                 <div className={classes['bg-shape']}>
                     <img src={roundShapeBgImg} alt="" />
-                </div>
-                <div className={`${classes.title} container`}>
-                    <div className={`${classes.row} row`}>
-                        <div className="col-lg-12">
-                            <h2>{t('bets.sectionTitle')}</h2>
-                        </div>
-                    </div>
-                    <div className={`${classes.row} row`}>
-                        <div className="col-lg-12">
-                            <p className={classes.subtitle}>{t('bets.sectionSubtitle')}</p>
-                        </div>
-                    </div>
                 </div>
 
                 <section className={classes['actions-section']}>
@@ -344,6 +333,67 @@ const Bets: React.FC = () => {
                                     <img src={boxFooterImg} alt="" />
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className={classes['instructions-section']}>
+                    <div className={classes.content}>
+                        <h3 className={classes.title}>{t('lottery.instructions_title')}</h3>
+                        <div className={classes['instructions-wrapper']}>                             
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('bets.instructions_step')} 1</div>
+                                <div className={classes.title}>{t('bets.instructions_step1_title')}</div>
+                                <div className={classes.text}>{t('bets.instructions_step1_text')}</div>
+                            </div>
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('bets.instructions_step')} 2</div>
+                                <div className={classes.title}>{t('bets.instructions_step2_title')}</div>
+                                <div className={classes.text}>{t('bets.instructions_step2_text')}</div>
+                            </div>
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('bets.instructions_step')} 3</div>
+                                <div className={classes.title}>{t('bets.instructions_step3_title')}</div>
+                                <div className={classes.text}>{t('bets.instructions_step3_text')}</div>
+                            </div>
+                        </div>
+                        <div className={classes['detail-link']}>
+                            <a href="https://boletux.gitbook.io/docs/v/espa/gambling-and-betting/bets" target="_blank">{t('lottery.instructions_details_link')} <RxExternalLink /></a>
+                        </div>
+                    </div>
+                </section>
+
+                <section className={classes['draws-section']}>
+                    <div className={classes.content}>
+                        <h3 className={classes.title}>{t('bets.latest_title')}</h3>
+                        <div className={classes['table-wrapper']}> 
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>{t('bets.betTableHeader')}</th>
+                                        <th>{t('bets.amountTableHeader')}</th>
+                                        <th>{t('bets.multiplierTableHeader')}</th>
+                                        <th>{t('bets.resultNumTableHeader')}</th>
+                                        <th colSpan={3}>{t('bets.winnerTableHeader')}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-label={t('bets.betTableHeader')}><span><b>#2</b></span></td>
+                                        <td data-label={t('bets.amountTableHeader')}><span>0.1 ETH</span></td>
+                                        <td data-label={t('bets.multiplierTableHeader')}><span>2</span></td>
+                                        <td data-label={t('bets.resultNumTableHeader')}><span className={classes.result}>LOSE</span></td>
+                                        <td data-label={t('bets.winnerTableHeader')} colSpan={3}><span className={classes.address}>0xed2cR9DR9DRYRe5R9DR9DjR9D607d</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label={t('bets.betTableHeader')}><span><b>#1</b></span></td>
+                                        <td data-label={t('bets.amountTableHeader')}><span>0.1 ETH</span></td>
+                                        <td data-label={t('bets.multiplierTableHeader')}><span>1.5</span></td>
+                                        <td data-label={t('bets.resultNumTableHeader')}><span className={classes.result}>WIN</span></td>
+                                        <td data-label={t('bets.winnerTableHeader')} colSpan={3}><span className={classes.address}>0xed2cR9DR9DR9DR9R9DR9DR9D607d</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </section>
