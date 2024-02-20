@@ -93,6 +93,8 @@ const Bets: React.FC = () => {
     const [state, dispatch] = useReducer(betsReducer, initialState);
     const { isLoading, step, bet, evenOdd, betCompleted, multiplier, result, showResult } = state;
 
+    const isStepForwardActive: boolean = ((step === 1 && bet) || (step === 2 && evenOdd) ||  (bet && evenOdd && step < 3));
+
     const changeBet = (event: any) => {
         if (step === 1) {
             dispatch({ type: 'SET_BET', value: event.target.value });
@@ -142,7 +144,7 @@ const Bets: React.FC = () => {
     };
 
     const goStepForward = () => {
-        if ((step === 1 && bet) || (step === 2 && evenOdd) ||  (bet && evenOdd && step < 3)) {
+        if (isStepForwardActive) {
             dispatch({ type: 'SET_STEP', value: state.step + 1 });
         }
     };
@@ -189,7 +191,7 @@ const Bets: React.FC = () => {
                                     <div className={`${classes['left-arrow']} ${step === 2 || step === 3 ? classes.active : ''}`} onClick={() => goStepBack()} >
                                         <BsArrowLeft />
                                     </div>
-                                    <div className={`${classes['right-arrow']} ${step < 3 ? classes.active : ''}`} onClick={() => goStepForward()}>
+                                    <div className={`${classes['right-arrow']} ${isStepForwardActive ? classes.active : ''}`} onClick={() => goStepForward()}>
                                         <BsArrowRight />
                                     </div>
                                 </div>
