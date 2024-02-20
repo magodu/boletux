@@ -107,7 +107,28 @@
         "instructions_step2_text": "Deposit BLTX into the Vault to earn gambler´s losses.",
         "instructions_step3_title": "Vault price changes",
         "instructions_step3_text": "Gambler´s losses are directñy reinvested into the Vault, increasing the price of BLTX.",
-        "instructions_details_link": "Details"
+        "instructions_details_link": "Más información"
+    },
+    "nfts": {
+        "nfts_boxTitle": "NFTS",
+        "nftsStaked": "NFTS en staking",
+        "floorPrice": "Floor price APR",
+        "inWallet_boxTitle": "En wallet",
+        "inWallet_placeholder": "Compra NFTs en el Marketplace",
+        "myStake_boxTitle": "Mi stake",
+        "myStake_placeholder": "Stake tus NFTs y consigue ingresos pasivos",
+        "stake_btn": "Stake",
+        "unstake_btn": "Unstake",
+        "buyNFTS_btn": "Compra NFTs",
+        "instructions_title": "Cómo hacer staking",
+        "instructions_step": "Step",
+        "instructions_step1_title": "Compra tus NFTs",
+        "instructions_step1_text": "Nuestros 100 NFTs exclusivos están listados en Element Marketplace.",
+        "instructions_step2_title": "Stake tus NFTs",
+        "instructions_step2_text": "Selecciona tus NFTs y haz staking con ellos. Puedes deshacerlo en cualquier momento.",
+        "instructions_step3_title": "Reclama recompensas en ETH",
+        "instructions_step3_text": "Gana comisiones y royalties en ETH por ventas secundarias en el Marketplace.",
+        "instructions_details_link": "Más información"
     },
     "footer": {
         "copyright": "Copyright",

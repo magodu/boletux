@@ -109,6 +109,27 @@
         "instructions_step3_text": "Gambler´s losses are directñy reinvested into the Vault, increasing the price of BLTX.",
         "instructions_details_link": "Details"
     },
+    "nfts": {
+        "nfts_boxTitle": "NFTS",
+        "nftsStaked": "NFTS staked",
+        "floorPrice": "Floor price APR",
+        "inWallet_boxTitle": "In wallet",
+        "inWallet_placeholder": "Buy NFTs on Marketplace",
+        "myStake_boxTitle": "My stake",
+        "myStake_placeholder": "Stake your NFTs and get Passive Income",
+        "stake_btn": "Stake",
+        "unstake_btn": "Unstake",
+        "buyNFTS_btn": "Buy NFTS",
+        "instructions_title": "How to stake",
+        "instructions_step": "Step",
+        "instructions_step1_title": "Buy your NFTs",
+        "instructions_step1_text": "Our 100 exclusive NFTs have been listed on Element Marketplace.",
+        "instructions_step2_title": "Stake your NFTs",
+        "instructions_step2_text": "Select your NFTs and stake them. You can unstake each of them anytime.",
+        "instructions_step3_title": "Claim ETH rewards",
+        "instructions_step3_text": "Earn ETH fees and royalties from secondary sales in the Marketplace.",
+        "instructions_details_link": "Details"
+    },
     "footer": {
         "copyright": "Copyright",
         "rights": "All Rights Reserved By Boletux"

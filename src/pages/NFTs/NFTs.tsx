@@ -13,6 +13,7 @@ import Nft1Img from '../../assets/images/NFTs/1.png';
 import Nft2Img from '../../assets/images/NFTs/2.png';
 
 import { BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
+import { RxExternalLink } from "react-icons/rx";
 
 import { nftList } from '../../models/appTypes';
 
@@ -89,7 +90,7 @@ const NFTs: React.FC = () => {
                         </div>
                         <div className={classes.buttons}>
                             <button className={`${classes.jackpot} ${classes.active}`} onClick={() => navigateTo('opensea')}>
-                                Buy NFTs
+                                {t('nfts.buyNFTS_btn')}
                             </button>
                             <button className={classes.info} onClick={() => navigateTo('info')}>
                                 <BsQuestionCircle />
@@ -105,50 +106,76 @@ const NFTs: React.FC = () => {
             <section className={classes['nfts-section']}>
                 <div className={classes['nfts-content']}>
                     <div className={classes.nfts}>
-                        <ContentBox type="special" title="NFTs">
+                        <ContentBox type="special" title={t('nfts.nfts_boxTitle')}>
                             <div className={classes['box-wrapper']}>
                                 <div className={classes['box-nfts']}>
                                     <div className={classes['data-wrapper']}>
                                         <div className={classes.value}>46 / 100</div>
-                                        <div className={classes.label}>NFTs STAKED</div>
+                                        <div className={classes.label}>{t('nfts.nftsStaked')}</div>
                                     </div>
                                 </div>
                                 <div className={classes['box-nfts']}>
                                     <div className={classes['data-wrapper']}>
                                         <div className={classes.value}>34.3%</div>
-                                        <div className={classes.label}>Floor price APR</div>
+                                        <div className={classes.label}>{t('nfts.floorPrice')}</div>
                                     </div>
                                 </div>
                             </div>
                         </ContentBox>
                     </div>
                     <div className={classes.carousel}>
-                        <ContentBox title="In wallet">
+                        <ContentBox title={t('nfts.inWallet_boxTitle')}>
                             <div className={classes['box-wrapper']}>
                                 <div className={classes['carousel-content']}>
-                                    <Carousel list={nftWalletList} emptyText="Buy NFTs on Marketplace" onSelect={(elem) => selectSideHandler(elem, 'stake')} />
+                                    <Carousel list={nftWalletList} emptyText={t('nfts.inWallet_placeholder')} onSelect={(elem) => selectSideHandler(elem, 'stake')} />
                                 </div>
                                 <div className={classes.buttons}>
                                     <button type="button" className={classes.large} disabled={nftWalletList.length > 0 ? false : true} onClick={() => stake()}>
-                                        Stake
+                                        {t('nfts.stake_btn')}
                                     </button>
                                 </div>
                             </div>
                         </ContentBox>
                     </div>
                     <div className={classes.carousel}>
-                        <ContentBox title="My stake">
+                        <ContentBox title={t('nfts.myStake_boxTitle')}>
                             <div className={classes['box-wrapper']}>
                                 <div className={classes['carousel-content']}>
-                                    <Carousel list={nftStakingList} emptyText="Stake your NFTs and get Passive Income" onSelect={(elem) => selectSideHandler(elem, 'unstake')} />
+                                    <Carousel list={nftStakingList} emptyText={t('nfts.myStake_placeholder')} onSelect={(elem) => selectSideHandler(elem, 'unstake')} />
                                 </div>
                                 <div className={classes.buttons}>
                                     <button type="button" className={classes.large} disabled={nftStakingList.length > 0 ? false : true} onClick={() => unstake()}>
-                                        Unstake
+                                        {t('nfts.unstake_btn')}
                                     </button>
                                 </div>
                             </div>
                         </ContentBox>
+                    </div>
+                </div>
+            </section>
+
+            <section className={classes['instructions-section']}>
+                <div className={classes.content}>
+                    <h3 className={classes.title}>{t('nfts.instructions_title')}</h3>
+                    <div className={classes['instructions-wrapper']}>                             
+                        <div className={classes['instructions-box']}>
+                            <div className={classes.step}>{t('nfts.instructions_step')} 1</div>
+                            <div className={classes.title}>{t('nfts.instructions_step1_title')}</div>
+                            <div className={classes.text}>{t('nfts.instructions_step1_text')}</div>
+                        </div>
+                        <div className={classes['instructions-box']}>
+                            <div className={classes.step}>{t('nfts.instructions_step')} 2</div>
+                            <div className={classes.title}>{t('nfts.instructions_step2_title')}</div>
+                            <div className={classes.text}>{t('nfts.instructions_step2_text')}</div>
+                        </div>
+                        <div className={classes['instructions-box']}>
+                            <div className={classes.step}>{t('nfts.instructions_step')} 3</div>
+                            <div className={classes.title}>{t('nfts.instructions_step3_title')}</div>
+                            <div className={classes.text}>{t('nfts.instructions_step3_text')}</div>
+                        </div>
+                    </div>
+                    <div className={classes['detail-link']}>
+                        <a href="https://boletux.gitbook.io/docs/v/espa/real-yield-investments/nfts" target="_blank">{t('nfts.instructions_details_link')} <RxExternalLink /></a>
                     </div>
                 </div>
             </section>
