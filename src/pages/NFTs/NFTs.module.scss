@@ -105,6 +105,10 @@
 
                     &.info, &.stats {
                         color: #ffffff;
+
+                        svg {
+                            vertical-align: text-bottom;
+                        }
                     }
                 }
             }
