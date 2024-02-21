@@ -28,7 +28,7 @@ $btn-color-active: #6259b0;
             width: 50px;
             color: #fff;
             cursor: pointer;
-            animation: movebtn 3s ease-in-out infinite;
+            animation: movebtn 3s linear infinite;
             transition: all 0.5s ease-in-out;
             -webkit-text-stroke: 1px;
 
