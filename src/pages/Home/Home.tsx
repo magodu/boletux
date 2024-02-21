@@ -8,6 +8,7 @@ import e3BgImg from '../../assets/images/background/hero-2-e3.png';
 import e4BgImg from '../../assets/images/background/hero-2-e4.png';
 import e5BgImg from '../../assets/images/background/hero-2-e5.png';
 import shapeBgImg from '../../assets/images/background/hero-3-shape.png';
+
 import animation1Img from '../../assets/images/home-animation/home01.png';
 import animation2Img from '../../assets/images/home-animation/home02.png';
 import animation3Img from '../../assets/images/home-animation/home03.png';
@@ -206,60 +207,6 @@ const Home: React.FC = () => {
                         </div>
                     </div>
                 </section>
-
-             {/*    <section className={`${classes['roadmap-section']}`}>
-                    <div className="container">
-                        <div className="row mb-0 mt-0">
-                            <h3>Roadmap</h3>
-
-                            <ul className={classes.timeline}>
-                                <li>
-                                    <div>
-                                        <span className={classes.time}>1934</span> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                                        praesentium
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <span className={classes.time}>1937</span> Proin quam velit, efficitur vel neque vitae, rhoncus commodo mi. Suspendisse finibus mauris et bibendum molestie. Aenean ex augue, varius et pulvinar in, pretium non
-                                        nisi.
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <span className={classes.time}>1940</span> Proin iaculis, nibh eget efficitur varius, libero tellus porta dolor, at pulvinar tortor ex eget ligula. Integer eu dapibus arcu, sit amet sollicitudin eros.
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <span className={classes.time}>1943</span> In mattis elit vitae odio posuere, nec maximus massa varius. Suspendisse varius volutpat mattis. Vestibulum id magna est.
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <span className={classes.time}>1946</span> In mattis elit vitae odio posuere, nec maximus massa varius. Suspendisse varius volutpat mattis. Vestibulum id magna est.
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <span className={classes.time}>1956</span> In mattis elit vitae odio posuere, nec maximus massa varius. Suspendisse varius volutpat mattis. Vestibulum id magna est.
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <span className={classes.time}>1957</span> In mattis elit vitae odio posuere, nec maximus massa varius. Suspendisse varius volutpat mattis. Vestibulum id magna est.
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <span className={classes.time}>1967</span> Aenean condimentum odio a bibendum rhoncus. Ut mauris felis, volutpat eget porta faucibus, euismod quis ante.
-                                    </div>
-                                </li>
-                              
-                            </ul>
-                        </div>
-                    </div>
-                </section> */}
             </div>
         </>
     );
