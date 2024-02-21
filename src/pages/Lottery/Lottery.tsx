@@ -398,7 +398,7 @@ const Lottery: React.FC = () => {
                             </div>
                         </div>
                         <div className={classes['detail-link']}>
-                            <a href="https://boletux.gitbook.io/docs/v/espa/gambling-and-betting/lottery" target="_blank">{t('lottery.instructions_details_link')} <RxExternalLink /></a>
+                            <a href="https://boletux.gitbook.io/docs/v/espa/gambling-and-betting/lottery" target="_blank" rel="noreferrer">{t('lottery.instructions_details_link')} <RxExternalLink /></a>
                         </div>
                     </div>
                 </section>

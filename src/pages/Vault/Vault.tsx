@@ -188,7 +188,7 @@ const Vault: React.FC = () => {
                             </div>
                         </div>
                         <div className={classes['detail-link']}>
-                            <a href="https://boletux.gitbook.io/docs/v/espa/real-yield-investments/vault" target="_blank">{t('vault.instructions_details_link')} <RxExternalLink /></a>
+                            <a href="https://boletux.gitbook.io/docs/v/espa/real-yield-investments/vault" target="_blank" rel="noreferrer">{t('vault.instructions_details_link')} <RxExternalLink /></a>
                         </div>
                     </div>
                 </section>

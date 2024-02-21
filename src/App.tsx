@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useEffect, useContext } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import i18next from 'i18next';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { BrowserRouter } from 'react-router-dom';
