@@ -1,16 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { twitterUrl, discordUrl } from '../../../constants';
 
+import footerShapeHome from '../../../assets/images/background/footer-shape-home.png';
+import footerShape from '../../../assets/images/background/footer-shape.png';
 import { BsTwitterX as TwitterIcon } from 'react-icons/bs';
 import { BsDiscord as DiscordIcon} from 'react-icons/bs';
-import round_shape_2 from '../../../assets/images/background/footer-shape.png';
 
 import classes from './Footer.module.scss';
 
 const Footer = () => {
+    const { pathname } = useLocation();
     const { t } = useTranslation();
 
     const getCurrentYear = () => {
@@ -20,7 +22,7 @@ const Footer = () => {
     return (
         <footer className={classes.footer}>
             <div className={classes['bg-shape--top']}>
-                <img src={round_shape_2} alt="" />
+                <img src={pathname === '/home' ? footerShapeHome : footerShape} alt="" />
             </div>
             <div className="container pt-120">
                 <div className="row align-items-center">
