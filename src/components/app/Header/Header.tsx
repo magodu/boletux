@@ -99,11 +99,12 @@ const Header: React.FC<{ data: any; onChangeLanguage: (language: string) => void
 
                 } catch (err: any) {
                     console.error(err.message);
+                    ToastEventChannel.emit('onSendToast', { type: 'error', message: `Error connecting wallet: ${err.message}` });
                     setLoggedUser(false);
                 }
             } else {
-                /* MetaMask is not installed */
-                console.log('Please install MetaMask');
+                console.log('MetaMask not installed');
+                ToastEventChannel.emit('onSendToast', { type: 'error', message: 'MetaMask not installed' });
                 setLoggedUser(false);
             }
         }
