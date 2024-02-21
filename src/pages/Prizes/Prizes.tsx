@@ -11,6 +11,7 @@ import classes from './Prizes.module.scss';
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
 import ethereumLogoImg from '../../assets/images/ethereum-logo.png';
 import { BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
+import { RxExternalLink } from "react-icons/rx";
 
 import { setLotteryDate } from '../../utils';
 import { weekDays } from '../../models/appTypes';
@@ -57,7 +58,7 @@ const Prizes: React.FC = () => {
                                     <img src={ethereumLogoImg} alt="" />
                                 </div>
                                 <div className={classes.amount}>
-                                    <span className={classes.value}>56</span>
+                                    <span className={classes.value}>xx</span>
                                     <button onClick={() => collectAwards()}>{t('common.collect')}</button>
                                 </div>
                             </div>
@@ -77,25 +78,25 @@ const Prizes: React.FC = () => {
             <section className={classes['prizes-section']}>
                 <div className={classes['prizes-content']}>
                     <div className={classes.incentives}>
-                        <ContentBox type="special" title="Incentives program" styles={boxStyles} >
+                        <ContentBox type="special" title={t('prizes.airdrop_boxTitle')} styles={boxStyles} >
                             <div className={classes['box-wrapper']}>
                                 <div className={classes['box-value-wrapper']}>
                                         <div className={classes['box-value']}>
                                             <div className={classes.value}>1.2</div>
-                                            <div className={classes['crypto-currency']}>ETH</div>
+                                            <div className={classes['crypto-currency']}>{t('prizes.points')}</div>
                                         </div>
                                 </div>
                                 <div className={classes['box-info']}> 
                                     <div className={classes['data-wrapper']}>
-                                        <div className={classes.value}>Epochs 1-4</div>
-                                        <div className={classes.label}>Early Investors</div>
+                                        <div className={classes.value}>{t('prizes.epochs')} 1-4</div>
+                                        <div className={classes.label}>{t('prizes.earlyInvestors')}</div>
                                     </div>
                                 </div>
                             </div>
                         </ContentBox>
                     </div>
                     <div className={classes.rewards}>
-                        <ContentBox type="special" title="Weekly rewards" styles={boxStyles} >
+                        <ContentBox type="special" title={t('prizes.weeklyRewards_boxTitle')} styles={boxStyles} >
                             <div className={classes['box-wrapper']}>
                                 <div className={classes['box-value-wrapper']}>
                                         <div className={classes['box-value']}>
@@ -108,19 +109,19 @@ const Prizes: React.FC = () => {
                                         <div className={classes.value}>
                                             <Countdown endtime={weeklyRewardsCountdown} style={countdownStyles} />
                                         </div>
-                                        <div className={classes.label}>Incentive #1</div>
+                                        <div className={classes.label}>{t('prizes.incentive')} #1</div>
                                     </div>
                                 </div>
                             </div>
                         </ContentBox>
                     </div>
                     <div className={classes.jackpot}>
-                        <ContentBox title="Lottery jackpot" styles={boxStyles} >
+                        <ContentBox title={t('prizes.lottery_boxTitle')} styles={boxStyles} >
                             <div className={classes['box-wrapper']}>
                             <div className={classes['tabs-wrapper']}>
                                     <ul className={`nav nav-tabs ${classes.tabs}`} role="tablist">
-                                        <TabNavItem title="Prize pot" id="prize" activeTab={activeTab} setActiveTab={setActiveTab} />
-                                        <TabNavItem title="Your tickets" id="tickets" activeTab={activeTab} setActiveTab={setActiveTab} />
+                                        <TabNavItem title={t('prizes.prize_tab')} id="prize" activeTab={activeTab} setActiveTab={setActiveTab} />
+                                        <TabNavItem title={t('prizes.tickets_tab')} id="tickets" activeTab={activeTab} setActiveTab={setActiveTab} />
                                     </ul>
                                 </div>
                                 <div className={classes['tabs-content']}>
@@ -135,7 +136,7 @@ const Prizes: React.FC = () => {
                                     <TabContent id="tickets" activeTab={activeTab}>
                                         <div className={classes['tickets-wrapper']}>
                                             <div className={classes['tickets-list']}>
-                                                {/* <p>Your bougth tickets will appear here</p> */}
+                                                {/* <p>{t('prizes.tickets_placeholder')}</p> */}
                                                 <div className={classes.item}>22</div>
                                                 <div className={classes.item}>31</div>
                                                 <div className={classes.item}>32</div>
@@ -149,7 +150,7 @@ const Prizes: React.FC = () => {
                                         <div className={classes.value}>
                                             <Countdown endtime={lotteryCountdown} style={countdownStyles} />
                                         </div>
-                                        <div className={classes.label}>Draw #7</div>
+                                        <div className={classes.label}>{t('prizes.draw')} #7</div>
                                     </div>
                                 </div>
                             </div>
@@ -157,6 +158,49 @@ const Prizes: React.FC = () => {
                     </div>
                 </div>
             </section>
+
+            <section className={classes['instructions-section']}>
+                <div className={classes.content}>
+                    <h3 className={classes.title}>{t('prizes.instructions_title')}</h3>
+                    <div className={classes['instructions-wrapper']}>                             
+                        <div className={classes.box}>
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('prizes.instructions_airdrop_step')}</div>
+                                <div className={classes.title}>{t('prizes.instructions_airdrop_title')}</div>
+                                <div className={classes.text}>{t('prizes.instructions_airdrop_text')}</div>
+                            </div>
+                            <div className={classes['links-wrapper']}>
+                                <div className={classes.link}><a href="#">{t('prizes.instructions_leaderboard_link')} <RxExternalLink /></a></div>
+                                <div className={classes.link}><a href="https://boletux.gitbook.io/docs/v/espa/prizes/airdrop-points" target="_blank" rel="noreferrer">{t('prizes.instructions_details_link')} <RxExternalLink /></a></div>
+                            </div>
+                        </div>
+                        <div className={classes.box}>
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('prizes.instructions_weeklyRewards_step')}</div>
+                                <div className={classes.title}>{t('prizes.instructions_weeklyRewards_title')}</div>
+                                <div className={classes.text}>{t('prizes.instructions_weeklyRewards_text')}</div>
+                            </div>
+                            <div className={classes['links-wrapper']}>
+                                <div className={classes.link}><a href="#">{t('prizes.instructions_leaderboard_link')} <RxExternalLink /></a></div>
+                                <div className={classes.link}><a href="https://boletux.gitbook.io/docs/v/espa/prizes/recompensas-semanales" target="_blank" rel="noreferrer">{t('prizes.instructions_details_link')} <RxExternalLink /></a></div>
+                            </div>
+                        </div>
+                        <div className={classes.box}>
+                            <div className={classes['instructions-box']}>
+                                <div className={classes.step}>{t('prizes.instructions_jackpot_step')}</div>
+                                <div className={classes.title}>{t('prizes.instructions_jackpot_title')}</div>
+                                <div className={classes.text}>{t('prizes.instructions_jackpot_text')}</div>
+                            </div>
+                            <div className={classes['links-wrapper']}>
+                                <div className={classes.link}><a href="#">{t('prizes.instructions_leaderboard_link')} <RxExternalLink /></a></div>
+                                <div className={classes.link}><a href="https://boletux.gitbook.io/docs/v/espa/prizes/lottery-jackpot" target="_blank" rel="noreferrer">{t('prizes.instructions_details_link')} <RxExternalLink /></a></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+
         </div>
     );
 };

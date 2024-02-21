@@ -5,7 +5,8 @@
         "notFoundGoBackMsg": "Por favor vuelve a nuestra home para ver nuestro catálogo de apuestas y juegos.",
         "loading": "Cargando",
         "processing": "En proceso",
-        "collect": "Reclamar"
+        "collect": "Reclamar",
+        "timeIsUp": "¡Finalizado!"
     },
     "navBar": {
         "menu": "Menú",
@@ -129,6 +130,31 @@
         "instructions_step3_title": "Reclama recompensas en ETH",
         "instructions_step3_text": "Gana comisiones y royalties en ETH por ventas secundarias en el Marketplace.",
         "instructions_details_link": "Más información"
+    },
+    "prizes": {
+        "airdrop_boxTitle": "Puntos Airdrop",
+        "points": "Puntos",
+        "epochs": "Epochs",
+        "earlyInvestors": "Primeros Inversores",
+        "weeklyRewards_boxTitle": "Recompensas sem.",
+        "incentive": "Incentivo",
+        "lottery_boxTitle": "Lotería Jackpot",
+        "prize_tab": "Premio",
+        "tickets_tab": "Tus tickets",
+        "draw": "Sorteo",
+        "tickets_placeholder": "Tus tickets comprados apareceán aquí",
+        "instructions_title": "¿Cómo ganar los premios?",
+        "instructions_airdrop_title": "Gana puntos",
+        "instructions_airdrop_step": "Puntos Airdrop",
+        "instructions_airdrop_text": "Compra tickets de lotería, haz apuestas, stake NFTs o aporta liquidez. Todas estas acciones incrementan tus puntos.",
+        "instructions_weeklyRewards_title": "Incentivo #1: Apuestas",
+        "instructions_weeklyRewards_step": "Recompensas semanales",
+        "instructions_weeklyRewards_text": "Recompensas en ETH para el jugador con la mayor cantidad de apuestas de la semana.",
+        "instructions_jackpot_title": "Sorteo semanal",
+        "instructions_jackpot_step": "Jackpot",
+        "instructions_jackpot_text": "Consigue tickets gratis y gana el bote del premio en ETH.",
+        "instructions_leaderboard_link": "Tablero de líderes",
+        "instructions_details_link": "Detalles"
     },
     "footer": {
         "copyright": "Copyright",

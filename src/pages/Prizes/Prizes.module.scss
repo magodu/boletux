@@ -171,7 +171,7 @@
                             .crypto-currency {
                                 width: 100%;
                                 height: auto;
-                                font-size: 35px;
+                                font-size: 32px;
                                 font-weight: 600;
                                 text-transform: uppercase;
                                 line-height: 40px;
@@ -210,7 +210,6 @@
                                 color: #e59d00;
                                 font-size: 14px;
                                 font-weight: 600;
-                                text-transform: uppercase;
                             }
                         }
                     }
@@ -331,12 +330,80 @@
                                 color: #e59d00;
                                 font-size: 14px;
                                 font-weight: 600;
-                                text-transform: uppercase;
                             }
                         }
                     }
                 }
                 
+            }
+        }
+    }
+
+    .instructions-section {
+        display: flex;
+        justify-content: center;
+        padding-top: 4rem;
+
+        .content {
+            flex: 0 0 70%;
+            max-width: 950px;
+
+            h3 {
+                text-align: center;
+            }
+           
+            .instructions-wrapper {
+                display: flex;
+                justify-content: space-between;
+                gap: 3rem;
+                margin-top: 1rem;
+                .box {
+                    width: 33%;
+                    display: flex;
+                    flex-direction: column;
+                    .instructions-box {
+                        position: relative;  
+                        display: flex;
+                        flex-direction: column;
+                        min-height: 150px;
+                        padding: 0.4rem 1rem 1rem 1rem;
+                        background-image: linear-gradient(180deg, rgb(49, 2, 103) 0%, rgb(67, 0, 86) 100%);
+                        background-image: -moz-linear-gradient(180deg, rgb(49, 2, 103) 0%, rgb(67, 0, 86) 100%);
+                        background-image: -webkit-linear-gradient(180deg, rgb(49, 2, 103) 0%, rgb(67, 0, 86) 100%);
+                        background-image: -ms-linear-gradient(180deg, rgb(49, 2, 103) 0%, rgb(67, 0, 86) 100%);
+                        border-radius: 10px;
+                        -webkit-border-radius: 10px;
+                        -moz-border-radius: 10px;
+                        -ms-border-radius: 10px;
+                        -o-border-radius: 10px;
+    
+                        .step {
+                            text-align: right;
+                            font-size: 12px;
+                            font-weight: 500;
+                        }
+    
+                        .title {
+                            color: $highlight-color-text;
+                            margin-bottom: 0.5rem;
+                            font-size: 18px;
+                            font-weight: 600;
+                        }
+                    }
+                    .links-wrapper {
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: 15px;
+                        font-weight: 500;
+                        padding: 10px;
+                        line-height: 10px;
+                        a {
+                            color: $main-color;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            
             }
         }
     }

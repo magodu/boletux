@@ -5,7 +5,8 @@
         "notFoundGoBackMsg": "Please head back to our homepage to see our range of bets and games",
         "loading": "Loading",
         "processing": "Processing",
-        "collect": "Collect"
+        "collect": "Collect",
+        "timeIsUp": "Time's up!"
     },
     "navBar": {
         "menu": "Menu",
@@ -128,6 +129,31 @@
         "instructions_step2_text": "Select your NFTs and stake them. You can unstake each of them anytime.",
         "instructions_step3_title": "Claim ETH rewards",
         "instructions_step3_text": "Earn ETH fees and royalties from secondary sales in the Marketplace.",
+        "instructions_details_link": "Details"
+    },
+    "prizes": {
+        "airdrop_boxTitle": "Airdrop Points",
+        "points": "Points",
+        "epochs": "Epochs",
+        "earlyInvestors": "Early Investors",
+        "weeklyRewards_boxTitle": "Weekly Rewards",
+        "incentive": "Incentive",
+        "lottery_boxTitle": "Lottery Jackpot",
+        "prize_tab": "Prize pot",
+        "tickets_tab": "Your tickets",
+        "draw": "Draw",
+        "tickets_placeholder": "Your bougth tickets will appear here",
+        "instructions_title": "How to win the prizes?",
+        "instructions_airdrop_title": "Earn points",
+        "instructions_airdrop_step": "Airdrop Points",
+        "instructions_airdrop_text": "Buy lottery tickets, place bets, stake NFTs or provide liquidity. All actions increase your points.",
+        "instructions_weeklyRewards_title": "Incentive #1: Bets",
+        "instructions_weeklyRewards_step": "Weekly rewards",
+        "instructions_weeklyRewards_text": "ETH rewards for the player with the highest total amount bet of the week.",
+        "instructions_jackpot_title": "Weekly draw",
+        "instructions_jackpot_step": "Jackpot",
+        "instructions_jackpot_text": "Get free tickets and win the ETH prize pot.",
+        "instructions_leaderboard_link": "LeaderBoard",
         "instructions_details_link": "Details"
     },
     "footer": {

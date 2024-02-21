@@ -1,4 +1,5 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { createIdKey } from '../../../utils'
 
@@ -37,8 +38,9 @@ const calculateTimeLeft = (endtime: number): TimeLeftType => {
 };
 
 const Countdown: React.FC<CountdownProps> = ({ endTime, timeUpMsg, style }) => {
+    const { t } = useTranslation();
     const [endTimeRemaining, setEndTimeRemaining] = useState<number>(endTime);
-    const endTimeMessage = timeUpMsg || "Time's up!";
+    const endTimeMessage = timeUpMsg || t('common.timeIsUp');
 
     useEffect(() => {
         let timer = setInterval(() => {
