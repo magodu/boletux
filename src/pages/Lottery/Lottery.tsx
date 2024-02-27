@@ -335,7 +335,7 @@ const Lottery: React.FC = () => {
                                             <div className={`${classes['pot-data-box']}`}>
                                                 <div className={classes.value}>{lotteryPrice}</div>
                                                 <div className={classes.label}>
-                                                    {criptocurrency} / {t('lottery.ticket')}
+                                                    {criptocurrency}/{t('lottery.ticket')}
                                                 </div>
                                             </div>
                                         </div>
