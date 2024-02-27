@@ -398,9 +398,11 @@
                                 &.show-result-box {
                                     background-image: url("../../assets/images/box-square-white.png");
                                     color: #000000;
+                                    font-size: 60px;
+                                    padding-top: 10px;
 
                                     .multiplier {
-                                        font-size: 55px;
+                                        font-size: 45px;
                                     }
                                 }
         
@@ -557,12 +559,32 @@
                             .result {
                                 color: $highlight-color-text;
                                 font-weight: 500;
+                                text-transform: uppercase;
                             }
                         }
                         th {
                             font-size: 0.85em;
                             letter-spacing: 0.1em;
                             text-transform: uppercase;
+                        }
+
+                        td {
+                            .address {
+                                display: flex;
+                                justify-content: space-between;
+
+                                .wallet {
+                                    flex-grow: 9;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    line-height: 40px;
+                                }
+
+                                .copy {
+                                    flex-grow: 1;
+                                }
+                            }
                         }
                     }
                 }

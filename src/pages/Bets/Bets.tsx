@@ -1,12 +1,20 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useRef, useReducer, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ethers } from 'ethers';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
+import CopyToClipboardButton from '../../components/UI/CopyToClipboardButton/CopyToClipboardButton';
+
+import { BoletuxContext } from '../../store/boletux-context';
+import { useEthersErrorHandler } from '../../hooks/useEthersErrorHandler';
+import { abiBet } from '../../ethereum/abiBetContract';
+
+import { ToastEventChannel } from '../../components/eventChannels/ToastEventChannel';
 
 import classes from './Bets.module.scss';
 
 import { criptocurrency } from '../../constants';
-import { ActionReducerType } from '../..//models/appTypes';
+import { ActionReducerType, betPlaceResultType } from '../..//models/appTypes';
 
 import roundShapeBgImg from '../../assets/images/background/inner-hero-shape-2.png';
 import boxHeaderImg from '../../assets/images/box-wrapper-header.png';
@@ -16,6 +24,8 @@ import betStepsImg from '../../assets/images/bet-steps.png';
 import { RxExternalLink } from "react-icons/rx";
 
 import { BsArrowLeft, BsArrowRight, BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
+
+const addr_bet_contract = process.env.REACT_APP_BET_CONTRACT || '';
 
 const betOptions = [
     {
@@ -49,6 +59,7 @@ interface ReducerState {
     multiplier: string;
     result: any;
     showResult: boolean;
+    betLatestsDraws: any[];
 }
 
 const initialState = {
@@ -60,6 +71,7 @@ const initialState = {
     multiplier: '?',
     result: null,
     showResult: false,
+    betLatestsDraws: [],
 };
 
 const betsReducer = (state: ReducerState, action: ActionReducerType) => {
@@ -67,6 +79,8 @@ const betsReducer = (state: ReducerState, action: ActionReducerType) => {
     switch (type) {
         case 'SET_LOADING':
             return { ...state, isLoading: action.value };
+        case 'SET_HISTORY':
+            return { ...state, betLatestsDraws: action.value };
         case 'SET_STEP':
             return { ...state, step: action.value };
         case 'SET_BET':
@@ -90,10 +104,85 @@ const betsReducer = (state: ReducerState, action: ActionReducerType) => {
 
 const Bets: React.FC = () => {
     const { t } = useTranslation();
+    const { web3Provider, setWeb3Provider, web3Contracts, setWeb3Contract } = useContext(BoletuxContext);
+    const { handleError, errorMessage } = useEthersErrorHandler();
     const [state, dispatch] = useReducer(betsReducer, initialState);
-    const { isLoading, step, bet, evenOdd, betCompleted, multiplier, result, showResult } = state;
+    const { isLoading, step, bet, evenOdd, betCompleted, multiplier, result, showResult, betLatestsDraws } = state;
+    const contractBetRef = useRef<any>();
 
     const isStepForwardActive: boolean = ((step === 1 && bet) || (step === 2 && evenOdd) ||  (bet && evenOdd && step < 3));
+
+    const getBetHistory = async (sc: any): Promise<any> => {
+        try {
+            const currentBet = await sc.numBet();
+
+            let i = currentBet - 1;
+            let end = i - 9;
+            let list = [];
+
+            for (i ; i >= end; i--) {
+                if (i >= 0) {
+                    let obj = await sc.getHistory(i);
+                    list.push(
+                        {
+                            user:       obj.user,
+                            date:       Math.round(parseFloat(ethers.utils.formatEther(obj.date)) * (10 ** 18)),
+                            input:      Math.round(parseFloat(ethers.utils.formatEther(obj.input)) * (10 ** 18)),
+                            multiplier: Math.round(parseFloat(ethers.utils.formatEther(obj.multiplier)) * (10 ** 18)),
+                            prize:      Math.round(parseFloat(ethers.utils.formatEther(obj.prize)) * (10 ** 18)),
+                            winner:     obj.winner
+                        }
+                    )
+                }
+            }
+
+            console.log('list', list);
+            return list;
+
+        } catch(err){
+            console.error(err);
+            ToastEventChannel.emit('onSendToast', { type: 'error', message: t('bets.errorMessageRecoverHistory') });
+        }
+    };
+
+    useEffect(() => {
+        const initializeProvider = async () => {
+            if (window.ethereum && !web3Provider) {
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                setWeb3Provider(provider);
+            }
+        };
+
+        const deployContract = async () => {
+            if (web3Provider) {
+                const contractBet = new ethers.Contract(addr_bet_contract, abiBet, web3Provider);
+
+                contractBetRef.current = contractBet;
+                setWeb3Contract('bet', contractBet);
+                return contractBet;
+            }
+            return null;
+        };
+
+        const fetchLotteryStatus = async (contract: any) => {
+            if (contract) {
+                const betLatestsDraws = await getBetHistory(contract);
+ 
+                dispatch({type: 'SET_HISTORY', value: betLatestsDraws});
+                dispatch({ type: 'SET_LOADING', value: false });
+            }
+        };
+
+        const initializeContractAndFetchStatus = async () => {
+            await initializeProvider();
+            const deployedContract = await deployContract();
+            await fetchLotteryStatus(deployedContract);
+        };
+
+        dispatch({ type: 'SET_LOADING', value: true });
+        initializeContractAndFetchStatus();
+    }, [web3Provider]);
 
     const changeBet = (event: any) => {
         if (step === 1) {
@@ -109,27 +198,82 @@ const Bets: React.FC = () => {
         }
     };
 
-    const confirmBet = () => {
+    const placeBet = async () => {
+        dispatch({ type: 'SET_LOADING', value: true });
+        await web3Provider.send('eth_requestAccounts', []);
+        const signer = web3Provider.getSigner();
+        const scWithSigner = web3Contracts.bet.connect(signer);
+        const evenOddValue = evenOdd === 'even' ? true : false;
+        let response;
+
+        try {
+            let rawTX = await scWithSigner.bet(evenOddValue, { value: 1 }); // TODO: Put real bet value
+            // SEND TX
+            ToastEventChannel.emit('onSendToast', { type: 'info', message: t('successMessages.infoMessageTransactionSent', { transactionNumber: rawTX.nonce }) });
+            const receipt = await rawTX.wait(2);
+
+            // CONFIRMED TX
+            response = {
+                user: receipt.events[0].args.user,
+                date: receipt.events[0].args.date,
+                input: receipt.events[0].args.input,
+                multiplier: receipt.events[0].args.multiplier / 10,
+                prize: receipt.events[0].args.prize,
+                winner: receipt.events[0].args.winner,
+            };
+          
+            dispatch({ type: 'SET_LOADING', value: false });
+            ToastEventChannel.emit('onSendToast', { type: 'success', message: t('successMessages.transactionConfirmed', { transactionNumber: rawTX.nonce }) });
+        } catch (error) {
+            handleError(error);
+            dispatch({ type: 'SET_LOADING', value: false });
+        }
+
+        return response;
+
+    };
+
+    const confirmBet = async () => {
+        let winnerBet = '';
+
         if (step === 3) {
             console.log('Place bet', bet, evenOdd);
             dispatch({ type: 'SET_BET_COMPLETED', value: true });
             dispatch({ type: 'SET_LOADING', value: true });
-            // Connect to metamask or check if is connected
-            // Check result and then
-            const result = 'odd';
-            const mockResult = {
-                multiplier: '3',
-                evenOdd: t(`bets.${result}`),
-                isWinner: true,
-                winAmount: 12,
-            };
 
-            setTimeout(() => {
-                dispatch({ type: 'SET_MULTIPLIER', value: mockResult.multiplier });  
-                dispatch({ type: 'SET_RESULT', value: mockResult });  
-                dispatch({ type: 'SET_STEP', value: state.step + 1 });  
-                dispatch({ type: 'SET_LOADING', value: false });
-            }, 1000);
+            const response: betPlaceResultType = await placeBet();
+            const betLatestsDraws = await getBetHistory(web3Contracts.bet);
+ 
+            /* let winnerBet = '';
+            if (evenOdd === 'even' && response.winner) {
+                winnerBet = t('bets.even');
+            } else {
+                winnerBet = t('bets.odd');
+            }
+            if (evenOdd === 'odd' && response.winner) {
+                winnerBet = t('bets.odd');
+            } else {
+                winnerBet = t('bets.even');
+            } */
+
+            let winnerBet = evenOdd === 'even' && response.winner ? t('bets.even') :
+                evenOdd === 'odd' && response.winner ? t('bets.odd') :
+                evenOdd === 'odd' && !response.winner ? t('bets.even') :
+                t('bets.odd');
+
+            const betResult = {
+                multiplier: response.multiplier,
+                evenOdd: winnerBet,
+                isWinner: response.winner,
+                winAmount: response.prize,
+            };
+            console.log('betResult', betResult);
+
+            dispatch({ type: 'SET_MULTIPLIER', value: betResult.multiplier });
+            dispatch({ type: 'SET_RESULT', value: betResult });
+            dispatch({ type: 'SET_STEP', value: state.step + 1 });
+            dispatch({ type: 'SET_HISTORY', value: betLatestsDraws });
+            dispatch({ type: 'SET_LOADING', value: false });
         }
     };
 
@@ -274,7 +418,7 @@ const Bets: React.FC = () => {
                         </div>
                         
                         <div className={classes['bet-step']}>
-                            <div className={`${classes.box} ${step === 3 ? classes['active-step'] : ''} ${step !== 3 ? classes.disabled : ''}`}>
+                            <div className={`${classes.box} ${step === 3 ? classes['active-step'] : ''} ${step === 1 || step === 2 ? classes.disabled : ''}`}>
                                 <div className={classes.header}>
                                     <img src={boxHeaderImg} alt="" />
                                     <div className={classes['box-title']}>{t('bets.multiplierHeader')}</div>
@@ -380,20 +524,24 @@ const Bets: React.FC = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td data-label={t('bets.betTableHeader')}><span><b>#2</b></span></td>
-                                        <td data-label={t('bets.amountTableHeader')}><span>0.1 ETH</span></td>
-                                        <td data-label={t('bets.multiplierTableHeader')}><span>2</span></td>
-                                        <td data-label={t('bets.resultNumTableHeader')}><span className={classes.result}>LOSE</span></td>
-                                        <td data-label={t('bets.winnerTableHeader')} colSpan={3}><span className={classes.address}>0xed2cR9DR9DRYRe5R9DR9DjR9D607d</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label={t('bets.betTableHeader')}><span><b>#1</b></span></td>
-                                        <td data-label={t('bets.amountTableHeader')}><span>0.1 ETH</span></td>
-                                        <td data-label={t('bets.multiplierTableHeader')}><span>1.5</span></td>
-                                        <td data-label={t('bets.resultNumTableHeader')}><span className={classes.result}>WIN</span></td>
-                                        <td data-label={t('bets.winnerTableHeader')} colSpan={3}><span className={classes.address}>0xed2cR9DR9DR9DR9R9DR9DR9D607d</span></td>
-                                    </tr>
+                                    {betLatestsDraws.map((draw: any, i: number) => (
+                                        <tr key={i}>
+                                            <td data-label={t('bets.betTableHeader')}><span><b>#2</b></span></td>
+                                            <td data-label={t('bets.amountTableHeader')}><span>{draw.input} ETH</span></td>
+                                            <td data-label={t('bets.multiplierTableHeader')}><span>{draw.multiplier}</span></td>
+                                            <td data-label={t('bets.resultNumTableHeader')}><span className={classes.result}>{ draw.winner ? t('bets.win') : t('bets.lose') }</span></td>
+                                            <td data-label={t('bets.winnerTableHeader')} colSpan={3} >
+                                                <div className={classes.address}>
+                                                    <span className={classes.wallet}>{draw.user}</span>
+                                                    <span className={classes.copy}>
+                                                        <CopyToClipboardButton textToCopy={draw.user} 
+                                                            title={t('common.copyWalletAddress')} 
+                                                            successMessage={t('successMessages.copyTextToclipboard')} />
+                                                    </span>
+                                                </div>   
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

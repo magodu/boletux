@@ -32,6 +32,15 @@ export interface toastEventPayload {
     type?: string
 }
 
+export interface betPlaceResultType {
+    date: number;
+    input: number;
+    multiplier: number;
+    prize: number;
+    user: string;
+    winner: boolean;
+}
+
 export type BoletuxContextObj = {
     language: string;
     isLoggedIn: boolean;

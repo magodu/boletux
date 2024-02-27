@@ -46,7 +46,7 @@ export const getLotteryHistory = async (sc: any): Promise<any> => {
     try {
         const currentLottery = await sc.numLottery();
         let i = currentLottery - 1;
-        const end = i - 10;
+        const end = i - 9;
         let list = [];
 
         for (i; i >= end; i--) {

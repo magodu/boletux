@@ -57,7 +57,8 @@
         "amountTableHeader": "Amount",
         "multiplierTableHeader": "Multiplier",
         "resultNumTableHeader": "Result",
-        "winnerTableHeader": "Winner"
+        "winnerTableHeader": "Winner",
+        "errorMessageRecoverHistory": "Error recovering latest bets."
     },
     "lottery": {
         "jackpotButtonText": "Jackpot",
@@ -72,8 +73,6 @@
         "ticketsTabEmpty": "Your bougth tickets will appear here",
         "removeTicketsButtonText": "Remove tickets",
         "buyTicketsButtonText": "Buy Tickets",
-        "infoMessageTransactionSent": "Transaction {{transactionNumber}} sent.",
-        "successMessageTransactionConfirmed": "Transaction {{transactionNumber}} confirmed!",
         "errorMessageMaxTickets": "Cannot select more than 10 tickets at a time.",
         "instructions_title": "How to play",
         "instructions_step": "Step",
@@ -162,6 +161,8 @@
         "rights": "All Rights Reserved By Boletux"
     },
     "successMessages": {
+        "infoMessageTransactionSent": "Transaction {{transactionNumber}} sent.",
+        "transactionConfirmed": "Transaction {{transactionNumber}} confirmed!",
         "copyTextToclipboard": "Wallet address copied to clipboard."
     },
     "errorMessages": {

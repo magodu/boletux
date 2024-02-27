@@ -16,7 +16,6 @@ import { ToastEventChannel } from '../../components/eventChannels/ToastEventChan
 
 import { BoletuxContext } from '../../store/boletux-context';
 import { useEthersErrorHandler } from '../../hooks/useEthersErrorHandler';
-
 import { abiLotteryFactory, abiLotteryStorage } from '../../ethereum/abiLotteryContract';
 import { getPendingTime, isLotteryOpened, balance, ticketsForSale, getNumLottery, getTicketPrice, getLotteryHistory } from './lotteryWeb3Functions';
 
@@ -238,9 +237,9 @@ const Lottery: React.FC = () => {
         const scWithSigner = web3Contracts.lotteryFactory.connect(signer);
 
         try {
-            let rawTX = await scWithSigner.buyTicketList(numList, { value: numList.length });
+            let rawTX = await scWithSigner.buyTicketList(numList, { value: numList.length });  // TODO: Put real lottery value
             // SEND TX
-            ToastEventChannel.emit('onSendToast', { type: 'info', message: t('lottery.infoMessageTransactionSent', { transactionNumber: rawTX.nonce }) });
+            ToastEventChannel.emit('onSendToast', { type: 'info', message: t('successMessages.infoMessageTransactionSent', { transactionNumber: rawTX.nonce }) });
 
             const receipt = await rawTX.wait(2);
             // CONFIRMED TX
@@ -256,7 +255,7 @@ const Lottery: React.FC = () => {
 
             removeTickets();
             dispatch({ type: 'SET_LOADING', value: false });
-            ToastEventChannel.emit('onSendToast', { type: 'success', message: t('lottery.successMessageTransactionConfirmed', { transactionNumber: rawTX.nonce }) });
+            ToastEventChannel.emit('onSendToast', { type: 'success', message: t('successMessages.transactionConfirmed', { transactionNumber: rawTX.nonce }) });
             // return receipt;     STORE OPERATION RECEIPT??
         } catch (error) {
             handleError(error);
@@ -434,7 +433,7 @@ const Lottery: React.FC = () => {
                 <section className={classes['draws-section']}>
                     <div className={classes.content}>
                         <h3 className={classes.title}>{t('lottery.latest_title')}</h3>
-                        <div className={classes['table-wrapper']}> 
+                        <div className={classes['table-wrapper']}>
                             <table>
                                 <thead>
                                     <tr>
