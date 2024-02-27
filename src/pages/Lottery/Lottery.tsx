@@ -10,13 +10,15 @@ import TabContent from '../../components/UI/Tabs/TabContent';
 import ContentBox from '../../components/UI/ContentBox/ContentBox';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
+import CopyToClipboardButton from '../../components/UI/CopyToClipboardButton/CopyToClipboardButton';
+
 import { ToastEventChannel } from '../../components/eventChannels/ToastEventChannel';
 
 import { BoletuxContext } from '../../store/boletux-context';
 import { useEthersErrorHandler } from '../../hooks/useEthersErrorHandler';
 
-import abiLotteryContract from '../../ethereum/abiLotteryContract';
-import { getPendingTime, isLotteryOpened, balance, ticketsForSale, getNumLottery, getTicketPrice } from './lotteryWeb3Functions';
+import { abiLotteryFactory, abiLotteryStorage } from '../../ethereum/abiLotteryContract';
+import { getPendingTime, isLotteryOpened, balance, ticketsForSale, getNumLottery, getTicketPrice, getLotteryHistory } from './lotteryWeb3Functions';
 
 import { criptocurrency } from '../../constants';
 import { ActionReducerType } from '../..//models/appTypes';
@@ -28,7 +30,9 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { BsQuestionCircle, BsGraphUpArrow } from 'react-icons/bs';
 import { RxExternalLink } from "react-icons/rx";
 
-const addr_contract = process.env.REACT_APP_LOTTERY_CONTRACT || '';
+
+const addr_factory_contract = process.env.REACT_APP_LOTTERY_FACTORY_CONTRACT || '';
+const addr_storage_contract = process.env.REACT_APP_LOTTERY_STORAGE_CONTRACT || '';
 const boxStyles = {
     box: { width: '260px' },
 };
@@ -42,6 +46,7 @@ interface ReducerState {
     lotteryTicketsForSale: any[];
     ticketsListByOwner: any[];
     userSelectedTickets: any[];
+    lotteryHistory: any[];
 }
 
 const initialState = {
@@ -53,6 +58,7 @@ const initialState = {
     lotteryTicketsForSale: [],
     ticketsListByOwner: [],
     userSelectedTickets: [],
+    lotteryHistory: [],
 };
 
 const lotteryReducer = (state: ReducerState, action: ActionReducerType) => {
@@ -66,6 +72,8 @@ const lotteryReducer = (state: ReducerState, action: ActionReducerType) => {
             return { ...state, lotteryPrice: action.value };
         case 'SET_PENDING_TIME':
             return { ...state, lotteryPendingTime: action.value };
+        case 'SET_HISTORY':
+                return { ...state, lotteryHistory: action.value };
         case 'SET_BALANCE':
             return { ...state, lotteryBalance: action.value };
         case 'SET_TICKETS_FOR_SALE':
@@ -83,10 +91,12 @@ const Lottery: React.FC = () => {
     const { t } = useTranslation();
     const { web3Provider, setWeb3Provider, web3Contracts, setWeb3Contract } = useContext(BoletuxContext);
     const { handleError, errorMessage } = useEthersErrorHandler();
-    const contractRef = useRef<any>();
     const [activeTab, setActiveTab] = useState<string>('buy');
     const [state, dispatch] = useReducer(lotteryReducer, initialState);
-    const { isLoading, lotteryDraw, lotteryPrice, lotteryPendingTime, lotteryBalance, lotteryTicketsForSale, ticketsListByOwner, userSelectedTickets } = state;
+    const { isLoading, lotteryDraw, lotteryPrice, lotteryPendingTime, lotteryBalance, lotteryTicketsForSale, ticketsListByOwner, userSelectedTickets, lotteryHistory } = state;
+
+    const contractFactoryRef = useRef<any>();
+    const contractStorageRef = useRef<any>();
 
     const lotteryNumbers = Array.from({ length: 100 }, (_, index) => String(index).padStart(2, '0'));
 
@@ -101,28 +111,45 @@ const Lottery: React.FC = () => {
 
         const deployContract = async () => {
             if (web3Provider) {
-                const contract = new ethers.Contract(addr_contract, abiLotteryContract, web3Provider);
-                contractRef.current = contract;
-                setWeb3Contract('lottery', contract);
-                return contract;
+                const contractFactory = new ethers.Contract(addr_factory_contract, abiLotteryFactory, web3Provider);
+                const contractStorage = new ethers.Contract(addr_storage_contract, abiLotteryStorage, web3Provider);
+
+                contractFactoryRef.current = contractFactory;
+                contractStorageRef.current = contractStorage;
+                setWeb3Contract('lotteryFactory', contractFactory);
+                setWeb3Contract('lotteryStorage', contractStorage);
+                return {
+                    contractFactory,
+                    contractStorage,
+                };
             }
             return null;
         };
 
-        const fetchLotteryStatus = async (contract: any) => {
-            if (contract) {
-                const lotteryIsOpened = await isLotteryOpened(contract);
-                // const pendingTime = await getPendingTime(contract); // TODO: descomentar
-                const lotteryDraw = await getNumLottery(contract);
-                const lotteryPrice = await getTicketPrice(contract);
+        const fetchLotteryStatus = async (contracts: any) => {
 
+            if (contracts) {
+                const {
+                    contractFactory,
+                    contractStorage,
+                } = contracts;
+
+                const lotteryIsOpened = await isLotteryOpened(contractFactory);
+                const pendingTime = await getPendingTime(contractStorage);
+                const lotteryDraw = await getNumLottery(contractFactory);
+                const lotteryPrice = await getTicketPrice(contractFactory);
+                const lotteryLatestsDraws = await getLotteryHistory(contractFactory);
+
+                console.log('lotteryLatestsDraws', lotteryLatestsDraws);
+ 
                 dispatch({ type: 'SET_DRAW', value: lotteryDraw });
                 dispatch({ type: 'SET_PRICE', value: lotteryPrice });
-                // dispatch({type: 'SET_PENDING_TIME', value: pendingTime}); // TODO: descomentar
+                dispatch({type: 'SET_PENDING_TIME', value: pendingTime});
+                dispatch({type: 'SET_HISTORY', value: lotteryLatestsDraws});
 
                 if (lotteryIsOpened) {
-                    const lotteryBalance = await balance(contract);
-                    const rawTicketsForSale = await ticketsForSale(contract);
+                    const lotteryBalance = await balance(contractFactory);
+                    const rawTicketsForSale = await ticketsForSale(contractStorage);
                     let lotteryTicketsForSale = [...rawTicketsForSale];
                     lotteryTicketsForSale.shift();
 
@@ -136,8 +163,8 @@ const Lottery: React.FC = () => {
 
         const initializeContractAndFetchStatus = async () => {
             await initializeProvider();
-            const deployedContract = await deployContract();
-            await fetchLotteryStatus(deployedContract);
+            const deployedContracts = await deployContract();
+            await fetchLotteryStatus(deployedContracts);
         };
 
         dispatch({ type: 'SET_LOADING', value: true });
@@ -196,7 +223,7 @@ const Lottery: React.FC = () => {
         const signer = web3Provider.getSigner();
         const address = await signer.getAddress();
         try {
-            const response = await web3Contracts.lottery.ticketListByOwner(address);
+            const response = await web3Contracts.lotteryStorage.ticketListByOwner(address);
             const formattedResponse = response.map((ticket: any) => ticket.toNumber() - 1);
             dispatch({ type: 'SET_TICKETS_BY_OWNER', value: formattedResponse });
         } catch (error) {
@@ -208,7 +235,7 @@ const Lottery: React.FC = () => {
         dispatch({ type: 'SET_LOADING', value: true });
         await web3Provider.send('eth_requestAccounts', []);
         const signer = web3Provider.getSigner();
-        const scWithSigner = web3Contracts.lottery.connect(signer);
+        const scWithSigner = web3Contracts.lotteryFactory.connect(signer);
 
         try {
             let rawTX = await scWithSigner.buyTicketList(numList, { value: numList.length });
@@ -217,9 +244,10 @@ const Lottery: React.FC = () => {
 
             const receipt = await rawTX.wait(2);
             // CONFIRMED TX
-            const lotteryBalance = await balance(web3Contracts.lottery);
+            const lotteryBalance = await balance(web3Contracts.lotteryFactory);
+
             await ticketListByOwner();
-            const rawTicketsForSale = await ticketsForSale(web3Contracts.lottery);
+            const rawTicketsForSale = await ticketsForSale(web3Contracts.lotteryStorage);
             let lotteryTicketsForSale = [...rawTicketsForSale];
             lotteryTicketsForSale.shift();
 
@@ -418,20 +446,20 @@ const Lottery: React.FC = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td data-label={t('lottery.drawTableHeader')}><span><b>#2</b></span></td>
-                                        <td data-label={t('lottery.dateTableHeader')}><span>2024.01.23</span></td>
-                                        <td data-label={t('lottery.prizePotTableHeader')}><span className={classes.prize}>10 ETH</span></td>
-                                        <td data-label={t('lottery.winnerNumTableHeader')}><span>7</span></td>
-                                        <td data-label={t('lottery.winnerTableHeader')} colSpan={3}><span className={classes.address}>0xed2cR9DR9DRYRe5R9DR9DjR9D607d</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label={t('lottery.drawTableHeader')}><span><b>#1</b></span></td>
-                                        <td data-label={t('lottery.dateTableHeader')}><span>2024.01.12</span></td>
-                                        <td data-label={t('lottery.prizePotTableHeader')}><span className={classes.prize}>5 ETH</span></td>
-                                        <td data-label={t('lottery.winnerNumTableHeader')}><span>32</span></td>
-                                        <td data-label={t('lottery.winnerTableHeader')} colSpan={3}><span className={classes.address}>0xed2cR9DR9DR9DR9DR9R9DR9D607d</span></td>
-                                    </tr>
+                                        {lotteryHistory.map((draw: any, i: number) => (
+                                            <tr key={i}>
+                                                <td data-label={t('lottery.drawTableHeader')}><span><b>#2</b></span></td>
+                                                <td data-label={t('lottery.dateTableHeader')}><span>{draw.initDate}</span></td>
+                                                <td data-label={t('lottery.prizePotTableHeader')}><span className={classes.prize}>{draw.prize} ETH</span></td>
+                                                <td data-label={t('lottery.winnerNumTableHeader')}><span>{draw.winnerNum}</span></td>
+                                                <td data-label={t('lottery.winnerTableHeader')} colSpan={3} >
+                                                    <div className={classes.address}>
+                                                        <span className={classes.wallet}>{draw.winner}</span>
+                                                        <span className={classes.copy}><CopyToClipboardButton textToCopy={draw.winner} title={t('common.copyWalletAddress')} /></span>
+                                                    </div>   
+                                                </td>
+                                            </tr>
+                                        ))}
                                 </tbody>
                             </table>
                         </div>

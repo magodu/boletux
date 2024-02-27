@@ -6,7 +6,8 @@
         "loading": "Loading",
         "processing": "Processing",
         "collect": "Collect",
-        "timeIsUp": "Time's up!"
+        "timeIsUp": "Time's up!",
+        "copyWalletAddress": "Copy wallet address"
     },
     "navBar": {
         "menu": "Menu",
@@ -161,7 +162,7 @@
         "rights": "All Rights Reserved By Boletux"
     },
     "successMessages": {
-        "recoverPasswordEmailSent": ""
+        "copyTextToclipboard": "Text copied to clipboard."
     },
     "errorMessages": {
         "requiredFields": "Todos los campos son obligatorios"

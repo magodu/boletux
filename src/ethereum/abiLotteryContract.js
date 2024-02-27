@@ -1,4 +1,4 @@
-const abiLotteryContract = [
+export const abiLotteryFactory = [ 
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
@@ -24,40 +24,46 @@ const abiLotteryContract = [
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "_numLottery",
 				"type": "uint256"
 			}
 		],
-		"name": "arr",
+		"name": "_initTickets",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "bool",
 				"name": "",
-				"type": "uint256"
+				"type": "bool"
 			}
 		],
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [],
 		"name": "balance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getPendingTime",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -77,7 +83,13 @@ const abiLotteryContract = [
 			}
 		],
 		"name": "buyTicket",
-		"outputs": [],
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
 		"stateMutability": "payable",
 		"type": "function"
 	},
@@ -101,19 +113,86 @@ const abiLotteryContract = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "changeRandomInit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "_numLottery",
 				"type": "uint256"
 			}
 		],
-		"name": "hist",
+		"name": "getHistory",
 		"outputs": [
 			{
-				"internalType": "contract LotteryTickets",
+				"components": [
+					{
+						"internalType": "contract ILotteryTickets",
+						"name": "lotteryTickets",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "winnerNum",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lotteryPrize",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "initDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "prize",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "soldTicketAmt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool[101]",
+						"name": "soldTicketList",
+						"type": "bool[101]"
+					}
+				],
+				"internalType": "struct ILotteryStruct.lottery",
 				"name": "",
-				"type": "address"
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "init_random",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -127,51 +206,6 @@ const abiLotteryContract = [
 				"internalType": "bool",
 				"name": "",
 				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "isLotteryWinner",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "lottery",
-		"outputs": [
-			{
-				"internalType": "contract LotteryTickets",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "contract LotteryTickets",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "lotteryInitDate",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -217,62 +251,220 @@ const abiLotteryContract = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "contract LotteryTickets",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "numSoldTicket",
+		"inputs": [],
+		"name": "owner",
 		"outputs": [
 			{
-				"internalType": "uint8",
+				"internalType": "address",
 				"name": "",
-				"type": "uint8"
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "contract LotteryTickets",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "openLottery",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [
 			{
-				"internalType": "contract LotteryTickets",
-				"name": "",
-				"type": "address"
-			},
+				"internalType": "uint256",
+				"name": "_price",
+				"type": "uint256"
+			}
+		],
+		"name": "setTicketPriceForNextLottery",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "testLottery",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "ticketPrice",
+		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "soldTickets",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "ticketPriceForNextLottery",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "wthdBalance",
 		"outputs": [
 			{
 				"internalType": "bool",
 				"name": "",
 				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
+	}
+];
+
+export const abiLotteryStorage = [
+	{
+		"inputs": [
+			{
+				"internalType": "contract ILotteryFactory",
+				"name": "_lotteryFactory",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "actualTicketsForSale",
+		"outputs": [
+			{
+				"internalType": "bool[101]",
+				"name": "",
+				"type": "bool[101]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getPendingTime",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "lotteryFactory",
+		"outputs": [
+			{
+				"internalType": "contract ILotteryFactory",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "_from",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_to",
+				"type": "uint8"
+			}
+		],
+		"name": "lotteryHistory",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "contract ILotteryTickets",
+						"name": "lotteryTickets",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "winnerNum",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lotteryPrize",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "initDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "prize",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "soldTicketAmt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool[101]",
+						"name": "soldTicketList",
+						"type": "bool[101]"
+					}
+				],
+				"internalType": "struct ILotteryStruct.lottery[]",
+				"name": "",
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
@@ -298,27 +490,13 @@ const abiLotteryContract = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "testLottery",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "ticketPrice",
-		"outputs": [
+		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "_numLottery",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "ticketsForSale",
 		"outputs": [
 			{
@@ -329,49 +507,5 @@ const abiLotteryContract = [
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "contract LotteryTickets",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "winner",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "contract LotteryTickets",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "winnerNum",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"stateMutability": "payable",
-		"type": "receive"
 	}
-]
-
-export default abiLotteryContract;
+];
