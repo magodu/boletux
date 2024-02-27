@@ -455,7 +455,11 @@ const Lottery: React.FC = () => {
                                                 <td data-label={t('lottery.winnerTableHeader')} colSpan={3} >
                                                     <div className={classes.address}>
                                                         <span className={classes.wallet}>{draw.winner}</span>
-                                                        <span className={classes.copy}><CopyToClipboardButton textToCopy={draw.winner} title={t('common.copyWalletAddress')} /></span>
+                                                        <span className={classes.copy}>
+                                                            <CopyToClipboardButton textToCopy={draw.winner} 
+                                                                title={t('common.copyWalletAddress')} 
+                                                                successMessage={t('successMessages.copyTextToclipboard')} />
+                                                        </span>
                                                     </div>   
                                                 </td>
                                             </tr>

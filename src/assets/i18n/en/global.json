@@ -162,7 +162,7 @@
         "rights": "All Rights Reserved By Boletux"
     },
     "successMessages": {
-        "copyTextToclipboard": "Text copied to clipboard."
+        "copyTextToclipboard": "Wallet address copied to clipboard."
     },
     "errorMessages": {
         "requiredFields": "Todos los campos son obligatorios"

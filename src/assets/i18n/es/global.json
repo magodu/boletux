@@ -162,7 +162,7 @@
         "rights": "Todos los derechos reservados por Boletux"
     },
     "successMessages": {
-        "copyTextToclipboard": "Texto copiado al portapapeles."
+        "copyTextToclipboard": "Dirección copiada al portapapeles."
     },
     "errorMessages": {
         "requiredFields": "Todos los campos son obligatorios"

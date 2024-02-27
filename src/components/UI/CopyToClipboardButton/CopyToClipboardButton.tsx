@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { ToastEventChannel } from '../../../components/eventChannels/ToastEventChannel';
 
@@ -10,14 +9,13 @@ import classes from './CopyToClipboardButton.module.scss';
 type CopyToClipboardButtonProps = {
     textToCopy: string;
     title?: string;
+    successMessage?: string;
 }
 
-const CopyToClipboardButton: React.FC<CopyToClipboardButtonProps> = ({ textToCopy = '', title = '' }) => {
-    const { t } = useTranslation();
-
+const CopyToClipboardButton: React.FC<CopyToClipboardButtonProps> = ({ textToCopy = '', title = '', successMessage }) => {
     const copyToClipboard = () => {
         navigator.clipboard.writeText(textToCopy);
-        ToastEventChannel.emit('onSendToast', { type: 'success', message: t('successMessages.copyTextToclipboard') });
+        successMessage && ToastEventChannel.emit('onSendToast', { type: 'success', message: successMessage });
     };
   
     return (
