@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useReducer, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ethers } from 'ethers';
+import Confetti from "react-confetti";
 
 import Spinner from '../../components/UI/Spinner/Spinner';
 import CopyToClipboardButton from '../../components/UI/CopyToClipboardButton/CopyToClipboardButton';
@@ -111,6 +112,8 @@ const Bets: React.FC = () => {
     const contractBetRef = useRef<any>();
 
     const isStepForwardActive: boolean = ((step === 1 && bet) || (step === 2 && evenOdd) ||  (bet && evenOdd && step < 3));
+    const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
     const getBetHistory = async (sc: any): Promise<any> => {
         try {
@@ -298,6 +301,11 @@ const Bets: React.FC = () => {
     return (
         <>
             {isLoading && <Spinner message={t('common.processing')} />}
+            {showResult && result.isWinner && (
+                <div className={classes['confetti-wrapper']}>
+                    <Confetti width={width} height={height} gravity={0.06} recycle={false} wind={0.01} />
+                </div>
+            )}
             <div className={classes['bets-wrapper']}>
                 <div className={classes['bg-shape']}>
                     <img src={roundShapeBgImg} alt="" />

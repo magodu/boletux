@@ -1,6 +1,13 @@
 @import '../../scss/_variables';
 @import '../../scss/_button';
 
+.confetti-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
 .bets-wrapper {
     position: relative;
     overflow: hidden;
