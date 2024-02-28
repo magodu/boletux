@@ -377,7 +377,7 @@ const Bets: React.FC = () => {
                             <div className={`${classes.box} ${step === 2 ? classes['active-step'] : ''} ${step !== 2 ? classes.disabled : ''}`}>
                                 <div className={classes.header}>
                                     <img src={boxHeaderImg} alt="" />
-                                    <div className={classes['box-title']}>{t('bets.amountHeader')}</div>
+                                    <div className={classes['box-title']}>{t('bets.predictionHeader')}</div>
                                 </div>
                                 <div className={classes.content}>
                                     <div className={classes['form-wrapper']}>
