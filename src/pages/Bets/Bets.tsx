@@ -244,18 +244,6 @@ const Bets: React.FC = () => {
             const response: betPlaceResultType = await placeBet();
             const betLatestsDraws = await getBetHistory(web3Contracts.bet);
  
-            /* let winnerBet = '';
-            if (evenOdd === 'even' && response.winner) {
-                winnerBet = t('bets.even');
-            } else {
-                winnerBet = t('bets.odd');
-            }
-            if (evenOdd === 'odd' && response.winner) {
-                winnerBet = t('bets.odd');
-            } else {
-                winnerBet = t('bets.even');
-            } */
-
             let winnerBet = evenOdd === 'even' && response.winner ? t('bets.even') :
                 evenOdd === 'odd' && response.winner ? t('bets.odd') :
                 evenOdd === 'odd' && !response.winner ? t('bets.even') :
