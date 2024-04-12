@@ -1,8 +1,8 @@
-# Fortune Sailors
+# Boletux
 
 # Description
 
-A play to earn web game.
+A play to earn web gambling game.
 
 ## New features
 
